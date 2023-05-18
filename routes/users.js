@@ -1,38 +1,41 @@
 const express = require("express")
 const router  = express.Router()
-const {DB, auth} = require('../config')
+const { DB } = require('../config')
 
 //Router
 router.post('/create', async (req, res) => {
     try {
         const docID =  req.body.uid;
         const userData = {
+            "uid" : docID,
             "name" : req.body.name,
             "gender" : req.body.gender,
             "birthday" : req.body.birthday,
             "job" : req.body.job,
             "interest" : req.body.interest,
             "history" : req.body.history,
-            "balance" : req.body.balance
+            "balance" : 0
         }
         const docRef = await DB.collection("users").doc(docID);
 
         const docSnapshot = await docRef.get();
 
         if(docSnapshot.exists){
-            res.json({
+            res.status(409).json({
                 uid : docID,
-                status : "existed",
+                status : "Failed",
+                code : "users/existed",
                 message : "User is already existed in database"
             })
         }
         else{
             await docRef.set(userData);
             const response = {
+                status : "Success",
                 Message : "Success adding user data",
                 uid : docID
             }
-            res.json(response)
+            res.status(200).json(response)
         }
     } catch (error) {
         console.error(error);
@@ -51,7 +54,11 @@ router.get('/read/all', async (req, res) => {
             responseArr.push(user.data())
         } )
 
-        res.json(responseArr)
+        res.status(200).json({
+            status : "Success",
+            Message : "Success get all users",
+            users : responseArr
+        })
     } catch (error) {
         console.error(error)
         res.status(500).json({
@@ -65,10 +72,18 @@ router.get('/read/:uid', async (req, res) => {
         const userRef = await DB.collection('users').doc(req.params.uid);
         const selectedUser = await userRef.get()
         if(selectedUser.exists){
-            res.send(selectedUser.data());
+            res.status(200).json({
+                status : "Success",
+                Message : "Success get user",
+                user : selectedUser.data()
+            });
         }
         else{
-            res.send({ "Message" : "User does not exist" })
+            res.status(404).json({ 
+                Status : "Failed",
+                code : "users/notFound",
+                "Message" : "User does not exist" 
+            })
         }
     } catch (error) {
         console.error(error)
@@ -90,12 +105,14 @@ router.put('/update/:uid', async (req, res) => {
             await userRef.set(updatedData, {merge : true})
             res.status(200).json({
                 status: "Update Success",
-                message : "User updated"
+                message : "User information updated"
             })
         }
         else{
             res.status(404).json({
-                status : "User Not Found"
+                status : "Failed",
+                code : "users/notFound",
+                message : "User not found"
             })
         }
         
@@ -118,12 +135,15 @@ router.delete('/delete/:uid', async (req, res) => {
         if(docSnapshot.exists){
             await userRef.delete();
             res.status(200).json({
-                status: "Delete Success"
+                status: "Success",
+                message : "Delete user success"
             })
         }
         else{
             res.status(404).json({
-                status : "User Not Found"
+                status : "Failed",
+                code : "users/notFound",
+                message : "User not found"
             })
         }
 
