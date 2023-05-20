@@ -1,20 +1,19 @@
 const { auth } = require('../config')
 
 exports.verifyToken = async (req, res, next) => {
-    console.log("HEAD")
-    console.log(req.headers)
     const original = req.headers.authtoken
-    if(original === undefined) return res.json("EMPTY")
-    const arrOriginal = original.split(" ");
-    const token = arrOriginal[1];
+
+    
     try {
+        const arrOriginal = original.split(" ");
+        const token = arrOriginal[1];
         const verify = await auth.verifyIdToken(token);
         req.body.uid = verify.uid
         console.log(req.body.uid)
         next()
     } catch (error) {
         
-        if(error.code === "auth/argument-error"){
+        if(error.code === "auth/argument-error" || original === undefined){
             return res.status(403).json({
                 status : "Failed",
                 code : error.code,
