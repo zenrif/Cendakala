@@ -4,47 +4,6 @@ const { verifyToken } = require('../middleware/verifyToken')
 const { DB } = require('../config')
 
 //Router
-router.post('/create', verifyToken, async (req, res) => {
-    try {
-        const docID =  req.body.uid;
-        const userData = {
-            "uid" : docID,
-            "name" : req.body.name,
-            "gender" : req.body.gender,
-            "birthday" : req.body.birthday,
-            "job" : req.body.job,
-            "interest" : req.body.interest,
-            "history" : req.body.history,
-            "balance" : 0
-        }
-        const docRef = await DB.collection("users").doc(docID);
-
-        const docSnapshot = await docRef.get();
-
-        if(docSnapshot.exists){
-            res.status(409).json({
-                uid : docID,
-                status : "Failed",
-                code : "users/existed",
-                message : "User is already existed in database"
-            })
-        }
-        else{
-            await docRef.set(userData);
-            const response = {
-                status : "Success",
-                Message : "Success adding user data",
-                uid : docID
-            }
-            res.status(200).json(response)
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Server error');
-    }
-})
-
-
 router.get('/read/all', verifyToken, async (req, res) => {
     let responseArr = [];
 
@@ -75,7 +34,7 @@ router.get('/read', verifyToken, async (req, res) => {
         if(selectedUser.exists){
             res.status(200).json({
                 status : "Success",
-                Message : "Success get user",
+                message : "Success get user",
                 user : selectedUser.data()
             });
         }
@@ -83,7 +42,7 @@ router.get('/read', verifyToken, async (req, res) => {
             res.status(404).json({ 
                 Status : "Failed",
                 code : "users/notFound",
-                "Message" : "User does not exist" 
+                "message" : "User does not exist" 
             })
         }
     } catch (error) {
