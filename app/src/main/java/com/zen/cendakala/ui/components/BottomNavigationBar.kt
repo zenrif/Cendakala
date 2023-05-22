@@ -1,0 +1,83 @@
+package com.zen.cendakala.ui.components
+
+import android.content.res.Resources.Theme
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
+import com.zen.cendakala.route.NavigationItem
+import com.zen.cendakala.ui.theme.*
+
+@Composable
+fun BottomNavigationBar(navController: NavController) {
+    val items = listOf(
+        NavigationItem.Home,
+        NavigationItem.Survey,
+        NavigationItem.History,
+        NavigationItem.Wallet,
+        NavigationItem.Profile,
+    )
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
+    NavigationBar(containerColor = Color1, contentColor = Green) {
+        items.forEach { item ->
+            NavigationBarItem(
+                selected = currentRoute == item.route,
+                onClick = {
+                    navController.navigate(item.route) {
+                        navController.graph.startDestinationRoute?.let { route ->
+                            popUpTo(route) {
+                                saveState = true
+                            }
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                },
+                icon = {
+                    Icon(
+                        modifier = Modifier
+                            .width(24.dp)
+                            .height(24.dp),
+                        painter = painterResource(id = item.icon),
+                        contentDescription = item.title
+                    )
+                },
+                label = {
+                    Text(
+                        text = item.title,
+                        color = White,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                },
+                alwaysShowLabel = true,
+                colors = NavigationBarItemDefaults.colors(
+                    indicatorColor = Color3,
+                    selectedIconColor = Color5,
+                    unselectedIconColor = White
+                )
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun BottomNavigationBarPreview() {
+    BottomNavigationBar(navController = NavController(LocalContext.current))
+}
