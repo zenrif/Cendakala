@@ -1,6 +1,7 @@
 package com.zen.cendakala.ui.home
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Card
@@ -28,12 +30,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.zen.cendakala.R
 import com.zen.cendakala.ui.components.SearchField
 import com.zen.cendakala.ui.theme.*
 
@@ -79,14 +83,46 @@ fun HomeScreen(
                             .fillMaxHeight()
                             .padding(top = 0.dp, bottom = 0.dp, start = 26.dp, end = 26.dp)
                     ) {
-                        Text(text = "Card with blue border", modifier = Modifier.padding(16.dp))
-                        Divider(
-                            color = Black2,
-                            thickness = 2.dp,
-                            modifier = Modifier.fillMaxSize()
-                                .padding(top = 0.dp, bottom = 0.dp, start = 18.dp, end = 18.dp)
-                        )
-                        Text(text = "Card with blue border", modifier = Modifier.padding(top = 12.dp, bottom = 12.dp, start = 16.dp, end = 16.dp))
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(10.dp),
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.bg_home),
+                                contentDescription = null,
+                                modifier = Modifier.fillMaxSize(),
+                            )
+
+                            Text(
+                                text = "Card with blue border",
+                                modifier = Modifier.padding(16.dp)
+                            )
+                        }
+                            Row() {
+                                Column {
+                                    Divider(
+                                        color = Black2,
+                                        thickness = 2.dp,
+                                        modifier = Modifier
+                                            .padding(
+                                                top = 0.dp,
+                                                bottom = 12.dp,
+                                                start = 16.dp,
+                                                end = 16.dp
+                                            )
+                                    )
+                                    Text(
+                                        text = "Card with blue border",
+                                        modifier = Modifier.padding(
+                                            top = 12.dp,
+                                            bottom = 12.dp,
+                                            start = 16.dp,
+                                            end = 16.dp
+                                        )
+                                    )
+                                }
+                            }
                     }
                 }
             }
