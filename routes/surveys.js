@@ -219,6 +219,6 @@ router.delete('/delete/:surveyID', async (req, res) => {
     }
 })
 
-module.exports = {router, docID}
+module.exports = {router}
 
 
