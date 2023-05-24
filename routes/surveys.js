@@ -190,8 +190,8 @@ router.put('/update', async (req, res) => {
 })
 
 
-router.delete('/delete/:surveyID', async (req, res) => {
-    const surveyID = req.params.surveyID;
+router.delete('/delete', async (req, res) => {
+    const surveyID = req.body.surveyID;
 
     try {
         const surveyRef = DB.collection('surveys').doc(surveyID)
