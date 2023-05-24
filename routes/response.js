@@ -32,7 +32,9 @@ try {
     }
     
 } catch (error) {
-    console.error(error);
-    res.status(500).send('Server error');
+    console.error(error)
+    res.status(500).json({
+        message : error
+    })
 }
 })
