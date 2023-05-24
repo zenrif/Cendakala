@@ -15,11 +15,12 @@ router.post('/create', async (req, res) => {
         const dateTime = new Date(current);
         const date = dateTime.getDate() + "-" + dateTime.getMonth() + "-" + dateTime.getFullYear();
         const responseID =  crypto.randomUUID() + date + dateTime.getMilliseconds();
-
+        
+        //Survey
         const surveyRef = DB.collection('surveys').doc(req.body.surveyID)
         const docSnapshot = await surveyRef.get() 
 
-        if(!docSnapshot.exist){
+        if(!docSnapshot.exists){
             return res.status(404).json({
                 status : "Failed",
                 code : 'surveys/notFound',
@@ -28,6 +29,31 @@ router.post('/create', async (req, res) => {
         }
 
         const surveyQuota = docSnapshot.data().quota
+        const newQuota = surveyQuota - 1;
+        await docSnapshot.update({quota: newQuota})
+
+        //User
+        const userRef = DB.collection('users').doc(req.body.uid)
+        const docSnapshotU = await userRef.get()
+
+        if(!docSnapshotU.exists){
+            return res.status(404).json({
+                status : "Failed",
+                code : "users/notFound",
+                message : "User not found"
+            })
+        }
+
+        const userBalance = docSnapshotU.data().balance;
+        const newBalance = userBalance + req.body.reward;
+        await docSnapshot.update({balance: newBalance})
+
+        //response
+        const responseRef = DB.collection('response').doc(responseID)
+        const docSnapshotR = await surveyRef.get() 
+        
+
+
 
 
 

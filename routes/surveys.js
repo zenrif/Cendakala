@@ -158,12 +158,12 @@ router.get('/search/category', async (req, res) => {
     }
 })
 
-router.put('/update/:surveyID', async (req, res) => {
+router.put('/update', async (req, res) => {
     
     const updatedData = req.body;
 
     try {
-        const surveyRef = DB.collection('surveys').doc(req.params.surveyID)
+        const surveyRef = DB.collection('surveys').doc(updatedData.surveyID)
         const docSnapshot = await surveyRef.get()
 
         if(docSnapshot.exists){
