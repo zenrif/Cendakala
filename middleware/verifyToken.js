@@ -16,8 +16,8 @@ exports.verifyToken = async (req, res, next) => {
         if(error.code === "auth/argument-error" || original === undefined){
             return res.status(403).json({
                 status : "Failed",
-                code : error.code,
-                message : "Unauthorized Accesss"
+                code : "auth/argument-error",
+                message : "Unauthorized Access"
             })
         }
         else if(error.code === "auth/id-token-expired"){

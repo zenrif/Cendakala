@@ -2,9 +2,10 @@ const express = require("express")
 const router  = express.Router()
 const { DB } = require('../config')
 const crypto = require('crypto')
+const { verifyToken } = require("../middleware/verifyToken")
 
 //Router
-router.post('/create', async (req, res) => {
+router.post('/create',verifyToken, async (req, res) => {
     try {
         const currect = Date.now();
         const dateTime = new Date(currect);
@@ -90,9 +91,9 @@ router.get('/read/all', async (req, res) => {
     }
 })
 
-router.get('/read/:surveyID', async (req, res) => {
+router.get('/read', async (req, res) => {
     try {
-        const surveyRef = await DB.collection('surveys').doc(req.params.surveyID);
+        const surveyRef = await DB.collection('surveys').doc(req.body.surveyID);
         const selectedSurvey = await surveyRef.get()
         if(selectedSurvey.exists){
             res.status(200).json({
@@ -219,6 +220,6 @@ router.delete('/delete/:surveyID', async (req, res) => {
     }
 })
 
-module.exports = {router}
+module.exports = router
 
 
