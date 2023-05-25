@@ -97,12 +97,8 @@ router.post('/create', async (req, res) => {
     }
 })
 
-router.get('/response/:responseID', async(req, res) =>{
+router.get('/response/read/all', async(req, res) =>{
 try {
-
-    const sID = req.body.surveyID;
-    const uID = req.body.uid;
-    const aID = req.body.answer;
 
     const surveyresponse = {
         "surveyID" : sID,

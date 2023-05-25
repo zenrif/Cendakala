@@ -68,7 +68,7 @@ router.post('/create',verifyToken, async (req, res) => {
     }
 })
 
-router.get('/read/all', async (req, res) => {
+router.get('/read/all',verifyToken, async (req, res) => {
     let responseArr = [];
 
     try {
@@ -91,7 +91,7 @@ router.get('/read/all', async (req, res) => {
     }
 })
 
-router.get('/read', async (req, res) => {
+router.get('/read',verifyToken, async (req, res) => {
     try {
         const surveyRef = await DB.collection('surveys').doc(req.body.surveyID);
         const selectedSurvey = await surveyRef.get()
@@ -117,7 +117,7 @@ router.get('/read', async (req, res) => {
     }
 })
 
-router.get('/search/category', async (req, res) => {
+router.get('/search/category', verifyToken, async (req, res) => {
     const category = req.body.category || null
 
     let responseArr = [];
@@ -158,7 +158,7 @@ router.get('/search/category', async (req, res) => {
     }
 })
 
-router.put('/update', async (req, res) => {
+router.put('/update', verifyToken, async (req, res) => {
     
     const updatedData = req.body;
 
@@ -190,7 +190,7 @@ router.put('/update', async (req, res) => {
 })
 
 
-router.delete('/delete', async (req, res) => {
+router.delete('/delete', verifyToken, async (req, res) => {
     const surveyID = req.body.surveyID;
 
     try {

@@ -115,37 +115,5 @@ router.delete('/delete', verifyToken, async (req, res) => {
     }
 })
 
-// router.post('/login', async(req, res) => {
-//     try {
-//         console.log('a')
-//         res.send('test')
-//     } catch (error) {
-//         console.error(error)
-//         res.status(500).json({
-//             message : error
-//         })
-//     }
-// })
-
-// router.post('/verify', verifyToken, async(req, res) => {
-//     try{
-//         res.json(req.body.uid)
-//     } catch (error) {
-//         console.error(error)
-//         const spesificErr = error.code;
-
-//         if(error.code === "auth/argument-error"){
-//             res.status(403).json({
-//                 status : "Unauthorized Accesss"
-//             })
-//         }
-//         res.status(500).json({
-//             message : error
-//         })
-//     }
-    
-// })
-//commaaaaand
-
 module.exports = router;
 
