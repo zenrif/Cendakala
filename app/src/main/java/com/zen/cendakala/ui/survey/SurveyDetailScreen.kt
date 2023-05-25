@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -37,6 +38,7 @@ import com.zen.cendakala.R
 import com.zen.cendakala.ui.theme.Black2
 import com.zen.cendakala.ui.theme.Color1
 import com.zen.cendakala.ui.theme.Color2
+import com.zen.cendakala.ui.theme.Color3
 import com.zen.cendakala.ui.theme.Color5
 import com.zen.cendakala.ui.theme.Gray
 import com.zen.cendakala.ui.theme.White
@@ -45,7 +47,6 @@ import com.zen.cendakala.utils.Constants
 
 @Composable
 fun SurveyDetailScreen() {
-    val isChecked = remember { mutableStateOf(true) }
     Box(
         modifier = Modifier
             .background(
@@ -146,8 +147,8 @@ Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Card(
-                        border = BorderStroke(2.dp, Color1),
-                        elevation = CardDefaults.cardElevation(2.dp),
+                        border = BorderStroke(1.dp, Color3),
+                        elevation = CardDefaults.cardElevation(10.dp),
                         colors = CardDefaults.cardColors(
                             containerColor = White,
                             contentColor = Black2,
@@ -165,6 +166,7 @@ Row(
                         ) {
                             Text(
                                 text = "Category",
+                                fontWeight = FontWeight.Bold,
                                 modifier = Modifier
                                     .padding(top = 8.dp, bottom = 16.dp, start = 0.dp, end = 0.dp) ,
                             )
@@ -173,7 +175,7 @@ Row(
                                     .padding(top = 8.dp, bottom = 16.dp, start = 0.dp, end = 0.dp) ,
                             ) {
                             Text(text = "Category 1")
-                                Spacer(modifier = Modifier.padding(5.dp))
+                                Spacer(modifier = Modifier.padding(2.5.dp))
                             Text(text = "Category 2")
                             }
                         }
@@ -182,7 +184,7 @@ Row(
 
                 Card(
                     border = BorderStroke(2.dp, Color1),
-                    elevation = CardDefaults.cardElevation(2.dp),
+                    elevation = CardDefaults.cardElevation(20.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = White,
                         contentColor = Black2,
@@ -200,6 +202,7 @@ Row(
                     ) {
                         Text(
                             text = "Quota",
+                            fontWeight = FontWeight.Bold,
                             modifier = Modifier
                                 .padding(top = 8.dp, bottom = 16.dp, start = 0.dp, end = 0.dp) ,
                         )
@@ -213,7 +216,7 @@ Row(
                                     contentScale = ContentScale.Inside ,)
                                 Text(text = "Category 1" , modifier = Modifier.padding(start = 5.dp))
                             }
-                            Spacer(modifier = Modifier.padding(5.dp))
+                            Spacer(modifier = Modifier.padding(2.5.dp))
                             Row {
                                 Image(painter = painterResource(id = R.drawable.money_icon),
                                     contentDescription = "money",
@@ -221,6 +224,31 @@ Row(
                                 Text(text = "Category 1" , modifier = Modifier.padding(start = 5.dp))
                             }
                         }
+                    }
+                }
+                Card(
+
+                    border = BorderStroke(1.dp, Gray),
+                    elevation = CardDefaults.cardElevation(10.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = White,
+                        contentColor = Black2,
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight()
+                        .padding(top = 10.dp, bottom = 0.dp, start = 0.dp, end = 0.dp)
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 12.dp, bottom = 12.dp, start = 18.dp, end = 28.dp),
+                        horizontalAlignment = Alignment.Start ,
+                    ) {
+                        Text(text = "Category 1",
+                            fontWeight = FontWeight.Bold, )
+                        Spacer(modifier = Modifier.padding(2.5.dp))
+                        Text(text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Etiam tempor orci eu lobortis elementum nibh. Sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus. Porta non pulvinar neque laoreet suspendisse. Enim ut tellus elementum sagittis vitae et leo. Vitae suscipit tellus mauris a diam maecenas sed. Pellentesque elit eget gravida cum. Habitant morbi tristique senectus et netus. Turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet. Nunc pulvinar sapien et ligula ullamcorper malesuada proin libero nunc. In dictum non consectetur a erat nam at lectus urna. Auctor neque vitae tempus quam pellentesque nec nam. Turpis egestas pretium aenean pharetra magna ac placerat vestibulum. Ut morbi tincidunt augue interdum velit euismod in. Adipiscing bibendum est.")
                     }
                 }
             }
