@@ -5,7 +5,7 @@ const crypto = require('crypto')
 const { verifyToken } = require("../middleware/verifyToken")
 
 //router
-router.post('/create', async (req, res) => {
+router.post('/create', verifyToken, async (req, res) => {
     
     try {
         const {answers, surveyID, reward} = req.body;
@@ -97,14 +97,22 @@ router.post('/create', async (req, res) => {
     }
 })
 
-router.get('/response/read/all', async(req, res) =>{
+router.get('/read/all', verifyToken, async(req, res) =>{
 try {
+    let responseArr = []
 
-    const surveyresponse = {
-        "surveyID" : sID,
-        "uid" : uID,
-        "answer" : aID
-    }
+    const responseRef = DB.collection('response')
+    const resSnap = await responseRef.get();
+
+    resSnap.forEach( (response) => {
+        responseArr.push(response.data())
+    } )
+
+    res.status(200).json({
+        status : "Success",
+        Message : "Success get all responses",
+        responses : responseArr
+    })
     
 } catch (error) {
     console.error(error)
@@ -113,5 +121,88 @@ try {
     })
 }
 })
+
+router.get('/read/surveyID',verifyToken, async(req, res) =>{
+    try {
+        const surveyID = req.body.surveyID
+        let responseArr = []
+    
+        const responseRef = DB.collection('response')
+        const resSnap = await responseRef.get();
+    
+        resSnap.forEach( (response) => {
+            if(response.data().surveyID === surveyID) responseArr.push(response.data())
+        } )
+    
+        res.status(200).json({
+            status : "Success",
+            Message : "Success get all responses by surveyID",
+            responses : responseArr
+        })
+        
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({
+            message : error
+        })
+    }
+})
+
+router.get('/read/uid',verifyToken, async(req, res) =>{
+    try {
+        let responseArr = []
+    
+        const responseRef = DB.collection('response')
+        const resSnap = await responseRef.get();
+    
+        resSnap.forEach( (response) => {
+            if(response.data().uid === req.body.uid) responseArr.push(response.data())
+        } )
+    
+        res.status(200).json({
+            status : "Success",
+            Message : "Success get all responses by uid",
+            responses : responseArr
+        })
+        
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({
+            message : error
+        })
+    }
+})
+
+router.get("/read", async (req, res) => {
+    try {
+        const {responseID} = req.body
+        
+        const responseRef = DB.collection('response').doc(responseID)
+        const resSnap = await responseRef.get();
+
+        if(!resSnap.exists){
+            return res.status(404).json({ 
+                Status : "Failed",
+                code : "response/notFound",
+                "message" : "Response does not exist" 
+            })
+        }
+        
+        res.status(200).json({
+            status : "Success",
+            message : "Success get response",
+            detail : resSnap.data()
+        });
+
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({
+            message : error
+        }) 
+    }
+})
+
+
 
 module.exports = router
