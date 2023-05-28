@@ -1,5 +1,6 @@
 package com.zen.cendakala.ui.components
 
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
@@ -36,6 +37,8 @@ fun OutlinedTextFieldSurvey (
     placeholderText: String,
     imeActionParam: ImeAction,
     keyboardTypeParam: KeyboardType,
+    minHeightLine: Int = 56,
+    maxLine: Int = 1
     ){
     val keyboardController = LocalSoftwareKeyboardController.current
     var text by rememberSaveable { mutableStateOf("") }
@@ -59,7 +62,8 @@ fun OutlinedTextFieldSurvey (
             focusedBorderColor = SoftGray,
             unfocusedBorderColor = Gray),
         singleLine = false,
-        maxLines = 3,
-        modifier = Modifier.fillMaxSize(),
+        maxLines = maxLine,
+        modifier = Modifier.defaultMinSize(minHeight = minHeightLine.dp)
+            .fillMaxSize()
     )
 }

@@ -8,9 +8,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -64,13 +66,18 @@ import com.zen.cendakala.ui.theme.White
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SurveyCreateOverviewScreen() {
+fun SurveyCreateQuestionScreen() {
     val context = LocalContext.current
-    val coffeeDrinks = arrayOf("Americano", "Cappuccino", "Espresso", "Latte", "Mocha")
+
+    val numberQuestion = arrayOf("Question 1", "Question 2", "Question 3", "Question 4", "Question 5")
+    val typeQuestion = arrayOf("Multiple Choice", "Short Answer", "Long Answer", "Dropdown")
+    val amountQuestion = arrayOf("1", "2", "3", "4", "5")
     var expanded by remember { mutableStateOf(false) }
-    var selectedText by remember { mutableStateOf(coffeeDrinks[0]) }
     var expanded2 by remember { mutableStateOf(false) }
-    var selectedText2 by remember { mutableStateOf(coffeeDrinks[0]) }
+    var expanded3 by remember { mutableStateOf(false) }
+    var selectedText by remember { mutableStateOf(numberQuestion[0]) }
+    var selectedText2 by remember { mutableStateOf(typeQuestion[0]) }
+    var selectedText3 by remember { mutableStateOf(amountQuestion[0]) }
 
     Box(
         modifier = Modifier
@@ -94,7 +101,7 @@ fun SurveyCreateOverviewScreen() {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 100.dp, start = 30.dp, end = 30.dp)
+                    .padding(top = 100.dp, start = 24.dp, end = 24.dp)
             ) {
                 Row(
                     modifier = Modifier
@@ -114,35 +121,6 @@ fun SurveyCreateOverviewScreen() {
                         .fillMaxSize()
                         .padding(top = 20.dp) ,
                     horizontalArrangement = Arrangement.Start,
-                ) {
-                    OutlinedTextFieldSurvey(
-                        labelText = "Title",
-                        placeholderText = "Write anything ...",
-                        imeActionParam = ImeAction.Done,
-                        keyboardTypeParam = KeyboardType.Text,
-                        maxLine = 3
-                    )
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(top = 20.dp) ,
-                    horizontalArrangement = Arrangement.Start,
-                ) {
-                    Text(
-                        text = "Category",
-                        color = Black2,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily.SansSerif,
-                        modifier = Modifier
-                            .padding(start = 12.dp)
-                    )
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    horizontalArrangement = Arrangement.Start ,
                 ) {
                     ExposedDropdownMenuBox(
                         expanded = expanded,
@@ -165,7 +143,7 @@ fun SurveyCreateOverviewScreen() {
                             expanded = expanded,
                             onDismissRequest = { expanded = false }
                         ) {
-                            coffeeDrinks.forEach { item ->
+                            numberQuestion.forEach { item ->
                                 DropdownMenuItem(
                                     text = { Text(text = item) },
                                     onClick = {
@@ -177,37 +155,45 @@ fun SurveyCreateOverviewScreen() {
                             }
                         }
                     }
+                }
+                Spacer(modifier = Modifier.height(14.dp))
+                Row(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    horizontalArrangement = Arrangement.SpaceBetween ,
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize(0.5f)
+                            .padding(end = 6.dp)
+                    ) {
+                        Text(
+                            text = "Type",
+                            color = Black2,
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.SansSerif,
+                        )
                     ExposedDropdownMenuBox(
                         expanded = expanded2,
                         onExpandedChange = {
                             expanded2 = !expanded2
                         },
-                        modifier = Modifier
-                            .fillMaxHeight(0.5f)
-                            .background(Color1) ,
                     ) {
                         TextField(
-                            value = selectedText,
+                            value = selectedText2,
                             onValueChange = {},
                             readOnly = true,
                             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded2) },
-                            modifier = Modifier.menuAnchor(),
-                            colors = TextFieldDefaults.textFieldColors(
-                                containerColor = Color1,
-                                textColor = Color.White,
-                                cursorColor = Color.White,
-                                focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent,
-                                disabledIndicatorColor = Color.Transparent,
-                            )
+                            modifier = Modifier
+                                .menuAnchor()
+                                .fillMaxSize()
                         )
                         ExposedDropdownMenu(
                             expanded = expanded2,
-                            onDismissRequest = { expanded2 = false },
-                            modifier = Modifier
-                                .background(Color1)
+                            onDismissRequest = { expanded2 = false }
                         ) {
-                            coffeeDrinks.forEach { item ->
+                            typeQuestion.forEach { item ->
                                 DropdownMenuItem(
                                     text = { Text(text = item) },
                                     onClick = {
@@ -219,60 +205,72 @@ fun SurveyCreateOverviewScreen() {
                             }
                         }
                     }
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(top = 20.dp) ,
-                    horizontalArrangement = Arrangement.SpaceBetween ,
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize(0.5f)
-                            .padding(end = 6.dp)
-                    ) {
-                        Text(
-                            text = "Quota",
-                            color = Black2,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold,
-                            fontFamily = FontFamily.SansSerif,
-                        )
-                        var value by remember { mutableStateOf("") }
-                        TextField(
-                            value = value,
-                            onValueChange = { value = it },
-                            label = { Text("Enter text") },
-                            maxLines = 1,
-                            textStyle = TextStyle(color = Color.Blue),
-                            keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Number,
-                                imeAction = ImeAction.Next
-                            ),
-                        )
                     }
                     Column(
                         modifier = Modifier
-                            .fillMaxHeight(0.5f)
-                            .padding(start = 6.dp)
+                            .fillMaxSize(0.4f)
                     ) {
                         Text(
-                            text = "Reward",
+                            text = "Number",
                             color = Black2,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold,
                             fontFamily = FontFamily.SansSerif,
                         )
-                        var value by remember { mutableStateOf("Hello\nWorld\nInvisible") }
+                    ExposedDropdownMenuBox(
+                        expanded = expanded3,
+                        onExpandedChange = {
+                            expanded3 = !expanded3
+                        },
+                        modifier = Modifier
+                            .background(Color1) ,
+                    ) {
                         TextField(
-                            value = value,
-                            onValueChange = { value = it },
-                            maxLines = 1,
-                            textStyle = TextStyle(color = Color.Blue, fontWeight = FontWeight.Bold),
-                            keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Number,
-                                imeAction = ImeAction.Next
-                            ),
+                            value = "",
+                            onValueChange = {},
+                            readOnly = true,
+                            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded3) },
+                            modifier = Modifier.menuAnchor(),
+                            colors = TextFieldDefaults.textFieldColors(
+                                containerColor = Color1,
+                                textColor = Color.White,
+                                cursorColor = Color.White,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                                disabledIndicatorColor = Color.Transparent,
+                            )
+                        )
+                        ExposedDropdownMenu(
+                            expanded = expanded3,
+                            onDismissRequest = { expanded3 = false },
+                            modifier = Modifier
+                                .background(Color1)
+                        ) {
+                            amountQuestion.forEach { item ->
+                                DropdownMenuItem(
+                                    text = { Text(text = item) },
+                                    onClick = {
+                                        selectedText3 = item
+                                        expanded3 = false
+                                        Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
+                                    }
+                                )
+                            }
+                        }
+                    }
+                    }
+                    Column(
+                        modifier = Modifier
+                            .fillMaxHeight(0.2f)
+                            .padding(start = 8.dp)
+                    ) {
+                        Spacer(modifier = Modifier.height(20.dp))
+                        Text(
+                            text = "Apply",
+                            color = Black2,
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.SansSerif,
                         )
                     }
                 }
@@ -283,12 +281,42 @@ fun SurveyCreateOverviewScreen() {
                     horizontalArrangement = Arrangement.Start ,
                 ) {
                     OutlinedTextFieldSurvey(
-                        labelText = "Description",
+                        labelText = "Question",
                         placeholderText = "Write anything ...",
                         imeActionParam = ImeAction.Done,
                         keyboardTypeParam = KeyboardType.Text,
-                        maxLine = 10,
-                        minHeightLine = 280
+                        maxLine = 5,
+                        minHeightLine = 112
+                    )
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(top = 16.dp) ,
+                    horizontalArrangement = Arrangement.Start ,
+                ) {
+                    OutlinedTextFieldSurvey(
+                        labelText = "Choice 1",
+                        placeholderText = "Write anything ...",
+                        imeActionParam = ImeAction.Done,
+                        keyboardTypeParam = KeyboardType.Text,
+                        maxLine = 2,
+                        minHeightLine = 56
+                    )
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(top = 16.dp) ,
+                    horizontalArrangement = Arrangement.Start ,
+                ) {
+                    OutlinedTextFieldSurvey(
+                        labelText = "Choice 2",
+                        placeholderText = "Write anything ...",
+                        imeActionParam = ImeAction.Done,
+                        keyboardTypeParam = KeyboardType.Text,
+                        maxLine = 2,
+                        minHeightLine = 56
                     )
                 }
             }
@@ -298,6 +326,6 @@ fun SurveyCreateOverviewScreen() {
 
 @Preview
 @Composable
-fun SurveyCreateOverviewScreenPreview() {
-    SurveyCreateOverviewScreen()
+fun SurveyCreateQuestionScreenPreview() {
+    SurveyCreateQuestionScreen()
 }
