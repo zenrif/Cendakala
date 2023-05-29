@@ -61,7 +61,8 @@ This project aims to make it easier for researchers to find the right respondent
 <h3>Cloud Computing Documentation</h3>
 <a href="https://github.com/zenrif/Cendakala/tree/backend">Here for Cloud Computing Documentation</a>
 <h3>REST API Documentation</h3>
-<a href="https://github.com/zenrif/Cendakala/assets/101646114/77f5ab9c-b8f1-4632-8f6c-c1356f1442a5">Here for REST API Documentation</a>
+<a href="https://docs.google.com/document/d/1y4ClCsz6hy0ygxJ8HvCwDNeSdZL8LUDqe-rE3bVlZBY/edit#heading=h.fw2lbufe8uxb">Here for REST API Documentation</a>
+<br>
 <p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/dd753209-f21a-4ee3-a6d0-80664647aea7"></p>
 <h2>Contact</h2>
 
