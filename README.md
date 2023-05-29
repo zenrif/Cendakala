@@ -53,11 +53,14 @@ Using (otw)
 
 ### Algorithms
 1. Collaborative Filtering : This algorithm is a type of collaborative filtering algorithm that takes into account the number of surveys that a user has filled out when making recommendations.
-Illustration
-![collaborative_filtering_illustration](https://user-images.githubusercontent.com/test.png)
+
+<p align="center"> <img src="https://github.com/zenrif/Cendakala/blob/507d9931a677e4b8b691921f52e796fac0419f9e/collaborative_filtering_illustration.png"></p>
+<p align="center">Collaborative Filtering Illustration</p>
 
 2. Levenshtein distance: This algorithm calculates the number of changes that need to be made to one string to make it match another string. The lower the Levenshtein distance, the higher the fuzz string matching ratio.
 
+<p align="center"> <img src="https://github.com/zenrif/Cendakala/blob/507d9931a677e4b8b691921f52e796fac0419f9e/collaborative_filtering_illustration.png"></p>
+<p align="center">Fuzzy-Wuzzy Illustration</p>
 
 ### Results
 (otw)
