@@ -1,6 +1,66 @@
-# Cendakala
+# Cendakala, Aplikasi Jual Beli Survey
+
+## Recommendation System Model
+A recommendation system is a type of information filtering system that predicts and suggests items or content that a user may be interested in. Its main purpose is to assist users in discovering relevant and personalized recommendations from a vast pool of choices, such as products, movies, music, articles, or even friends in social networks.
+
+## Machine Learning Documentation
+### Components
+* NLP
+* Keras
+* Pandas
+* NumPy
+* Embeddings
+* Model Evaluation
+* Top-N recommendation
+* Accuracy and Loss Graph
+
+### Requirements
+* [Google Colaboratory](https://colab.research.google.com/) or [Jupyter Notebook](https://jupyter.org/install).
+* Kaggle API Token.
+* Latest Tensorflow Version 2.8.2.
+* Python Version 3.6 or above.
+
+### Dataset
+* [User Dataset](https://drive.google.com/file/d/1onu9HDVevZgUMay2sOUKqJir45plt9cW/view?usp=sharing)
+
+Dataset Preview
+| user_id   | kategori               | history  |
+| --------- | ---------------------- | -------- |
+| 1         | Kesehatan              | 7        |
+| 1         | Pendidikan             | 4        |
+| 1         | Hukum                  | 8        |
+| 1         | Keuangan               | 5        |
+| 1         | Pariwisata             | 7        |
+| 1         | Sosial dan Kemanusiaan | 10       |
+
+### Data Gathering
+
+Data will be retrieved directly from the database. The data is then cleaned and prepared for training. The machine learning model will then be trained on the prepared data. Once the model has been trained, it can be used to recommend surveys to users.
+
+### Preprocessing Data
+
+Data processing using (otw)
+
+### Modelling + Evaluation
+
+Using (otw)
 
 
-Referensi 1 : https://github.com/anddfian/Dicoding-MLT/blob/main/Submission%202/Submission_2_MLT.ipynb
+## Models
+1. Retrieval models, are used to generate a list of candidate items that are likely to be of interest to a user. This is typically done by finding items that are similar to items that the user has previously interacted with.
 
-Referensi 2 : https://github.com/RTAgung/Machine-Learning-Terapan/blob/master/submission_2/Dicoding_MLT_Submission_2.ipynb
+2. Fuzzy-Wuzzy, the fuzz string matching ratio is a measure of how similar two strings are. It is calculated by dividing the number of characters that are the same in both strings by the total number of characters in both strings. The higher the ratio, the more similar the two strings are.
+
+### Algorithms
+1. Collaborative Filtering : This algorithm is a type of collaborative filtering algorithm that takes into account the number of surveys that a user has filled out when making recommendations.
+Illustration
+![collaborative_filtering_illustration](https://user-images.githubusercontent.com/test.png)
+
+2. Levenshtein distance: This algorithm calculates the number of changes that need to be made to one string to make it match another string. The lower the Levenshtein distance, the higher the fuzz string matching ratio.
+
+
+### Results
+(otw)
+
+### Deployment
+The model architecture is deployed to the backend service. The model then gets the data, processes it, and sends the recommendation to the application.
