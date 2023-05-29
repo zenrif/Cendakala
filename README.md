@@ -59,7 +59,7 @@ Using (otw)
 
 2. Levenshtein distance: This algorithm calculates the number of changes that need to be made to one string to make it match another string. The lower the Levenshtein distance, the higher the fuzz string matching ratio.
 
-<p align="center"> <img src="https://github.com/zenrif/Cendakala/blob/507d9931a677e4b8b691921f52e796fac0419f9e/collaborative_filtering_illustration.png"></p>
+<p align="center"> <img src="https://github.com/zenrif/Cendakala/blob/5a260adcdf15fb594cb159f561d556f19a843ca5/fuzzywuzzy_illustration.png"></p>
 <p align="center">Fuzzy-Wuzzy Illustration</p>
 
 ### Results
