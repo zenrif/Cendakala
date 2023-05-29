@@ -24,14 +24,29 @@ A recommendation system is a type of information filtering system that predicts 
 * [User Dataset](https://drive.google.com/file/d/1onu9HDVevZgUMay2sOUKqJir45plt9cW/view?usp=sharing)
 
 Dataset Preview
-| user_id   | kategori               | history  |
-| --------- | ---------------------- | -------- |
-| 1         | Kesehatan              | 7        |
-| 1         | Pendidikan             | 4        |
-| 1         | Hukum                  | 8        |
-| 1         | Keuangan               | 5        |
-| 1         | Pariwisata             | 7        |
-| 1         | Sosial dan Kemanusiaan | 10       |
+| user_id   | kategori                           | history  |
+| --------- | ---------------------------------- | -------- |
+| 1         | Kesehatan                          | 7        |
+| 1         | Pendidikan                         | 4        |
+| 1         | Hukum                              | 8        |
+| 1         | Keuangan                           | 5        |
+| 1         | Pariwisata                         | 7        |
+| 1         | Sosial dan Kemanusiaan             | 10       |
+| 1         | Lingkungan dan Konservasi          | 3        |
+| 1         | Teknologi Informasi dan Komunikasi | 7        |
+| 1         | Olahraga dan Rekreasi              | 8        |
+| 1         | Seni dan Budaya                    | 5        |
+| 1         | Agama dan Kepercayaan              | 4        |
+| 1         | Bisnis dan Industri                | 8        |
+| 1         | Politik dan Pemerintahan           | 8        |
+| 1         | Transportasi dan Logistik          | 3        |
+| 1         | Pertanian dan Perikanan            | 6        |
+| 2         | Kesehatan                          | 5        |
+| 2         | Pendidikan                         | 2        |
+| 2         | Hukum                              | 8        |
+| 2         | Keuangan                           | 6        |
+
+
 
 Data will be retrieved directly from the database. The data is then cleaned and prepared for training. The machine learning model will then be trained on the prepared data. Once the model has been trained, it can be used to recommend surveys to users.
 
