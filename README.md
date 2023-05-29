@@ -33,18 +33,7 @@ Dataset Preview
 | 1         | Pariwisata             | 7        |
 | 1         | Sosial dan Kemanusiaan | 10       |
 
-### Data Gathering
-
 Data will be retrieved directly from the database. The data is then cleaned and prepared for training. The machine learning model will then be trained on the prepared data. Once the model has been trained, it can be used to recommend surveys to users.
-
-### Preprocessing Data
-
-Data processing using (otw)
-
-### Modelling + Evaluation
-
-Using (otw)
-
 
 ## Models
 1. Retrieval models, are used to generate a list of candidate items that are likely to be of interest to a user. This is typically done by finding items that are similar to items that the user has previously interacted with.
@@ -63,7 +52,7 @@ Using (otw)
 <p align="center">Fuzzy-Wuzzy Illustration</p>
 
 ### Results
-(otw)
+(-)
 
 ### Deployment
 The model architecture is deployed to the backend service. The model then gets the data, processes it, and sends the recommendation to the application.
