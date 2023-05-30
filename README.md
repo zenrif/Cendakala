@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/5fff6fda-c4b7-424c-b7f1-65c79600cd22"></p>
+<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/a3d15ccc-2bff-4901-aefc-5e0e3302d6b0"></p>
 <h1 align="center">Cendakala</h1>
 <h3 align="center">Application for filling out questionnaire data and data transactions. We're ready to help you!</h3>
 <p align="center">Project for fulfill the <a href="https://grow.google/intl/id_id/bangkit/?tab=machine-learning">Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka</a> Program.</p>
@@ -49,10 +49,10 @@ This project aims to make it easier for researchers to find the right respondent
 </p>
 <h2>App Overview</h2>
 <h3>Project Architecture</h3>
-<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/d9b61a70-25af-44ad-9019-26813ec0428e"></p>
+<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/6e82390b-e348-47ce-81c2-527824d17a04"></p>
 <h3>Cendakala App</h3>
-<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/6c23942c-cb3e-4ebe-a53a-f79a47aa51d9"></p>
-<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/d608fd83-bb1e-484a-9a01-45bf7d7b3632"></p>
+<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/a4d338df-0cc6-435f-9f74-7a8f54d7111d"></p>
+<p align="center"><img src= "https://github.com/zenrif/Cendakala/assets/101646114/5f9fc2a1-9634-4719-8d3b-e78e06325892"></p>
 <h2>Documentation</h2>
 <h3>Machine Learning Development Documentation</h3>
 <a href="https://github.com/zenrif/Cendakala/tree/model">Here for Machine Learning Documentation</a>
@@ -63,7 +63,7 @@ This project aims to make it easier for researchers to find the right respondent
 <h3>REST API Documentation</h3>
 <a href="https://docs.google.com/document/d/1y4ClCsz6hy0ygxJ8HvCwDNeSdZL8LUDqe-rE3bVlZBY/edit#heading=h.fw2lbufe8uxb">Here for REST API Documentation</a>
 <p> </p>
-<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/dd753209-f21a-4ee3-a6d0-80664647aea7"></p>
+<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/d8d5315d-c5cf-44e7-848a-78ff1a3c973b"></p>
 <h2>Contact</h2>
 
 | Name                         | Contact                                                                                                                                                                                                                                                                                      |
