@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.zen.cendakala.R
 import com.zen.cendakala.ui.components.CardSurvey
-import com.zen.cendakala.ui.components.CheckBoxCustom
 import com.zen.cendakala.ui.components.ImageBackground
 import com.zen.cendakala.ui.components.PrimaryButton
 import com.zen.cendakala.ui.components.TextTitle
@@ -32,7 +31,7 @@ import com.zen.cendakala.ui.theme.Black2
 import com.zen.cendakala.utils.Constants
 
 @Composable
-fun Wallet() {
+fun WalletScreen() {
     Box(
         modifier = Modifier
             .background(
@@ -105,6 +104,6 @@ fun Wallet() {
 
 @Preview
 @Composable
-fun PreviewWallet() {
-    Wallet()
+fun PreviewWalletScreen() {
+    WalletScreen()
 }
