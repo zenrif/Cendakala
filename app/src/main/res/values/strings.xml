@@ -1,9 +1,17 @@
 <resources>
     <string name="app_name">Cendakala</string>
     <string name="login">Login</string>
-    <string name="signin">Sign In</string>
+    <string name="signin">Sign in</string>
     <string name="warning_password_level">warning_password_level</string>
     <string name="warning_password_level_strong">warning_password_level_strong</string>
     <string name="warning_password_level_weak">warning_password_level_weak</string>
     <string name="password_error">password_error</string>
+    <string name="register">Create Your Account</string>
+    <string name="signup">Sign up</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="interest">Choose Your Interest</string>
+    <string name="wallet">Wallet</string>
+    <string name="topup">Topup</string>
 </resources>

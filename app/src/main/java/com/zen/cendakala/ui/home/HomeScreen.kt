@@ -29,6 +29,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -38,7 +39,10 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.zen.cendakala.R
+import com.zen.cendakala.ui.components.CardSurvey
+import com.zen.cendakala.ui.components.ImageBackground
 import com.zen.cendakala.ui.components.SearchField
+import com.zen.cendakala.ui.components.TextTitle
 import com.zen.cendakala.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -52,77 +56,60 @@ fun HomeScreen(
     }
     val listState = rememberLazyListState()
 
-    Column {
-        LazyColumn(
+
+    Box(
+        modifier = Modifier
+            .background(
+                color = Color.White,
+            )
+    ) {
+        ImageBackground(image = R.drawable.bg_home)
+        TextTitle(
+            title = stringResource(id = R.string.interest),
+            fontSize = 16,
             modifier = Modifier
-                .fillMaxSize()
-                .background(color = White)
-                .padding(
-                    top = 16.dp,
-                    bottom = paddingValuesBottom.calculateBottomPadding()
-                ),
-            state = listState,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+                .padding(top = 56.dp)
+                .fillMaxSize(),
+        )
+        Box(
+            modifier = Modifier
+                /*.background(
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    shape = RoundedCornerShape(25.dp, 5.dp, 25.dp, 5.dp)
+                )*/
+                .align(Alignment.CenterStart)
         ) {
-            items(15) {
-                Box(
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 180.dp)
+            ) {
+                LazyColumn(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
+                        .fillMaxSize()
                         .background(color = White)
-                ) {
-                    Card(
-                        border = BorderStroke(2.dp, Color1),
-                        elevation = CardDefaults.cardElevation(2.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = White,
-                            contentColor = Black2,
+                        .padding(
+                            top = 16.dp,
+                            bottom = paddingValuesBottom.calculateBottomPadding()
                         ),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .fillMaxHeight()
-                            .padding(top = 0.dp, bottom = 0.dp, start = 26.dp, end = 26.dp)
-                    ) {
+                    state = listState,
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    items(15) {
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(10.dp),
+                                .fillMaxHeight()
+                                .background(color = White)
                         ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.bg_home),
-                                contentDescription = null,
-                                modifier = Modifier.fillMaxSize(),
-                            )
-
-                            Text(
-                                text = "Card with blue border",
-                                modifier = Modifier.padding(16.dp)
+                            CardSurvey(
+                                title = "Card with blue border",
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .fillMaxHeight()
+                                    .padding(top = 0.dp, bottom = 0.dp, start = 26.dp, end = 26.dp)
                             )
                         }
-                            Row() {
-                                Column {
-                                    Divider(
-                                        color = Black2,
-                                        thickness = 2.dp,
-                                        modifier = Modifier
-                                            .padding(
-                                                top = 0.dp,
-                                                bottom = 12.dp,
-                                                start = 16.dp,
-                                                end = 16.dp
-                                            )
-                                    )
-                                    Text(
-                                        text = "Card with blue border",
-                                        modifier = Modifier.padding(
-                                            top = 12.dp,
-                                            bottom = 12.dp,
-                                            start = 16.dp,
-                                            end = 16.dp
-                                        )
-                                    )
-                                }
-                            }
                     }
                 }
             }

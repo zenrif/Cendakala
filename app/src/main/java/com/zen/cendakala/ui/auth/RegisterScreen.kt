@@ -11,7 +11,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -19,7 +18,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -56,13 +54,11 @@ import com.zen.cendakala.ui.components.OutlinedTextFieldPasswordCustom
 import com.zen.cendakala.ui.components.PrimaryButton
 import com.zen.cendakala.ui.components.TextButtonCustom
 import com.zen.cendakala.ui.components.TextTitle
-import com.zen.cendakala.ui.theme.Black2
-import com.zen.cendakala.ui.theme.Color1
 import com.zen.cendakala.utils.CapsText
 import com.zen.cendakala.utils.Constants
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun RegisterScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .background(
@@ -71,10 +67,10 @@ fun LoginScreen(navController: NavController) {
     ) {
         ImageBackground(image = R.drawable.bg_auth)
         TextTitle(
-            title = stringResource(id = R.string.signin),
+            title = stringResource(id = R.string.register),
             fontSize = 20,
             modifier = Modifier
-                .padding(top = 144.dp)
+                .padding(top = 144.dp, start = 38.dp, end = 38.dp)
                 .fillMaxSize(),
             )
         Box(
@@ -83,7 +79,7 @@ fun LoginScreen(navController: NavController) {
                     color = MaterialTheme.colorScheme.onPrimary,
                     shape = RoundedCornerShape(25.dp, 5.dp, 25.dp, 5.dp)
                 )*/
-                .align(Alignment.Center),
+                .align(Alignment.BottomCenter),
         ) {
             Column(
                 modifier = Modifier
@@ -92,11 +88,44 @@ fun LoginScreen(navController: NavController) {
                     .verticalScroll(rememberScrollState())
                 ,
 
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Bottom
-
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Spacer(modifier = Modifier.padding(120.dp))
+                OutlinedTextFieldCustom(
+                    labelText = "Name",
+                    placeholderText = "Name",
+                    imeActionParam = ImeAction.Next,
+                    keyboardTypeParam = KeyboardType.Text,
+                    iconParam = R.drawable.name_icon,
+                    iconContentDescription = "name_icon",
+                )
+                Spacer(modifier = Modifier.padding(3.dp))
+                OutlinedTextFieldCustom(
+                    labelText = "Gender",
+                    placeholderText = "Gender",
+                    imeActionParam = ImeAction.Next,
+                    keyboardTypeParam = KeyboardType.Text,
+                    iconParam = R.drawable.gender_icon,
+                    iconContentDescription = "gender_icon",
+                )
+                Spacer(modifier = Modifier.padding(3.dp))
+                OutlinedTextFieldCustom(
+                    labelText = "Birthday",
+                    placeholderText = "Birthday",
+                    imeActionParam = ImeAction.Next,
+                    keyboardTypeParam = KeyboardType.Text,
+                    iconParam = R.drawable.birthday_icon,
+                    iconContentDescription = "birthday_icon",
+                )
+                Spacer(modifier = Modifier.padding(3.dp))
+                OutlinedTextFieldCustom(
+                    labelText = "Job",
+                    placeholderText = "Job",
+                    imeActionParam = ImeAction.Next,
+                    keyboardTypeParam = KeyboardType.Text,
+                    iconParam = R.drawable.job_icon,
+                    iconContentDescription = "job_icon",
+                )
+                Spacer(modifier = Modifier.padding(3.dp))
                 OutlinedTextFieldCustom(
                     labelText = "Email",
                     placeholderText = "Email",
@@ -109,47 +138,35 @@ fun LoginScreen(navController: NavController) {
                 OutlinedTextFieldPasswordCustom(
                     placeholderText = "Password"
                 )
-                Spacer(modifier = Modifier.padding(3.dp))
-                TextButtonCustom(
-                    text = stringResource(id = R.string.forgot_password),
+
+                Spacer(modifier = Modifier.padding(10.dp))
+                PrimaryButton(
+                    text = stringResource(id = R.string.signup),
                     onClickButton = {
-                        navController.navigate("forgot_password_page"){
+                        navController.navigate("login_page") {
                             popUpTo(navController.graph.startDestinationId)
                             launchSingleTop = true
                         }
                     },
                     modifier = Modifier
-                        .align(Alignment.End)
-                        .padding(end = 16.dp),
-                    )
-
-                Spacer(modifier = Modifier.padding(40.dp))
-                PrimaryButton(
-                    text = stringResource(id = R.string.signin),
-                    onClickButton = {
-                    navController.navigate("home_page"){
-                        popUpTo(navController.graph.startDestinationId)
-                        launchSingleTop = true
-                    } },
-                    modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 32.dp, end = 32.dp),
                 )
-                Spacer(modifier = Modifier.padding(16.dp))
-                    Text(
-                        text = stringResource(id = R.string.dont_have_account) ,
-                        style = MaterialTheme.typography.bodyMedium,
-                        letterSpacing = 1.sp,
-                    )
-                    TextButtonCustom(
-                        text = stringResource(id = R.string.signup),
-                        onClickButton = {
-                            navController.navigate("register_page") {
-                                popUpTo(navController.graph.startDestinationId)
-                                launchSingleTop = true
-                            }
-                        },
-                    )
+                Spacer(modifier = Modifier.padding(3.dp))
+                Text(
+                    text = stringResource(id = R.string.already_have_an_account) ,
+                    style = MaterialTheme.typography.bodyMedium,
+                    letterSpacing = 1.sp,
+                )
+                TextButtonCustom(
+                    text = stringResource(id = R.string.signin),
+                    onClickButton = {
+                        navController.navigate("login_page") {
+                            popUpTo(navController.graph.startDestinationId)
+                            launchSingleTop = true
+                        }
+                    },
+                )
             }
 
         }
@@ -206,65 +223,8 @@ private fun GradientButton(
     }
 }
 
-
-//email id
-@OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
-@Composable
-fun SimpleOutlinedTextFieldSample() {
-    val keyboardController = LocalSoftwareKeyboardController.current
-    var text by rememberSaveable { mutableStateOf("") }
-
-    OutlinedTextField(
-        value = text,
-        onValueChange = { text = it },
-        shape = RoundedCornerShape(topEnd =12.dp, bottomStart =12.dp),
-        label = {
-            Text("Name or Email Address",
-                color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.labelMedium,
-            ) },
-        placeholder = { Text(text = "Name or Email Address") },
-        keyboardOptions = KeyboardOptions(
-            imeAction = ImeAction.Next,
-            keyboardType = KeyboardType.Email
-        ),
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = MaterialTheme.colorScheme.primary,
-            unfocusedBorderColor = MaterialTheme.colorScheme.primary),
-        singleLine = true,
-        modifier = Modifier.fillMaxWidth(0.8f),
-        keyboardActions = KeyboardActions(
-            onDone = {
-                keyboardController?.hide()
-                // do something here
-            }
-        )
-    )
-}
-
-//password
-@OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
-@Composable
-fun SimpleOutlinedPasswordTextField() {
-    var passwordVisibility: Boolean by remember { mutableStateOf(false) }
-    TextField(value = "Enter Password",
-        visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
-        leadingIcon = {
-            IconButton(onClick = {
-                passwordVisibility = !passwordVisibility
-            }) {
-                Icon( painter = painterResource(id = R.drawable.lock_icon),
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(24.dp)
-                )
-            }
-        },
-        onValueChange = { })
-}
-
 @Preview
 @Composable
-fun Preview() {
-    LoginScreen(navController = rememberNavController())
+fun PreviewRegisterScreen() {
+    RegisterScreen(navController = rememberNavController())
 }

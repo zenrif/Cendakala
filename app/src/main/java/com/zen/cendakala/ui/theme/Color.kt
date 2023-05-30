@@ -12,7 +12,7 @@ val Pink40 = Color(0xFF7D5260)
 
 
 var White = Color(0xFFFFFFFF)
-var White2 = Color(0xFFf6f8fd)
+var White2 = Color(0xFFF3F3F3)
 var Dark = Color(0xFF003049)
 var Green = Color(0xFF00C853)
 
