@@ -9,6 +9,9 @@ A recommendation system is a type of information filtering system that predicts 
 * Keras
 * Pandas
 * NumPy
+* Tensorflow
+* Sklearn
+* Datetime
 * Embeddings
 * Model Evaluation
 * Top-N recommendation
