@@ -6,7 +6,7 @@ A recommendation system is a type of information filtering system that predicts 
 ### Collaborative Filtering
 This algorithm is a type of collaborative filtering algorithm that takes into account the number of surveys that a user has filled out when making recommendations.
 
-<p align="center"> <img src="https://github.com/zenrif/Cendakala/assets/101646114/93176547-5c1d-4f1c-b9a2-04486955b199"></p>
+<p align="center"> <img src="https://github.com/zenrif/Cendakala/assets/101646114/9c9187f3-a89a-4473-895f-dd40e94a9d86"></p>
 <p align="center">Collaborative Filtering Illustration</p>
 
 ### Datasets
