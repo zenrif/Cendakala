@@ -1,0 +1,1501 @@
+user_id,kategori,history
+1,Kesehatan,7.0
+1,Pendidikan,4.0
+1,Hukum,8.0
+1,Keuangan,5.0
+1,Pariwisata,7.0
+1,Sosial dan Kemanusiaan,10.0
+1,Lingkungan dan Konservasi,3.0
+1,Teknologi Informasi dan Komunikasi,7.0
+1,Olahraga dan Rekreasi,8.0
+1,Seni dan Budaya,5.0
+1,Agama dan Kepercayaan,4.0
+1,Bisnis dan Industri,8.0
+1,Politik dan Pemerintahan,8.0
+1,Transportasi dan Logistik,3.0
+1,Pertanian dan Perikanan,6.0
+2,Kesehatan,5.0
+2,Pendidikan,2.0
+2,Hukum,8.0
+2,Keuangan,6.0
+2,Pariwisata,2.0
+2,Sosial dan Kemanusiaan,5.0
+2,Lingkungan dan Konservasi,1.0
+2,Teknologi Informasi dan Komunikasi,10.0
+2,Olahraga dan Rekreasi,6.0
+2,Seni dan Budaya,9.0
+2,Agama dan Kepercayaan,1.0
+2,Bisnis dan Industri,10.0
+2,Politik dan Pemerintahan,3.0
+2,Transportasi dan Logistik,7.0
+2,Pertanian dan Perikanan,4.0
+3,Kesehatan,9.0
+3,Pendidikan,3.0
+3,Hukum,5.0
+3,Keuangan,3.0
+3,Pariwisata,7.0
+3,Sosial dan Kemanusiaan,5.0
+3,Lingkungan dan Konservasi,9.0
+3,Teknologi Informasi dan Komunikasi,7.0
+3,Olahraga dan Rekreasi,2.0
+3,Seni dan Budaya,4.0
+3,Agama dan Kepercayaan,9.0
+3,Bisnis dan Industri,2.0
+3,Politik dan Pemerintahan,10.0
+3,Transportasi dan Logistik,9.0
+3,Pertanian dan Perikanan,10.0
+4,Kesehatan,5.0
+4,Pendidikan,2.0
+4,Hukum,4.0
+4,Keuangan,7.0
+4,Pariwisata,8.0
+4,Sosial dan Kemanusiaan,3.0
+4,Lingkungan dan Konservasi,1.0
+4,Teknologi Informasi dan Komunikasi,4.0
+4,Olahraga dan Rekreasi,2.0
+4,Seni dan Budaya,8.0
+4,Agama dan Kepercayaan,4.0
+4,Bisnis dan Industri,2.0
+4,Politik dan Pemerintahan,6.0
+4,Transportasi dan Logistik,6.0
+4,Pertanian dan Perikanan,10.0
+5,Kesehatan,4.0
+5,Pendidikan,6.0
+5,Hukum,2.0
+5,Keuangan,10.0
+5,Pariwisata,2.0
+5,Sosial dan Kemanusiaan,10.0
+5,Lingkungan dan Konservasi,4.0
+5,Teknologi Informasi dan Komunikasi,8.0
+5,Olahraga dan Rekreasi,7.0
+5,Seni dan Budaya,9.0
+5,Agama dan Kepercayaan,8.0
+5,Bisnis dan Industri,5.0
+5,Politik dan Pemerintahan,2.0
+5,Transportasi dan Logistik,5.0
+5,Pertanian dan Perikanan,8.0
+6,Kesehatan,10.0
+6,Pendidikan,9.0
+6,Hukum,9.0
+6,Keuangan,1.0
+6,Pariwisata,9.0
+6,Sosial dan Kemanusiaan,7.0
+6,Lingkungan dan Konservasi,9.0
+6,Teknologi Informasi dan Komunikasi,8.0
+6,Olahraga dan Rekreasi,1.0
+6,Seni dan Budaya,8.0
+6,Agama dan Kepercayaan,8.0
+6,Bisnis dan Industri,3.0
+6,Politik dan Pemerintahan,1.0
+6,Transportasi dan Logistik,8.0
+6,Pertanian dan Perikanan,3.0
+7,Kesehatan,3.0
+7,Pendidikan,1.0
+7,Hukum,5.0
+7,Keuangan,10.0
+7,Pariwisata,7.0
+7,Sosial dan Kemanusiaan,10.0
+7,Lingkungan dan Konservasi,9.0
+7,Teknologi Informasi dan Komunikasi,7.0
+7,Olahraga dan Rekreasi,9.0
+7,Seni dan Budaya,8.0
+7,Agama dan Kepercayaan,2.0
+7,Bisnis dan Industri,1.0
+7,Politik dan Pemerintahan,7.0
+7,Transportasi dan Logistik,7.0
+7,Pertanian dan Perikanan,8.0
+8,Kesehatan,5.0
+8,Pendidikan,3.0
+8,Hukum,8.0
+8,Keuangan,6.0
+8,Pariwisata,3.0
+8,Sosial dan Kemanusiaan,1.0
+8,Lingkungan dan Konservasi,3.0
+8,Teknologi Informasi dan Komunikasi,5.0
+8,Olahraga dan Rekreasi,3.0
+8,Seni dan Budaya,1.0
+8,Agama dan Kepercayaan,5.0
+8,Bisnis dan Industri,10.0
+8,Politik dan Pemerintahan,7.0
+8,Transportasi dan Logistik,7.0
+8,Pertanian dan Perikanan,9.0
+9,Kesehatan,10.0
+9,Pendidikan,10.0
+9,Hukum,3.0
+9,Keuangan,7.0
+9,Pariwisata,1.0
+9,Sosial dan Kemanusiaan,4.0
+9,Lingkungan dan Konservasi,4.0
+9,Teknologi Informasi dan Komunikasi,5.0
+9,Olahraga dan Rekreasi,7.0
+9,Seni dan Budaya,7.0
+9,Agama dan Kepercayaan,4.0
+9,Bisnis dan Industri,7.0
+9,Politik dan Pemerintahan,3.0
+9,Transportasi dan Logistik,6.0
+9,Pertanian dan Perikanan,2.0
+10,Kesehatan,10.0
+10,Pendidikan,9.0
+10,Hukum,5.0
+10,Keuangan,6.0
+10,Pariwisata,4.0
+10,Sosial dan Kemanusiaan,10.0
+10,Lingkungan dan Konservasi,7.0
+10,Teknologi Informasi dan Komunikasi,9.0
+10,Olahraga dan Rekreasi,7.0
+10,Seni dan Budaya,1.0
+10,Agama dan Kepercayaan,1.0
+10,Bisnis dan Industri,9.0
+10,Politik dan Pemerintahan,9.0
+10,Transportasi dan Logistik,4.0
+10,Pertanian dan Perikanan,9.0
+11,Kesehatan,3.0
+11,Pendidikan,7.0
+11,Hukum,6.0
+11,Keuangan,8.0
+11,Pariwisata,9.0
+11,Sosial dan Kemanusiaan,5.0
+11,Lingkungan dan Konservasi,1.0
+11,Teknologi Informasi dan Komunikasi,3.0
+11,Olahraga dan Rekreasi,10.0
+11,Seni dan Budaya,8.0
+11,Agama dan Kepercayaan,6.0
+11,Bisnis dan Industri,8.0
+11,Politik dan Pemerintahan,9.0
+11,Transportasi dan Logistik,4.0
+11,Pertanian dan Perikanan,1.0
+12,Kesehatan,1.0
+12,Pendidikan,10.0
+12,Hukum,4.0
+12,Keuangan,7.0
+12,Pariwisata,2.0
+12,Sosial dan Kemanusiaan,3.0
+12,Lingkungan dan Konservasi,1.0
+12,Teknologi Informasi dan Komunikasi,5.0
+12,Olahraga dan Rekreasi,1.0
+12,Seni dan Budaya,8.0
+12,Agama dan Kepercayaan,1.0
+12,Bisnis dan Industri,1.0
+12,Politik dan Pemerintahan,2.0
+12,Transportasi dan Logistik,2.0
+12,Pertanian dan Perikanan,6.0
+13,Kesehatan,7.0
+13,Pendidikan,5.0
+13,Hukum,1.0
+13,Keuangan,1.0
+13,Pariwisata,3.0
+13,Sosial dan Kemanusiaan,2.0
+13,Lingkungan dan Konservasi,5.0
+13,Teknologi Informasi dan Komunikasi,10.0
+13,Olahraga dan Rekreasi,6.0
+13,Seni dan Budaya,7.0
+13,Agama dan Kepercayaan,4.0
+13,Bisnis dan Industri,7.0
+13,Politik dan Pemerintahan,8.0
+13,Transportasi dan Logistik,1.0
+13,Pertanian dan Perikanan,6.0
+14,Kesehatan,8.0
+14,Pendidikan,5.0
+14,Hukum,4.0
+14,Keuangan,2.0
+14,Pariwisata,6.0
+14,Sosial dan Kemanusiaan,6.0
+14,Lingkungan dan Konservasi,1.0
+14,Teknologi Informasi dan Komunikasi,9.0
+14,Olahraga dan Rekreasi,6.0
+14,Seni dan Budaya,3.0
+14,Agama dan Kepercayaan,4.0
+14,Bisnis dan Industri,4.0
+14,Politik dan Pemerintahan,3.0
+14,Transportasi dan Logistik,10.0
+14,Pertanian dan Perikanan,3.0
+15,Kesehatan,3.0
+15,Pendidikan,4.0
+15,Hukum,7.0
+15,Keuangan,4.0
+15,Pariwisata,9.0
+15,Sosial dan Kemanusiaan,1.0
+15,Lingkungan dan Konservasi,8.0
+15,Teknologi Informasi dan Komunikasi,7.0
+15,Olahraga dan Rekreasi,2.0
+15,Seni dan Budaya,8.0
+15,Agama dan Kepercayaan,1.0
+15,Bisnis dan Industri,9.0
+15,Politik dan Pemerintahan,9.0
+15,Transportasi dan Logistik,2.0
+15,Pertanian dan Perikanan,7.0
+16,Kesehatan,10.0
+16,Pendidikan,3.0
+16,Hukum,7.0
+16,Keuangan,10.0
+16,Pariwisata,9.0
+16,Sosial dan Kemanusiaan,4.0
+16,Lingkungan dan Konservasi,1.0
+16,Teknologi Informasi dan Komunikasi,2.0
+16,Olahraga dan Rekreasi,1.0
+16,Seni dan Budaya,5.0
+16,Agama dan Kepercayaan,5.0
+16,Bisnis dan Industri,7.0
+16,Politik dan Pemerintahan,9.0
+16,Transportasi dan Logistik,9.0
+16,Pertanian dan Perikanan,3.0
+17,Kesehatan,3.0
+17,Pendidikan,3.0
+17,Hukum,4.0
+17,Keuangan,8.0
+17,Pariwisata,6.0
+17,Sosial dan Kemanusiaan,8.0
+17,Lingkungan dan Konservasi,1.0
+17,Teknologi Informasi dan Komunikasi,8.0
+17,Olahraga dan Rekreasi,4.0
+17,Seni dan Budaya,1.0
+17,Agama dan Kepercayaan,8.0
+17,Bisnis dan Industri,4.0
+17,Politik dan Pemerintahan,6.0
+17,Transportasi dan Logistik,8.0
+17,Pertanian dan Perikanan,4.0
+18,Kesehatan,3.0
+18,Pendidikan,9.0
+18,Hukum,3.0
+18,Keuangan,9.0
+18,Pariwisata,2.0
+18,Sosial dan Kemanusiaan,2.0
+18,Lingkungan dan Konservasi,2.0
+18,Teknologi Informasi dan Komunikasi,6.0
+18,Olahraga dan Rekreasi,3.0
+18,Seni dan Budaya,9.0
+18,Agama dan Kepercayaan,4.0
+18,Bisnis dan Industri,1.0
+18,Politik dan Pemerintahan,4.0
+18,Transportasi dan Logistik,1.0
+18,Pertanian dan Perikanan,5.0
+19,Kesehatan,4.0
+19,Pendidikan,8.0
+19,Hukum,8.0
+19,Keuangan,7.0
+19,Pariwisata,3.0
+19,Sosial dan Kemanusiaan,1.0
+19,Lingkungan dan Konservasi,1.0
+19,Teknologi Informasi dan Komunikasi,3.0
+19,Olahraga dan Rekreasi,6.0
+19,Seni dan Budaya,7.0
+19,Agama dan Kepercayaan,6.0
+19,Bisnis dan Industri,6.0
+19,Politik dan Pemerintahan,6.0
+19,Transportasi dan Logistik,3.0
+19,Pertanian dan Perikanan,6.0
+20,Kesehatan,8.0
+20,Pendidikan,2.0
+20,Hukum,5.0
+20,Keuangan,1.0
+20,Pariwisata,1.0
+20,Sosial dan Kemanusiaan,5.0
+20,Lingkungan dan Konservasi,3.0
+20,Teknologi Informasi dan Komunikasi,4.0
+20,Olahraga dan Rekreasi,3.0
+20,Seni dan Budaya,1.0
+20,Agama dan Kepercayaan,1.0
+20,Bisnis dan Industri,5.0
+20,Politik dan Pemerintahan,6.0
+20,Transportasi dan Logistik,3.0
+20,Pertanian dan Perikanan,9.0
+21,Kesehatan,5.0
+21,Pendidikan,8.0
+21,Hukum,1.0
+21,Keuangan,5.0
+21,Pariwisata,3.0
+21,Sosial dan Kemanusiaan,1.0
+21,Lingkungan dan Konservasi,4.0
+21,Teknologi Informasi dan Komunikasi,5.0
+21,Olahraga dan Rekreasi,7.0
+21,Seni dan Budaya,1.0
+21,Agama dan Kepercayaan,3.0
+21,Bisnis dan Industri,2.0
+21,Politik dan Pemerintahan,9.0
+21,Transportasi dan Logistik,10.0
+21,Pertanian dan Perikanan,6.0
+22,Kesehatan,10.0
+22,Pendidikan,3.0
+22,Hukum,8.0
+22,Keuangan,8.0
+22,Pariwisata,2.0
+22,Sosial dan Kemanusiaan,6.0
+22,Lingkungan dan Konservasi,7.0
+22,Teknologi Informasi dan Komunikasi,2.0
+22,Olahraga dan Rekreasi,10.0
+22,Seni dan Budaya,2.0
+22,Agama dan Kepercayaan,10.0
+22,Bisnis dan Industri,1.0
+22,Politik dan Pemerintahan,8.0
+22,Transportasi dan Logistik,1.0
+22,Pertanian dan Perikanan,9.0
+23,Kesehatan,6.0
+23,Pendidikan,7.0
+23,Hukum,10.0
+23,Keuangan,7.0
+23,Pariwisata,10.0
+23,Sosial dan Kemanusiaan,3.0
+23,Lingkungan dan Konservasi,2.0
+23,Teknologi Informasi dan Komunikasi,9.0
+23,Olahraga dan Rekreasi,8.0
+23,Seni dan Budaya,10.0
+23,Agama dan Kepercayaan,7.0
+23,Bisnis dan Industri,9.0
+23,Politik dan Pemerintahan,4.0
+23,Transportasi dan Logistik,4.0
+23,Pertanian dan Perikanan,1.0
+24,Kesehatan,8.0
+24,Pendidikan,3.0
+24,Hukum,7.0
+24,Keuangan,2.0
+24,Pariwisata,2.0
+24,Sosial dan Kemanusiaan,7.0
+24,Lingkungan dan Konservasi,6.0
+24,Teknologi Informasi dan Komunikasi,3.0
+24,Olahraga dan Rekreasi,9.0
+24,Seni dan Budaya,10.0
+24,Agama dan Kepercayaan,6.0
+24,Bisnis dan Industri,10.0
+24,Politik dan Pemerintahan,10.0
+24,Transportasi dan Logistik,6.0
+24,Pertanian dan Perikanan,1.0
+25,Kesehatan,4.0
+25,Pendidikan,10.0
+25,Hukum,6.0
+25,Keuangan,6.0
+25,Pariwisata,5.0
+25,Sosial dan Kemanusiaan,1.0
+25,Lingkungan dan Konservasi,8.0
+25,Teknologi Informasi dan Komunikasi,5.0
+25,Olahraga dan Rekreasi,5.0
+25,Seni dan Budaya,7.0
+25,Agama dan Kepercayaan,4.0
+25,Bisnis dan Industri,6.0
+25,Politik dan Pemerintahan,4.0
+25,Transportasi dan Logistik,3.0
+25,Pertanian dan Perikanan,7.0
+26,Kesehatan,8.0
+26,Pendidikan,4.0
+26,Hukum,2.0
+26,Keuangan,10.0
+26,Pariwisata,3.0
+26,Sosial dan Kemanusiaan,1.0
+26,Lingkungan dan Konservasi,8.0
+26,Teknologi Informasi dan Komunikasi,3.0
+26,Olahraga dan Rekreasi,10.0
+26,Seni dan Budaya,7.0
+26,Agama dan Kepercayaan,10.0
+26,Bisnis dan Industri,5.0
+26,Politik dan Pemerintahan,10.0
+26,Transportasi dan Logistik,5.0
+26,Pertanian dan Perikanan,7.0
+27,Kesehatan,9.0
+27,Pendidikan,5.0
+27,Hukum,1.0
+27,Keuangan,10.0
+27,Pariwisata,10.0
+27,Sosial dan Kemanusiaan,1.0
+27,Lingkungan dan Konservasi,2.0
+27,Teknologi Informasi dan Komunikasi,6.0
+27,Olahraga dan Rekreasi,9.0
+27,Seni dan Budaya,8.0
+27,Agama dan Kepercayaan,5.0
+27,Bisnis dan Industri,1.0
+27,Politik dan Pemerintahan,7.0
+27,Transportasi dan Logistik,5.0
+27,Pertanian dan Perikanan,6.0
+28,Kesehatan,7.0
+28,Pendidikan,3.0
+28,Hukum,10.0
+28,Keuangan,3.0
+28,Pariwisata,5.0
+28,Sosial dan Kemanusiaan,6.0
+28,Lingkungan dan Konservasi,9.0
+28,Teknologi Informasi dan Komunikasi,5.0
+28,Olahraga dan Rekreasi,1.0
+28,Seni dan Budaya,4.0
+28,Agama dan Kepercayaan,5.0
+28,Bisnis dan Industri,10.0
+28,Politik dan Pemerintahan,10.0
+28,Transportasi dan Logistik,5.0
+28,Pertanian dan Perikanan,7.0
+29,Kesehatan,4.0
+29,Pendidikan,1.0
+29,Hukum,5.0
+29,Keuangan,7.0
+29,Pariwisata,10.0
+29,Sosial dan Kemanusiaan,10.0
+29,Lingkungan dan Konservasi,6.0
+29,Teknologi Informasi dan Komunikasi,5.0
+29,Olahraga dan Rekreasi,4.0
+29,Seni dan Budaya,2.0
+29,Agama dan Kepercayaan,4.0
+29,Bisnis dan Industri,10.0
+29,Politik dan Pemerintahan,10.0
+29,Transportasi dan Logistik,3.0
+29,Pertanian dan Perikanan,10.0
+30,Kesehatan,1.0
+30,Pendidikan,8.0
+30,Hukum,5.0
+30,Keuangan,4.0
+30,Pariwisata,8.0
+30,Sosial dan Kemanusiaan,7.0
+30,Lingkungan dan Konservasi,2.0
+30,Teknologi Informasi dan Komunikasi,1.0
+30,Olahraga dan Rekreasi,4.0
+30,Seni dan Budaya,8.0
+30,Agama dan Kepercayaan,2.0
+30,Bisnis dan Industri,3.0
+30,Politik dan Pemerintahan,1.0
+30,Transportasi dan Logistik,1.0
+30,Pertanian dan Perikanan,3.0
+31,Kesehatan,5.0
+31,Pendidikan,3.0
+31,Hukum,1.0
+31,Keuangan,1.0
+31,Pariwisata,8.0
+31,Sosial dan Kemanusiaan,10.0
+31,Lingkungan dan Konservasi,2.0
+31,Teknologi Informasi dan Komunikasi,3.0
+31,Olahraga dan Rekreasi,2.0
+31,Seni dan Budaya,3.0
+31,Agama dan Kepercayaan,7.0
+31,Bisnis dan Industri,1.0
+31,Politik dan Pemerintahan,10.0
+31,Transportasi dan Logistik,8.0
+31,Pertanian dan Perikanan,10.0
+32,Kesehatan,10.0
+32,Pendidikan,10.0
+32,Hukum,2.0
+32,Keuangan,3.0
+32,Pariwisata,9.0
+32,Sosial dan Kemanusiaan,7.0
+32,Lingkungan dan Konservasi,4.0
+32,Teknologi Informasi dan Komunikasi,10.0
+32,Olahraga dan Rekreasi,5.0
+32,Seni dan Budaya,2.0
+32,Agama dan Kepercayaan,8.0
+32,Bisnis dan Industri,4.0
+32,Politik dan Pemerintahan,9.0
+32,Transportasi dan Logistik,5.0
+32,Pertanian dan Perikanan,9.0
+33,Kesehatan,4.0
+33,Pendidikan,10.0
+33,Hukum,5.0
+33,Keuangan,9.0
+33,Pariwisata,8.0
+33,Sosial dan Kemanusiaan,3.0
+33,Lingkungan dan Konservasi,1.0
+33,Teknologi Informasi dan Komunikasi,3.0
+33,Olahraga dan Rekreasi,4.0
+33,Seni dan Budaya,2.0
+33,Agama dan Kepercayaan,1.0
+33,Bisnis dan Industri,7.0
+33,Politik dan Pemerintahan,8.0
+33,Transportasi dan Logistik,7.0
+33,Pertanian dan Perikanan,5.0
+34,Kesehatan,1.0
+34,Pendidikan,7.0
+34,Hukum,7.0
+34,Keuangan,9.0
+34,Pariwisata,3.0
+34,Sosial dan Kemanusiaan,9.0
+34,Lingkungan dan Konservasi,1.0
+34,Teknologi Informasi dan Komunikasi,1.0
+34,Olahraga dan Rekreasi,4.0
+34,Seni dan Budaya,9.0
+34,Agama dan Kepercayaan,6.0
+34,Bisnis dan Industri,3.0
+34,Politik dan Pemerintahan,1.0
+34,Transportasi dan Logistik,4.0
+34,Pertanian dan Perikanan,9.0
+35,Kesehatan,3.0
+35,Pendidikan,9.0
+35,Hukum,7.0
+35,Keuangan,4.0
+35,Pariwisata,3.0
+35,Sosial dan Kemanusiaan,10.0
+35,Lingkungan dan Konservasi,5.0
+35,Teknologi Informasi dan Komunikasi,5.0
+35,Olahraga dan Rekreasi,3.0
+35,Seni dan Budaya,9.0
+35,Agama dan Kepercayaan,4.0
+35,Bisnis dan Industri,5.0
+35,Politik dan Pemerintahan,4.0
+35,Transportasi dan Logistik,5.0
+35,Pertanian dan Perikanan,7.0
+36,Kesehatan,9.0
+36,Pendidikan,7.0
+36,Hukum,5.0
+36,Keuangan,10.0
+36,Pariwisata,10.0
+36,Sosial dan Kemanusiaan,7.0
+36,Lingkungan dan Konservasi,10.0
+36,Teknologi Informasi dan Komunikasi,5.0
+36,Olahraga dan Rekreasi,3.0
+36,Seni dan Budaya,7.0
+36,Agama dan Kepercayaan,2.0
+36,Bisnis dan Industri,9.0
+36,Politik dan Pemerintahan,10.0
+36,Transportasi dan Logistik,10.0
+36,Pertanian dan Perikanan,1.0
+37,Kesehatan,6.0
+37,Pendidikan,7.0
+37,Hukum,8.0
+37,Keuangan,10.0
+37,Pariwisata,9.0
+37,Sosial dan Kemanusiaan,2.0
+37,Lingkungan dan Konservasi,10.0
+37,Teknologi Informasi dan Komunikasi,2.0
+37,Olahraga dan Rekreasi,5.0
+37,Seni dan Budaya,5.0
+37,Agama dan Kepercayaan,6.0
+37,Bisnis dan Industri,3.0
+37,Politik dan Pemerintahan,8.0
+37,Transportasi dan Logistik,1.0
+37,Pertanian dan Perikanan,6.0
+38,Kesehatan,4.0
+38,Pendidikan,1.0
+38,Hukum,7.0
+38,Keuangan,9.0
+38,Pariwisata,4.0
+38,Sosial dan Kemanusiaan,4.0
+38,Lingkungan dan Konservasi,6.0
+38,Teknologi Informasi dan Komunikasi,3.0
+38,Olahraga dan Rekreasi,6.0
+38,Seni dan Budaya,7.0
+38,Agama dan Kepercayaan,10.0
+38,Bisnis dan Industri,10.0
+38,Politik dan Pemerintahan,3.0
+38,Transportasi dan Logistik,7.0
+38,Pertanian dan Perikanan,3.0
+39,Kesehatan,2.0
+39,Pendidikan,10.0
+39,Hukum,4.0
+39,Keuangan,8.0
+39,Pariwisata,9.0
+39,Sosial dan Kemanusiaan,7.0
+39,Lingkungan dan Konservasi,1.0
+39,Teknologi Informasi dan Komunikasi,3.0
+39,Olahraga dan Rekreasi,9.0
+39,Seni dan Budaya,1.0
+39,Agama dan Kepercayaan,9.0
+39,Bisnis dan Industri,8.0
+39,Politik dan Pemerintahan,1.0
+39,Transportasi dan Logistik,6.0
+39,Pertanian dan Perikanan,5.0
+40,Kesehatan,6.0
+40,Pendidikan,10.0
+40,Hukum,5.0
+40,Keuangan,6.0
+40,Pariwisata,5.0
+40,Sosial dan Kemanusiaan,5.0
+40,Lingkungan dan Konservasi,4.0
+40,Teknologi Informasi dan Komunikasi,3.0
+40,Olahraga dan Rekreasi,3.0
+40,Seni dan Budaya,4.0
+40,Agama dan Kepercayaan,9.0
+40,Bisnis dan Industri,2.0
+40,Politik dan Pemerintahan,9.0
+40,Transportasi dan Logistik,1.0
+40,Pertanian dan Perikanan,1.0
+41,Kesehatan,5.0
+41,Pendidikan,6.0
+41,Hukum,6.0
+41,Keuangan,3.0
+41,Pariwisata,7.0
+41,Sosial dan Kemanusiaan,9.0
+41,Lingkungan dan Konservasi,10.0
+41,Teknologi Informasi dan Komunikasi,8.0
+41,Olahraga dan Rekreasi,6.0
+41,Seni dan Budaya,8.0
+41,Agama dan Kepercayaan,5.0
+41,Bisnis dan Industri,8.0
+41,Politik dan Pemerintahan,10.0
+41,Transportasi dan Logistik,4.0
+41,Pertanian dan Perikanan,10.0
+42,Kesehatan,8.0
+42,Pendidikan,10.0
+42,Hukum,2.0
+42,Keuangan,5.0
+42,Pariwisata,9.0
+42,Sosial dan Kemanusiaan,4.0
+42,Lingkungan dan Konservasi,6.0
+42,Teknologi Informasi dan Komunikasi,1.0
+42,Olahraga dan Rekreasi,9.0
+42,Seni dan Budaya,1.0
+42,Agama dan Kepercayaan,5.0
+42,Bisnis dan Industri,4.0
+42,Politik dan Pemerintahan,3.0
+42,Transportasi dan Logistik,6.0
+42,Pertanian dan Perikanan,2.0
+43,Kesehatan,3.0
+43,Pendidikan,5.0
+43,Hukum,9.0
+43,Keuangan,2.0
+43,Pariwisata,10.0
+43,Sosial dan Kemanusiaan,8.0
+43,Lingkungan dan Konservasi,2.0
+43,Teknologi Informasi dan Komunikasi,5.0
+43,Olahraga dan Rekreasi,7.0
+43,Seni dan Budaya,8.0
+43,Agama dan Kepercayaan,1.0
+43,Bisnis dan Industri,6.0
+43,Politik dan Pemerintahan,1.0
+43,Transportasi dan Logistik,2.0
+43,Pertanian dan Perikanan,1.0
+44,Kesehatan,5.0
+44,Pendidikan,10.0
+44,Hukum,9.0
+44,Keuangan,6.0
+44,Pariwisata,1.0
+44,Sosial dan Kemanusiaan,1.0
+44,Lingkungan dan Konservasi,2.0
+44,Teknologi Informasi dan Komunikasi,9.0
+44,Olahraga dan Rekreasi,3.0
+44,Seni dan Budaya,1.0
+44,Agama dan Kepercayaan,5.0
+44,Bisnis dan Industri,7.0
+44,Politik dan Pemerintahan,6.0
+44,Transportasi dan Logistik,1.0
+44,Pertanian dan Perikanan,5.0
+45,Kesehatan,5.0
+45,Pendidikan,6.0
+45,Hukum,3.0
+45,Keuangan,5.0
+45,Pariwisata,7.0
+45,Sosial dan Kemanusiaan,5.0
+45,Lingkungan dan Konservasi,5.0
+45,Teknologi Informasi dan Komunikasi,5.0
+45,Olahraga dan Rekreasi,10.0
+45,Seni dan Budaya,10.0
+45,Agama dan Kepercayaan,3.0
+45,Bisnis dan Industri,1.0
+45,Politik dan Pemerintahan,5.0
+45,Transportasi dan Logistik,9.0
+45,Pertanian dan Perikanan,1.0
+46,Kesehatan,3.0
+46,Pendidikan,4.0
+46,Hukum,1.0
+46,Keuangan,1.0
+46,Pariwisata,8.0
+46,Sosial dan Kemanusiaan,2.0
+46,Lingkungan dan Konservasi,8.0
+46,Teknologi Informasi dan Komunikasi,7.0
+46,Olahraga dan Rekreasi,10.0
+46,Seni dan Budaya,10.0
+46,Agama dan Kepercayaan,2.0
+46,Bisnis dan Industri,6.0
+46,Politik dan Pemerintahan,6.0
+46,Transportasi dan Logistik,3.0
+46,Pertanian dan Perikanan,2.0
+47,Kesehatan,1.0
+47,Pendidikan,6.0
+47,Hukum,5.0
+47,Keuangan,9.0
+47,Pariwisata,1.0
+47,Sosial dan Kemanusiaan,7.0
+47,Lingkungan dan Konservasi,5.0
+47,Teknologi Informasi dan Komunikasi,5.0
+47,Olahraga dan Rekreasi,2.0
+47,Seni dan Budaya,3.0
+47,Agama dan Kepercayaan,7.0
+47,Bisnis dan Industri,6.0
+47,Politik dan Pemerintahan,2.0
+47,Transportasi dan Logistik,6.0
+47,Pertanian dan Perikanan,2.0
+48,Kesehatan,2.0
+48,Pendidikan,2.0
+48,Hukum,3.0
+48,Keuangan,2.0
+48,Pariwisata,4.0
+48,Sosial dan Kemanusiaan,9.0
+48,Lingkungan dan Konservasi,6.0
+48,Teknologi Informasi dan Komunikasi,1.0
+48,Olahraga dan Rekreasi,8.0
+48,Seni dan Budaya,7.0
+48,Agama dan Kepercayaan,10.0
+48,Bisnis dan Industri,3.0
+48,Politik dan Pemerintahan,1.0
+48,Transportasi dan Logistik,5.0
+48,Pertanian dan Perikanan,4.0
+49,Kesehatan,10.0
+49,Pendidikan,8.0
+49,Hukum,1.0
+49,Keuangan,10.0
+49,Pariwisata,1.0
+49,Sosial dan Kemanusiaan,4.0
+49,Lingkungan dan Konservasi,8.0
+49,Teknologi Informasi dan Komunikasi,5.0
+49,Olahraga dan Rekreasi,2.0
+49,Seni dan Budaya,6.0
+49,Agama dan Kepercayaan,5.0
+49,Bisnis dan Industri,2.0
+49,Politik dan Pemerintahan,3.0
+49,Transportasi dan Logistik,9.0
+49,Pertanian dan Perikanan,7.0
+50,Kesehatan,7.0
+50,Pendidikan,6.0
+50,Hukum,8.0
+50,Keuangan,4.0
+50,Pariwisata,8.0
+50,Sosial dan Kemanusiaan,4.0
+50,Lingkungan dan Konservasi,8.0
+50,Teknologi Informasi dan Komunikasi,9.0
+50,Olahraga dan Rekreasi,3.0
+50,Seni dan Budaya,3.0
+50,Agama dan Kepercayaan,2.0
+50,Bisnis dan Industri,10.0
+50,Politik dan Pemerintahan,3.0
+50,Transportasi dan Logistik,3.0
+50,Pertanian dan Perikanan,5.0
+51,Kesehatan,5.0
+51,Pendidikan,2.0
+51,Hukum,10.0
+51,Keuangan,6.0
+51,Pariwisata,5.0
+51,Sosial dan Kemanusiaan,6.0
+51,Lingkungan dan Konservasi,1.0
+51,Teknologi Informasi dan Komunikasi,5.0
+51,Olahraga dan Rekreasi,9.0
+51,Seni dan Budaya,10.0
+51,Agama dan Kepercayaan,2.0
+51,Bisnis dan Industri,1.0
+51,Politik dan Pemerintahan,10.0
+51,Transportasi dan Logistik,9.0
+51,Pertanian dan Perikanan,10.0
+52,Kesehatan,9.0
+52,Pendidikan,9.0
+52,Hukum,6.0
+52,Keuangan,8.0
+52,Pariwisata,1.0
+52,Sosial dan Kemanusiaan,10.0
+52,Lingkungan dan Konservasi,4.0
+52,Teknologi Informasi dan Komunikasi,1.0
+52,Olahraga dan Rekreasi,8.0
+52,Seni dan Budaya,1.0
+52,Agama dan Kepercayaan,3.0
+52,Bisnis dan Industri,4.0
+52,Politik dan Pemerintahan,8.0
+52,Transportasi dan Logistik,6.0
+52,Pertanian dan Perikanan,10.0
+53,Kesehatan,7.0
+53,Pendidikan,8.0
+53,Hukum,2.0
+53,Keuangan,10.0
+53,Pariwisata,8.0
+53,Sosial dan Kemanusiaan,3.0
+53,Lingkungan dan Konservasi,7.0
+53,Teknologi Informasi dan Komunikasi,3.0
+53,Olahraga dan Rekreasi,7.0
+53,Seni dan Budaya,2.0
+53,Agama dan Kepercayaan,10.0
+53,Bisnis dan Industri,6.0
+53,Politik dan Pemerintahan,3.0
+53,Transportasi dan Logistik,3.0
+53,Pertanian dan Perikanan,9.0
+54,Kesehatan,7.0
+54,Pendidikan,5.0
+54,Hukum,10.0
+54,Keuangan,7.0
+54,Pariwisata,9.0
+54,Sosial dan Kemanusiaan,1.0
+54,Lingkungan dan Konservasi,7.0
+54,Teknologi Informasi dan Komunikasi,6.0
+54,Olahraga dan Rekreasi,10.0
+54,Seni dan Budaya,9.0
+54,Agama dan Kepercayaan,1.0
+54,Bisnis dan Industri,4.0
+54,Politik dan Pemerintahan,9.0
+54,Transportasi dan Logistik,4.0
+54,Pertanian dan Perikanan,10.0
+55,Kesehatan,3.0
+55,Pendidikan,9.0
+55,Hukum,2.0
+55,Keuangan,4.0
+55,Pariwisata,6.0
+55,Sosial dan Kemanusiaan,2.0
+55,Lingkungan dan Konservasi,8.0
+55,Teknologi Informasi dan Komunikasi,8.0
+55,Olahraga dan Rekreasi,1.0
+55,Seni dan Budaya,3.0
+55,Agama dan Kepercayaan,10.0
+55,Bisnis dan Industri,9.0
+55,Politik dan Pemerintahan,5.0
+55,Transportasi dan Logistik,6.0
+55,Pertanian dan Perikanan,4.0
+56,Kesehatan,10.0
+56,Pendidikan,2.0
+56,Hukum,8.0
+56,Keuangan,6.0
+56,Pariwisata,5.0
+56,Sosial dan Kemanusiaan,9.0
+56,Lingkungan dan Konservasi,1.0
+56,Teknologi Informasi dan Komunikasi,5.0
+56,Olahraga dan Rekreasi,6.0
+56,Seni dan Budaya,5.0
+56,Agama dan Kepercayaan,6.0
+56,Bisnis dan Industri,6.0
+56,Politik dan Pemerintahan,7.0
+56,Transportasi dan Logistik,4.0
+56,Pertanian dan Perikanan,8.0
+57,Kesehatan,7.0
+57,Pendidikan,9.0
+57,Hukum,7.0
+57,Keuangan,3.0
+57,Pariwisata,3.0
+57,Sosial dan Kemanusiaan,8.0
+57,Lingkungan dan Konservasi,5.0
+57,Teknologi Informasi dan Komunikasi,4.0
+57,Olahraga dan Rekreasi,8.0
+57,Seni dan Budaya,6.0
+57,Agama dan Kepercayaan,2.0
+57,Bisnis dan Industri,4.0
+57,Politik dan Pemerintahan,4.0
+57,Transportasi dan Logistik,6.0
+57,Pertanian dan Perikanan,6.0
+58,Kesehatan,1.0
+58,Pendidikan,8.0
+58,Hukum,6.0
+58,Keuangan,3.0
+58,Pariwisata,9.0
+58,Sosial dan Kemanusiaan,2.0
+58,Lingkungan dan Konservasi,8.0
+58,Teknologi Informasi dan Komunikasi,10.0
+58,Olahraga dan Rekreasi,3.0
+58,Seni dan Budaya,5.0
+58,Agama dan Kepercayaan,6.0
+58,Bisnis dan Industri,10.0
+58,Politik dan Pemerintahan,6.0
+58,Transportasi dan Logistik,4.0
+58,Pertanian dan Perikanan,3.0
+59,Kesehatan,4.0
+59,Pendidikan,1.0
+59,Hukum,4.0
+59,Keuangan,1.0
+59,Pariwisata,1.0
+59,Sosial dan Kemanusiaan,10.0
+59,Lingkungan dan Konservasi,6.0
+59,Teknologi Informasi dan Komunikasi,5.0
+59,Olahraga dan Rekreasi,4.0
+59,Seni dan Budaya,3.0
+59,Agama dan Kepercayaan,1.0
+59,Bisnis dan Industri,6.0
+59,Politik dan Pemerintahan,2.0
+59,Transportasi dan Logistik,8.0
+59,Pertanian dan Perikanan,10.0
+60,Kesehatan,5.0
+60,Pendidikan,7.0
+60,Hukum,10.0
+60,Keuangan,2.0
+60,Pariwisata,8.0
+60,Sosial dan Kemanusiaan,2.0
+60,Lingkungan dan Konservasi,4.0
+60,Teknologi Informasi dan Komunikasi,1.0
+60,Olahraga dan Rekreasi,5.0
+60,Seni dan Budaya,9.0
+60,Agama dan Kepercayaan,1.0
+60,Bisnis dan Industri,9.0
+60,Politik dan Pemerintahan,8.0
+60,Transportasi dan Logistik,6.0
+60,Pertanian dan Perikanan,7.0
+61,Kesehatan,3.0
+61,Pendidikan,1.0
+61,Hukum,5.0
+61,Keuangan,2.0
+61,Pariwisata,5.0
+61,Sosial dan Kemanusiaan,8.0
+61,Lingkungan dan Konservasi,9.0
+61,Teknologi Informasi dan Komunikasi,2.0
+61,Olahraga dan Rekreasi,3.0
+61,Seni dan Budaya,3.0
+61,Agama dan Kepercayaan,1.0
+61,Bisnis dan Industri,8.0
+61,Politik dan Pemerintahan,6.0
+61,Transportasi dan Logistik,8.0
+61,Pertanian dan Perikanan,9.0
+62,Kesehatan,5.0
+62,Pendidikan,3.0
+62,Hukum,5.0
+62,Keuangan,5.0
+62,Pariwisata,5.0
+62,Sosial dan Kemanusiaan,3.0
+62,Lingkungan dan Konservasi,10.0
+62,Teknologi Informasi dan Komunikasi,4.0
+62,Olahraga dan Rekreasi,9.0
+62,Seni dan Budaya,10.0
+62,Agama dan Kepercayaan,9.0
+62,Bisnis dan Industri,2.0
+62,Politik dan Pemerintahan,8.0
+62,Transportasi dan Logistik,8.0
+62,Pertanian dan Perikanan,7.0
+63,Kesehatan,8.0
+63,Pendidikan,3.0
+63,Hukum,6.0
+63,Keuangan,1.0
+63,Pariwisata,7.0
+63,Sosial dan Kemanusiaan,1.0
+63,Lingkungan dan Konservasi,9.0
+63,Teknologi Informasi dan Komunikasi,1.0
+63,Olahraga dan Rekreasi,1.0
+63,Seni dan Budaya,7.0
+63,Agama dan Kepercayaan,2.0
+63,Bisnis dan Industri,5.0
+63,Politik dan Pemerintahan,8.0
+63,Transportasi dan Logistik,8.0
+63,Pertanian dan Perikanan,3.0
+64,Kesehatan,7.0
+64,Pendidikan,3.0
+64,Hukum,6.0
+64,Keuangan,6.0
+64,Pariwisata,3.0
+64,Sosial dan Kemanusiaan,7.0
+64,Lingkungan dan Konservasi,3.0
+64,Teknologi Informasi dan Komunikasi,8.0
+64,Olahraga dan Rekreasi,10.0
+64,Seni dan Budaya,4.0
+64,Agama dan Kepercayaan,1.0
+64,Bisnis dan Industri,4.0
+64,Politik dan Pemerintahan,7.0
+64,Transportasi dan Logistik,4.0
+64,Pertanian dan Perikanan,6.0
+65,Kesehatan,9.0
+65,Pendidikan,1.0
+65,Hukum,5.0
+65,Keuangan,7.0
+65,Pariwisata,1.0
+65,Sosial dan Kemanusiaan,4.0
+65,Lingkungan dan Konservasi,6.0
+65,Teknologi Informasi dan Komunikasi,2.0
+65,Olahraga dan Rekreasi,10.0
+65,Seni dan Budaya,5.0
+65,Agama dan Kepercayaan,10.0
+65,Bisnis dan Industri,1.0
+65,Politik dan Pemerintahan,6.0
+65,Transportasi dan Logistik,6.0
+65,Pertanian dan Perikanan,4.0
+66,Kesehatan,8.0
+66,Pendidikan,4.0
+66,Hukum,8.0
+66,Keuangan,8.0
+66,Pariwisata,5.0
+66,Sosial dan Kemanusiaan,4.0
+66,Lingkungan dan Konservasi,2.0
+66,Teknologi Informasi dan Komunikasi,3.0
+66,Olahraga dan Rekreasi,3.0
+66,Seni dan Budaya,4.0
+66,Agama dan Kepercayaan,4.0
+66,Bisnis dan Industri,10.0
+66,Politik dan Pemerintahan,5.0
+66,Transportasi dan Logistik,4.0
+66,Pertanian dan Perikanan,10.0
+67,Kesehatan,8.0
+67,Pendidikan,6.0
+67,Hukum,6.0
+67,Keuangan,8.0
+67,Pariwisata,7.0
+67,Sosial dan Kemanusiaan,10.0
+67,Lingkungan dan Konservasi,10.0
+67,Teknologi Informasi dan Komunikasi,8.0
+67,Olahraga dan Rekreasi,2.0
+67,Seni dan Budaya,9.0
+67,Agama dan Kepercayaan,1.0
+67,Bisnis dan Industri,8.0
+67,Politik dan Pemerintahan,4.0
+67,Transportasi dan Logistik,4.0
+67,Pertanian dan Perikanan,5.0
+68,Kesehatan,8.0
+68,Pendidikan,5.0
+68,Hukum,8.0
+68,Keuangan,10.0
+68,Pariwisata,1.0
+68,Sosial dan Kemanusiaan,10.0
+68,Lingkungan dan Konservasi,9.0
+68,Teknologi Informasi dan Komunikasi,6.0
+68,Olahraga dan Rekreasi,3.0
+68,Seni dan Budaya,8.0
+68,Agama dan Kepercayaan,9.0
+68,Bisnis dan Industri,6.0
+68,Politik dan Pemerintahan,7.0
+68,Transportasi dan Logistik,1.0
+68,Pertanian dan Perikanan,5.0
+69,Kesehatan,5.0
+69,Pendidikan,10.0
+69,Hukum,4.0
+69,Keuangan,6.0
+69,Pariwisata,7.0
+69,Sosial dan Kemanusiaan,9.0
+69,Lingkungan dan Konservasi,1.0
+69,Teknologi Informasi dan Komunikasi,6.0
+69,Olahraga dan Rekreasi,7.0
+69,Seni dan Budaya,3.0
+69,Agama dan Kepercayaan,8.0
+69,Bisnis dan Industri,5.0
+69,Politik dan Pemerintahan,9.0
+69,Transportasi dan Logistik,5.0
+69,Pertanian dan Perikanan,9.0
+70,Kesehatan,10.0
+70,Pendidikan,4.0
+70,Hukum,9.0
+70,Keuangan,5.0
+70,Pariwisata,10.0
+70,Sosial dan Kemanusiaan,9.0
+70,Lingkungan dan Konservasi,3.0
+70,Teknologi Informasi dan Komunikasi,4.0
+70,Olahraga dan Rekreasi,9.0
+70,Seni dan Budaya,10.0
+70,Agama dan Kepercayaan,6.0
+70,Bisnis dan Industri,2.0
+70,Politik dan Pemerintahan,7.0
+70,Transportasi dan Logistik,2.0
+70,Pertanian dan Perikanan,2.0
+71,Kesehatan,1.0
+71,Pendidikan,3.0
+71,Hukum,6.0
+71,Keuangan,8.0
+71,Pariwisata,9.0
+71,Sosial dan Kemanusiaan,7.0
+71,Lingkungan dan Konservasi,4.0
+71,Teknologi Informasi dan Komunikasi,6.0
+71,Olahraga dan Rekreasi,5.0
+71,Seni dan Budaya,8.0
+71,Agama dan Kepercayaan,1.0
+71,Bisnis dan Industri,1.0
+71,Politik dan Pemerintahan,6.0
+71,Transportasi dan Logistik,10.0
+71,Pertanian dan Perikanan,2.0
+72,Kesehatan,5.0
+72,Pendidikan,1.0
+72,Hukum,7.0
+72,Keuangan,1.0
+72,Pariwisata,4.0
+72,Sosial dan Kemanusiaan,9.0
+72,Lingkungan dan Konservasi,1.0
+72,Teknologi Informasi dan Komunikasi,4.0
+72,Olahraga dan Rekreasi,6.0
+72,Seni dan Budaya,6.0
+72,Agama dan Kepercayaan,8.0
+72,Bisnis dan Industri,1.0
+72,Politik dan Pemerintahan,7.0
+72,Transportasi dan Logistik,1.0
+72,Pertanian dan Perikanan,7.0
+73,Kesehatan,3.0
+73,Pendidikan,8.0
+73,Hukum,3.0
+73,Keuangan,1.0
+73,Pariwisata,8.0
+73,Sosial dan Kemanusiaan,3.0
+73,Lingkungan dan Konservasi,2.0
+73,Teknologi Informasi dan Komunikasi,1.0
+73,Olahraga dan Rekreasi,3.0
+73,Seni dan Budaya,2.0
+73,Agama dan Kepercayaan,2.0
+73,Bisnis dan Industri,6.0
+73,Politik dan Pemerintahan,1.0
+73,Transportasi dan Logistik,2.0
+73,Pertanian dan Perikanan,6.0
+74,Kesehatan,3.0
+74,Pendidikan,4.0
+74,Hukum,1.0
+74,Keuangan,8.0
+74,Pariwisata,7.0
+74,Sosial dan Kemanusiaan,7.0
+74,Lingkungan dan Konservasi,3.0
+74,Teknologi Informasi dan Komunikasi,10.0
+74,Olahraga dan Rekreasi,10.0
+74,Seni dan Budaya,3.0
+74,Agama dan Kepercayaan,2.0
+74,Bisnis dan Industri,1.0
+74,Politik dan Pemerintahan,7.0
+74,Transportasi dan Logistik,7.0
+74,Pertanian dan Perikanan,2.0
+75,Kesehatan,7.0
+75,Pendidikan,8.0
+75,Hukum,1.0
+75,Keuangan,9.0
+75,Pariwisata,7.0
+75,Sosial dan Kemanusiaan,3.0
+75,Lingkungan dan Konservasi,8.0
+75,Teknologi Informasi dan Komunikasi,7.0
+75,Olahraga dan Rekreasi,8.0
+75,Seni dan Budaya,6.0
+75,Agama dan Kepercayaan,9.0
+75,Bisnis dan Industri,5.0
+75,Politik dan Pemerintahan,3.0
+75,Transportasi dan Logistik,3.0
+75,Pertanian dan Perikanan,1.0
+76,Kesehatan,8.0
+76,Pendidikan,2.0
+76,Hukum,3.0
+76,Keuangan,8.0
+76,Pariwisata,8.0
+76,Sosial dan Kemanusiaan,4.0
+76,Lingkungan dan Konservasi,4.0
+76,Teknologi Informasi dan Komunikasi,5.0
+76,Olahraga dan Rekreasi,6.0
+76,Seni dan Budaya,5.0
+76,Agama dan Kepercayaan,7.0
+76,Bisnis dan Industri,2.0
+76,Politik dan Pemerintahan,7.0
+76,Transportasi dan Logistik,10.0
+76,Pertanian dan Perikanan,7.0
+77,Kesehatan,1.0
+77,Pendidikan,7.0
+77,Hukum,5.0
+77,Keuangan,3.0
+77,Pariwisata,3.0
+77,Sosial dan Kemanusiaan,4.0
+77,Lingkungan dan Konservasi,2.0
+77,Teknologi Informasi dan Komunikasi,2.0
+77,Olahraga dan Rekreasi,1.0
+77,Seni dan Budaya,5.0
+77,Agama dan Kepercayaan,4.0
+77,Bisnis dan Industri,10.0
+77,Politik dan Pemerintahan,2.0
+77,Transportasi dan Logistik,3.0
+77,Pertanian dan Perikanan,7.0
+78,Kesehatan,7.0
+78,Pendidikan,4.0
+78,Hukum,5.0
+78,Keuangan,5.0
+78,Pariwisata,6.0
+78,Sosial dan Kemanusiaan,9.0
+78,Lingkungan dan Konservasi,2.0
+78,Teknologi Informasi dan Komunikasi,5.0
+78,Olahraga dan Rekreasi,3.0
+78,Seni dan Budaya,4.0
+78,Agama dan Kepercayaan,10.0
+78,Bisnis dan Industri,6.0
+78,Politik dan Pemerintahan,8.0
+78,Transportasi dan Logistik,1.0
+78,Pertanian dan Perikanan,10.0
+79,Kesehatan,8.0
+79,Pendidikan,7.0
+79,Hukum,1.0
+79,Keuangan,2.0
+79,Pariwisata,3.0
+79,Sosial dan Kemanusiaan,1.0
+79,Lingkungan dan Konservasi,9.0
+79,Teknologi Informasi dan Komunikasi,8.0
+79,Olahraga dan Rekreasi,2.0
+79,Seni dan Budaya,9.0
+79,Agama dan Kepercayaan,7.0
+79,Bisnis dan Industri,9.0
+79,Politik dan Pemerintahan,6.0
+79,Transportasi dan Logistik,6.0
+79,Pertanian dan Perikanan,4.0
+80,Kesehatan,10.0
+80,Pendidikan,10.0
+80,Hukum,2.0
+80,Keuangan,7.0
+80,Pariwisata,5.0
+80,Sosial dan Kemanusiaan,6.0
+80,Lingkungan dan Konservasi,2.0
+80,Teknologi Informasi dan Komunikasi,5.0
+80,Olahraga dan Rekreasi,10.0
+80,Seni dan Budaya,4.0
+80,Agama dan Kepercayaan,9.0
+80,Bisnis dan Industri,6.0
+80,Politik dan Pemerintahan,2.0
+80,Transportasi dan Logistik,1.0
+80,Pertanian dan Perikanan,5.0
+81,Kesehatan,9.0
+81,Pendidikan,6.0
+81,Hukum,10.0
+81,Keuangan,7.0
+81,Pariwisata,5.0
+81,Sosial dan Kemanusiaan,10.0
+81,Lingkungan dan Konservasi,6.0
+81,Teknologi Informasi dan Komunikasi,5.0
+81,Olahraga dan Rekreasi,9.0
+81,Seni dan Budaya,6.0
+81,Agama dan Kepercayaan,8.0
+81,Bisnis dan Industri,2.0
+81,Politik dan Pemerintahan,9.0
+81,Transportasi dan Logistik,5.0
+81,Pertanian dan Perikanan,7.0
+82,Kesehatan,10.0
+82,Pendidikan,1.0
+82,Hukum,10.0
+82,Keuangan,5.0
+82,Pariwisata,10.0
+82,Sosial dan Kemanusiaan,2.0
+82,Lingkungan dan Konservasi,6.0
+82,Teknologi Informasi dan Komunikasi,1.0
+82,Olahraga dan Rekreasi,3.0
+82,Seni dan Budaya,5.0
+82,Agama dan Kepercayaan,4.0
+82,Bisnis dan Industri,3.0
+82,Politik dan Pemerintahan,10.0
+82,Transportasi dan Logistik,5.0
+82,Pertanian dan Perikanan,8.0
+83,Kesehatan,4.0
+83,Pendidikan,1.0
+83,Hukum,7.0
+83,Keuangan,8.0
+83,Pariwisata,3.0
+83,Sosial dan Kemanusiaan,6.0
+83,Lingkungan dan Konservasi,2.0
+83,Teknologi Informasi dan Komunikasi,7.0
+83,Olahraga dan Rekreasi,8.0
+83,Seni dan Budaya,6.0
+83,Agama dan Kepercayaan,6.0
+83,Bisnis dan Industri,5.0
+83,Politik dan Pemerintahan,8.0
+83,Transportasi dan Logistik,1.0
+83,Pertanian dan Perikanan,10.0
+84,Kesehatan,4.0
+84,Pendidikan,4.0
+84,Hukum,3.0
+84,Keuangan,3.0
+84,Pariwisata,4.0
+84,Sosial dan Kemanusiaan,1.0
+84,Lingkungan dan Konservasi,2.0
+84,Teknologi Informasi dan Komunikasi,9.0
+84,Olahraga dan Rekreasi,10.0
+84,Seni dan Budaya,2.0
+84,Agama dan Kepercayaan,5.0
+84,Bisnis dan Industri,9.0
+84,Politik dan Pemerintahan,9.0
+84,Transportasi dan Logistik,8.0
+84,Pertanian dan Perikanan,1.0
+85,Kesehatan,1.0
+85,Pendidikan,9.0
+85,Hukum,8.0
+85,Keuangan,10.0
+85,Pariwisata,9.0
+85,Sosial dan Kemanusiaan,7.0
+85,Lingkungan dan Konservasi,3.0
+85,Teknologi Informasi dan Komunikasi,3.0
+85,Olahraga dan Rekreasi,2.0
+85,Seni dan Budaya,5.0
+85,Agama dan Kepercayaan,3.0
+85,Bisnis dan Industri,6.0
+85,Politik dan Pemerintahan,2.0
+85,Transportasi dan Logistik,3.0
+85,Pertanian dan Perikanan,5.0
+86,Kesehatan,1.0
+86,Pendidikan,1.0
+86,Hukum,10.0
+86,Keuangan,9.0
+86,Pariwisata,7.0
+86,Sosial dan Kemanusiaan,1.0
+86,Lingkungan dan Konservasi,8.0
+86,Teknologi Informasi dan Komunikasi,3.0
+86,Olahraga dan Rekreasi,8.0
+86,Seni dan Budaya,5.0
+86,Agama dan Kepercayaan,1.0
+86,Bisnis dan Industri,7.0
+86,Politik dan Pemerintahan,5.0
+86,Transportasi dan Logistik,6.0
+86,Pertanian dan Perikanan,6.0
+87,Kesehatan,8.0
+87,Pendidikan,9.0
+87,Hukum,2.0
+87,Keuangan,9.0
+87,Pariwisata,10.0
+87,Sosial dan Kemanusiaan,9.0
+87,Lingkungan dan Konservasi,10.0
+87,Teknologi Informasi dan Komunikasi,10.0
+87,Olahraga dan Rekreasi,7.0
+87,Seni dan Budaya,1.0
+87,Agama dan Kepercayaan,7.0
+87,Bisnis dan Industri,10.0
+87,Politik dan Pemerintahan,5.0
+87,Transportasi dan Logistik,6.0
+87,Pertanian dan Perikanan,10.0
+88,Kesehatan,7.0
+88,Pendidikan,5.0
+88,Hukum,7.0
+88,Keuangan,9.0
+88,Pariwisata,3.0
+88,Sosial dan Kemanusiaan,8.0
+88,Lingkungan dan Konservasi,2.0
+88,Teknologi Informasi dan Komunikasi,7.0
+88,Olahraga dan Rekreasi,2.0
+88,Seni dan Budaya,4.0
+88,Agama dan Kepercayaan,7.0
+88,Bisnis dan Industri,3.0
+88,Politik dan Pemerintahan,2.0
+88,Transportasi dan Logistik,10.0
+88,Pertanian dan Perikanan,7.0
+89,Kesehatan,1.0
+89,Pendidikan,8.0
+89,Hukum,3.0
+89,Keuangan,2.0
+89,Pariwisata,3.0
+89,Sosial dan Kemanusiaan,5.0
+89,Lingkungan dan Konservasi,8.0
+89,Teknologi Informasi dan Komunikasi,10.0
+89,Olahraga dan Rekreasi,7.0
+89,Seni dan Budaya,7.0
+89,Agama dan Kepercayaan,7.0
+89,Bisnis dan Industri,8.0
+89,Politik dan Pemerintahan,1.0
+89,Transportasi dan Logistik,4.0
+89,Pertanian dan Perikanan,6.0
+90,Kesehatan,9.0
+90,Pendidikan,2.0
+90,Hukum,1.0
+90,Keuangan,10.0
+90,Pariwisata,2.0
+90,Sosial dan Kemanusiaan,7.0
+90,Lingkungan dan Konservasi,3.0
+90,Teknologi Informasi dan Komunikasi,10.0
+90,Olahraga dan Rekreasi,2.0
+90,Seni dan Budaya,7.0
+90,Agama dan Kepercayaan,2.0
+90,Bisnis dan Industri,3.0
+90,Politik dan Pemerintahan,7.0
+90,Transportasi dan Logistik,4.0
+90,Pertanian dan Perikanan,1.0
+91,Kesehatan,5.0
+91,Pendidikan,9.0
+91,Hukum,8.0
+91,Keuangan,9.0
+91,Pariwisata,10.0
+91,Sosial dan Kemanusiaan,9.0
+91,Lingkungan dan Konservasi,7.0
+91,Teknologi Informasi dan Komunikasi,4.0
+91,Olahraga dan Rekreasi,5.0
+91,Seni dan Budaya,1.0
+91,Agama dan Kepercayaan,1.0
+91,Bisnis dan Industri,3.0
+91,Politik dan Pemerintahan,8.0
+91,Transportasi dan Logistik,2.0
+91,Pertanian dan Perikanan,4.0
+92,Kesehatan,2.0
+92,Pendidikan,5.0
+92,Hukum,9.0
+92,Keuangan,1.0
+92,Pariwisata,5.0
+92,Sosial dan Kemanusiaan,9.0
+92,Lingkungan dan Konservasi,1.0
+92,Teknologi Informasi dan Komunikasi,9.0
+92,Olahraga dan Rekreasi,8.0
+92,Seni dan Budaya,4.0
+92,Agama dan Kepercayaan,10.0
+92,Bisnis dan Industri,5.0
+92,Politik dan Pemerintahan,5.0
+92,Transportasi dan Logistik,6.0
+92,Pertanian dan Perikanan,7.0
+93,Kesehatan,8.0
+93,Pendidikan,8.0
+93,Hukum,2.0
+93,Keuangan,9.0
+93,Pariwisata,7.0
+93,Sosial dan Kemanusiaan,4.0
+93,Lingkungan dan Konservasi,4.0
+93,Teknologi Informasi dan Komunikasi,8.0
+93,Olahraga dan Rekreasi,4.0
+93,Seni dan Budaya,6.0
+93,Agama dan Kepercayaan,5.0
+93,Bisnis dan Industri,3.0
+93,Politik dan Pemerintahan,10.0
+93,Transportasi dan Logistik,2.0
+93,Pertanian dan Perikanan,9.0
+94,Kesehatan,10.0
+94,Pendidikan,9.0
+94,Hukum,1.0
+94,Keuangan,10.0
+94,Pariwisata,3.0
+94,Sosial dan Kemanusiaan,8.0
+94,Lingkungan dan Konservasi,6.0
+94,Teknologi Informasi dan Komunikasi,5.0
+94,Olahraga dan Rekreasi,5.0
+94,Seni dan Budaya,6.0
+94,Agama dan Kepercayaan,7.0
+94,Bisnis dan Industri,1.0
+94,Politik dan Pemerintahan,9.0
+94,Transportasi dan Logistik,3.0
+94,Pertanian dan Perikanan,4.0
+95,Kesehatan,10.0
+95,Pendidikan,1.0
+95,Hukum,10.0
+95,Keuangan,3.0
+95,Pariwisata,2.0
+95,Sosial dan Kemanusiaan,2.0
+95,Lingkungan dan Konservasi,1.0
+95,Teknologi Informasi dan Komunikasi,8.0
+95,Olahraga dan Rekreasi,3.0
+95,Seni dan Budaya,3.0
+95,Agama dan Kepercayaan,6.0
+95,Bisnis dan Industri,8.0
+95,Politik dan Pemerintahan,9.0
+95,Transportasi dan Logistik,9.0
+95,Pertanian dan Perikanan,4.0
+96,Kesehatan,5.0
+96,Pendidikan,2.0
+96,Hukum,9.0
+96,Keuangan,8.0
+96,Pariwisata,3.0
+96,Sosial dan Kemanusiaan,9.0
+96,Lingkungan dan Konservasi,3.0
+96,Teknologi Informasi dan Komunikasi,9.0
+96,Olahraga dan Rekreasi,2.0
+96,Seni dan Budaya,10.0
+96,Agama dan Kepercayaan,9.0
+96,Bisnis dan Industri,8.0
+96,Politik dan Pemerintahan,9.0
+96,Transportasi dan Logistik,5.0
+96,Pertanian dan Perikanan,2.0
+97,Kesehatan,8.0
+97,Pendidikan,6.0
+97,Hukum,8.0
+97,Keuangan,5.0
+97,Pariwisata,10.0
+97,Sosial dan Kemanusiaan,2.0
+97,Lingkungan dan Konservasi,6.0
+97,Teknologi Informasi dan Komunikasi,5.0
+97,Olahraga dan Rekreasi,5.0
+97,Seni dan Budaya,1.0
+97,Agama dan Kepercayaan,2.0
+97,Bisnis dan Industri,8.0
+97,Politik dan Pemerintahan,3.0
+97,Transportasi dan Logistik,10.0
+97,Pertanian dan Perikanan,3.0
+98,Kesehatan,8.0
+98,Pendidikan,8.0
+98,Hukum,2.0
+98,Keuangan,8.0
+98,Pariwisata,1.0
+98,Sosial dan Kemanusiaan,6.0
+98,Lingkungan dan Konservasi,8.0
+98,Teknologi Informasi dan Komunikasi,3.0
+98,Olahraga dan Rekreasi,8.0
+98,Seni dan Budaya,1.0
+98,Agama dan Kepercayaan,9.0
+98,Bisnis dan Industri,9.0
+98,Politik dan Pemerintahan,5.0
+98,Transportasi dan Logistik,10.0
+98,Pertanian dan Perikanan,4.0
+99,Kesehatan,6.0
+99,Pendidikan,7.0
+99,Hukum,5.0
+99,Keuangan,10.0
+99,Pariwisata,9.0
+99,Sosial dan Kemanusiaan,3.0
+99,Lingkungan dan Konservasi,7.0
+99,Teknologi Informasi dan Komunikasi,10.0
+99,Olahraga dan Rekreasi,10.0
+99,Seni dan Budaya,5.0
+99,Agama dan Kepercayaan,7.0
+99,Bisnis dan Industri,2.0
+99,Politik dan Pemerintahan,4.0
+99,Transportasi dan Logistik,2.0
+99,Pertanian dan Perikanan,7.0
+100,Kesehatan,2.0
+100,Pendidikan,1.0
+100,Hukum,9.0
+100,Keuangan,1.0
+100,Pariwisata,8.0
+100,Sosial dan Kemanusiaan,2.0
+100,Lingkungan dan Konservasi,8.0
+100,Teknologi Informasi dan Komunikasi,3.0
+100,Olahraga dan Rekreasi,6.0
+100,Seni dan Budaya,3.0
+100,Agama dan Kepercayaan,7.0
+100,Bisnis dan Industri,10.0
+100,Politik dan Pemerintahan,9.0
+100,Transportasi dan Logistik,2.0
+100,Pertanian dan Perikanan,5.0
