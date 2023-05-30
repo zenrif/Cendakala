@@ -1,32 +1,63 @@
-# Cendakala, Aplikasi Jual Beli Survey
+# Machine Learning Documentation
 
 ## Recommendation System Model
 A recommendation system is a type of information filtering system that predicts and suggests items or content that a user may be interested in. Its main purpose is to assist users in discovering relevant and personalized recommendations from a vast pool of choices, such as products, movies, music, articles, or even friends in social networks.
 
-## Machine Learning Documentation
-### Components
-* NLP
-* Keras
-* Pandas
-* NumPy
-* Tensorflow
-* Sklearn
-* Datetime
-* Embeddings
-* Model Evaluation
-* Top-N recommendation
-* Accuracy and Loss Graph
+### Collaborative Filtering
+This algorithm is a type of collaborative filtering algorithm that takes into account the number of surveys that a user has filled out when making recommendations.
 
-### Requirements
-* [Google Colaboratory](https://colab.research.google.com/) or [Jupyter Notebook](https://jupyter.org/install).
-* Kaggle API Token.
-* Latest Tensorflow Version 2.8.2.
-* Python Version 3.6 or above.
+<p align="center"> <img src="https://github.com/zenrif/Cendakala/assets/101646114/93176547-5c1d-4f1c-b9a2-04486955b199"></p>
+<p align="center">Collaborative Filtering Illustration</p>
 
-### Dataset
-* [User Dataset](https://drive.google.com/file/d/1onu9HDVevZgUMay2sOUKqJir45plt9cW/view?usp=sharing)
+### Datasets
+#### Dataset dataset_kuesioner
+The questionnaire dataset consists of 4 columns, namely number, judul, category_1, and category_2. Number is the index of the dataset, judul is the title of the questionnaire, category_1 and category_2 are the categories of the questionnaire (ie health, education, etc). The data in the dataset was generated with the Python library and completed manually by team members.
 
-Dataset Preview
+Dataset Preview<br>
+
+<table>
+        <tr>
+            <th>judul</th>
+            <th>category_1</th>
+            <th>category_2</th>
+        </tr>
+        <tr>
+            <td>Efektivitas Program Pendidikan Kesehatan dalam Meningkatkan Pengetahuan dan Perilaku Hidup Sehat Siswa Sekolah Dasar: Penelitian pada Sekolah Dasar di Kota Makassar</td>
+            <td>Kesehatan</td>
+            <td>Pendidikan</td>
+        </tr>
+        <tr>
+            <td>Tinjauan atas Implementasi Program Pendidikan Pariwisata di Sekolah: Penilaian Efektivitas dan Dampak pada Pengetahuan dan Minat Siswa terhadap Industri Pariwisata</td>
+            <td>Pendidikan</td>
+            <td>Pariwisata</td>
+        </tr>
+        <tr>
+            <td>Pengaruh Hukum terhadap Kebebasan Berpendapat dan Ekspresi dalam Era Digital: Studi Kasus tentang Batasan dan Perlindungan Hukum dalam Konteks Teknologi Informasi dan Komunikasi</td>
+            <td>Hukum</td>
+            <td>Teknologi Informasi dan Komunikasi</td>
+        </tr>
+        <tr>
+            <td>Evaluasi Fasilitas dan Infrastruktur Olahraga di Destinasi Pariwisata</td>
+            <td>Pariwisata</td>
+            <td>Olahraga dan Rekreasi</td>
+        </tr>
+        <tr>
+            <td>Kontribusi Seni dan Budaya dalam Mendorong Perlindungan Lingkungan dan Konservasi Warisan Budaya</td>
+            <td>Lingkungan dan Konservasi</td>
+            <td>Seni dan Budaya</td>
+        </tr>
+        <tr>
+            <td>Studi Tentang Inovasi Bisnis dalam Menyelesaikan Tantangan Sosial dan Kemanusiaan</td>
+            <td>Bisnis dan Industri</td>
+            <td>Sosial dan Kemanusiaan</td>
+        </tr>
+    </table>
+
+#### Dataset dataset_dummy
+The dummy dataset consists of 3 columns, namely user_id, kategori, and history. user_id is the identification of the user in the database, category is the category of the questionnaire (i.e. health, education, etc.), and history describes how many questionnaires were completed by users in the same category. The data in the dummydataset is generated with a Python library.
+
+Dataset Preview<br>
+
 | user_id   | kategori                           | history  |
 | --------- | ---------------------------------- | -------- |
 | 1         | Kesehatan                          | 7        |
@@ -50,27 +81,28 @@ Dataset Preview
 | 2         | Keuangan                           | 6        |
 
 
-
 Data will be retrieved directly from the database. The data is then cleaned and prepared for training. The machine learning model will then be trained on the prepared data. Once the model has been trained, it can be used to recommend surveys to users.
-
-## Models
-1. Retrieval models, are used to generate a list of candidate items that are likely to be of interest to a user. This is typically done by finding items that are similar to items that the user has previously interacted with.
-
-2. Fuzzy-Wuzzy, the fuzz string matching ratio is a measure of how similar two strings are. It is calculated by dividing the number of characters that are the same in both strings by the total number of characters in both strings. The higher the ratio, the more similar the two strings are.
-
-### Algorithms
-1. Collaborative Filtering : This algorithm is a type of collaborative filtering algorithm that takes into account the number of surveys that a user has filled out when making recommendations.
-
-<p align="center"> <img src="https://github.com/zenrif/Cendakala/blob/507d9931a677e4b8b691921f52e796fac0419f9e/collaborative_filtering_illustration.png"></p>
-<p align="center">Collaborative Filtering Illustration</p>
-
-2. Levenshtein distance: This algorithm calculates the number of changes that need to be made to one string to make it match another string. The lower the Levenshtein distance, the higher the fuzz string matching ratio.
-
-<p align="center"> <img src="https://github.com/zenrif/Cendakala/blob/5a260adcdf15fb594cb159f561d556f19a843ca5/fuzzywuzzy_illustration.png"></p>
-<p align="center">Fuzzy-Wuzzy Illustration</p>
-
-### Results
-(-)
 
 ### Deployment
 The model architecture is deployed to the backend service. The model then gets the data, processes it, and sends the recommendation to the application.
+
+### Components
+* NLP
+* Keras
+* Pandas
+* NumPy
+* Tensorflow
+* Sklearn
+* Datetime
+* Embeddings
+* Model Evaluation
+* Top-N recommendation
+* Accuracy and Loss Graph
+
+### Requirements
+* [Google Colaboratory](https://colab.research.google.com/) or [Jupyter Notebook](https://jupyter.org/install).
+* Kaggle API Token.
+* Latest Tensorflow Version 2.8.2.
+* Python Version 3.6 or above.
+
+
