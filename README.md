@@ -1,4 +1,4 @@
-# Cendakala
+# Cloud Computing Documentation
 The Cendakala application uses Google Cloud Platform Services to share and store data. The google cloud project is connected to firebase because the application also uses firebase auth for authentication and firebase firestore for the database.
 
 ## 1. Setup Google Cloud Platform
