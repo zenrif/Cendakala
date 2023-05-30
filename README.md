@@ -1,7 +1,7 @@
 <p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/5fff6fda-c4b7-424c-b7f1-65c79600cd22"></p>
 <h1 align="center">Cendakala</h1>
 <h3 align="center">Application for filling out questionnaire data and data transactions. We're ready to help you!</h3>
-<p align="center">Project for fulfill the <a href="g.co/bangkit">Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka</a> Program.</p>
+<p align="center">Project for fulfill the <a href="https://grow.google/intl/id_id/bangkit/?tab=machine-learning">Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka</a> Program.</p>
 <h2>Team Members</h2>
 <h3>Team ID : C23-PC618</h3>
 <table>
