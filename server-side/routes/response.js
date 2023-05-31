@@ -122,21 +122,21 @@ try {
 }
 })
 
-router.get('/read/surveyID',verifyToken, async(req, res) =>{
+router.get('/read/surveys/:surveyID',verifyToken, async(req, res) =>{
     try {
-        const surveyID = req.body.surveyID
+        const surveyID = req.params.surveyID
         let responseArr = []
     
         const responseRef = DB.collection('response')
         const resSnap = await responseRef.get();
-    
+
         resSnap.forEach( (response) => {
             if(response.data().surveyID === surveyID) responseArr.push(response.data())
         } )
     
         res.status(200).json({
             status : "Success",
-            Message : "Success get all responses by surveyID",
+            Message : "Success get response by surveyID",
             responses : responseArr
         })
         
@@ -173,10 +173,9 @@ router.get('/read/uid',verifyToken, async(req, res) =>{
     }
 })
 
-router.get("/read", async (req, res) => {
+router.get("/read/:responseID",verifyToken, async (req, res) => {
     try {
-        const {responseID} = req.body
-        
+        const responseID = req.params.responseID
         const responseRef = DB.collection('response').doc(responseID)
         const resSnap = await responseRef.get();
 

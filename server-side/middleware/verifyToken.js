@@ -9,7 +9,6 @@ exports.verifyToken = async (req, res, next) => {
         const token = arrOriginal[1];
         const verify = await auth.verifyIdToken(token);
         req.body.uid = verify.uid
-        console.log(req.body.uid)
         next()
     } catch (error) {
         
