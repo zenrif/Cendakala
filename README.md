@@ -100,7 +100,7 @@ The model architecture is deployed to the backend service. The model then gets t
 * Accuracy and Loss Graph
 
 ### Requirements
-* [Google Colaboratory](https://colab.research.google.com/) or [Jupyter Notebook](https://jupyter.org/install).
+* [Jupyter Notebook](https://jupyter.org/install).
 * Kaggle API Token.
 * Latest Tensorflow Version 2.8.2.
 * Python Version 3.6 or above.
