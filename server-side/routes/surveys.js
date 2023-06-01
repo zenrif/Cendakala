@@ -52,8 +52,6 @@ router.post('/create',verifyToken, async (req, res) => {
         }
 
         const docRef = await DB.collection("surveys").doc(docID);
-        const docSnapshot = await docRef.get();
-
 
         await docRef.set(surveyData);
         const response = {

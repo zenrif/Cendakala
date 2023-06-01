@@ -3,6 +3,7 @@ const router  = express.Router()
 const { DB } = require('../config')
 const crypto = require('crypto')
 const { verifyToken } = require("../middleware/verifyToken")
+const { FieldValue } = require("firebase-admin/firestore")
 
 //router
 router.post('/create', verifyToken, async (req, res) => {
@@ -38,7 +39,8 @@ router.post('/create', verifyToken, async (req, res) => {
 
         const surveyQuota = docSnapshot.data().quota
         const newQuota = surveyQuota - 1;
-        
+        const surveyCategory1 = docSnapshot.data().surveyCategory1
+        const surveyCategory2 = docSnapshot.data().surveyCategory2
 
         //User
         const userRef = DB.collection('users').doc(req.body.uid)
@@ -55,9 +57,6 @@ router.post('/create', verifyToken, async (req, res) => {
         const userBalance = docSnapshotU.data().balance;
         const newBalance = userBalance + req.body.reward;
         
-
-        
-
         //Response
         const responseRef = DB.collection('response')
         const resSnap = await responseRef.get();
@@ -78,8 +77,23 @@ router.post('/create', verifyToken, async (req, res) => {
                 message : "Cannot submit response twice at same survey"
             })
         }
+        const increment = FieldValue.increment(1)
+        const surveyData = {
+            quota: newQuota,
+            finished: true,
+            interest:{}
+        }
+
+        if(surveyData.interest.surveyCategory1 != "none"){surveyData.interest.surveyCategory1 = increment}
+        if(surveyData.interest.surveyCategory2 != "none"){surveyData.interest.surveyCategory2 = increment}
+
         //Eksekusi 
-        await surveyRef.update({quota: newQuota})
+        if(newQuota == 0){
+            await surveyRef.update(surveyData)
+        }else{
+            await surveyRef.update({quota: newQuota})
+        }
+    
         await userRef.update({balance: newBalance})
         await responseRef.doc(responseID).set(responseData);
         const response = {
@@ -126,13 +140,21 @@ router.get('/read/surveys/:surveyID',verifyToken, async(req, res) =>{
     try {
         const surveyID = req.params.surveyID
         let responseArr = []
-    
+        console.log(typeof(responseArr))
         const responseRef = DB.collection('response')
         const resSnap = await responseRef.get();
 
         resSnap.forEach( (response) => {
             if(response.data().surveyID === surveyID) responseArr.push(response.data())
         } )
+
+        if(Object.keys(responseArr).length===0){
+            return res.status(404).json({
+                status : "Failed",
+                code: "response/surveyIDNotFound",
+                Message : "SurveyID Invalid"
+            })
+        }
     
         res.status(200).json({
             status : "Success",

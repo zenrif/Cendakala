@@ -1,17 +1,17 @@
 const { auth } = require('../config')
+const jwt = require("jsonwebtoken")
+const axios = require("axios")
 
 exports.verifyToken = async (req, res, next) => {
     const original = req.headers.authtoken
-
-    
+    const arrOriginal = original.split(" ");
+    const token = arrOriginal[1];
     try {
-        const arrOriginal = original.split(" ");
-        const token = arrOriginal[1];
+        
         const verify = await auth.verifyIdToken(token);
         req.body.uid = verify.uid
         next()
     } catch (error) {
-        
         if(error.code === "auth/argument-error" || original === undefined){
             return res.status(403).json({
                 status : "Failed",
@@ -20,10 +20,23 @@ exports.verifyToken = async (req, res, next) => {
             })
         }
         else if(error.code === "auth/id-token-expired"){
+            const decodedPayload = jwt.decode(token)
+            const uid = decodedPayload.sub
+
+            const newToken = await auth.createCustomToken(uid)
+            const config = { 
+                headers: {newtoken :`${newToken}`} // Replace 'YOUR_TOKEN_VALUE' with the actual token value
+            };
+
+            const data ={}
+        
+            const getUser = await axios.post('http://localhost:9080/authentication/newAccess', data, config);
+
             return res.status(403).json({
                 status : "Failed",
                 code : error.code,
-                message : "Your token expired"
+                message : "Your token expired, please replace the token",
+                newToken : getUser.data
             })
         }
         return res.status(500).json({

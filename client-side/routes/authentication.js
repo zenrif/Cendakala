@@ -1,7 +1,7 @@
 const express = require("express")
 const router  = express.Router()
 const { DB, auth } = require('../config')
-const {signInWithEmailAndPassword, createUserWithEmailAndPassword} = require('firebase/auth')
+const {signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithCustomToken} = require('firebase/auth')
 const axios = require('axios')
 const { collection, doc, setDoc, getFirestore } = require("firebase/firestore")
 
@@ -109,5 +109,18 @@ router.post('/signup', async (req, res) => {
         res.status(500).send('Server error');
     }
 })
+
+router.post("/newAccess", async (req, res) => {
+    try {
+        const userCredential = await signInWithCustomToken(auth, req.headers.newtoken);
+        return res.json({ 
+            token : `Bearer ${userCredential.user.stsTokenManager.accessToken}`,
+            expirationTime : userCredential.user.stsTokenManager.expirationTime}
+        );
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'An error occurred' });
+    }
+});
 
 module.exports = router
