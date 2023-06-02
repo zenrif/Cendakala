@@ -30,7 +30,7 @@ router.post('/topup', verifyToken, async (req, res) => {
             return res.status(409).json({
                 status : "Failed",
                 code: "transaction/minimumTotal",
-                Message : "Minimum amount for top up is Rp10,000"
+                message : "Minimum amount for top up is Rp10,000"
             })
         }
         const current = Date.now()
@@ -84,14 +84,14 @@ router.post('/withdrawal', verifyToken, async (req, res) => {
             return res.status(409).json({
                 status : "Failed",
                 code: "transaction/notEnoughBalance",
-                Message : `Your balance is not enough to make a withdrawal`
+                message : `Your balance is not enough to make a withdrawal`
             })
         }
         else if(total < 100000){
             return res.status(409).json({
                 status : "Failed",
                 code: "transaction/minimumWithdrawal",
-                Message : `The minimum withdrawal balance is Rp100,000 `
+                message : `The minimum withdrawal balance is Rp100,000 `
             })
         }
 
@@ -169,24 +169,36 @@ router.get('/read', verifyToken, async (req, res) => {
 router.post('/buy', verifyToken, async (req, res) => {
     
     try {
-        const {surveyID} = req.body;
+        const {surveyID, price} = req.body;
         const uid = req.body.uid;
     
         const userRef = DB.collection('users').doc(uid)
         const userBalance = (await userRef.get()).data().balance
-        const newBalance = userBalance - total
-        if(userBalance < total){
+        const transaction = DB.collection('transaction')
+        const allTransactions = await transaction.get()
+        const newBalance = userBalance - price
+
+        // Owned checker
+        let alreadyPurchased = false
+
+        allTransactions.forEach((trans) => {
+            if(trans.data().surveyID == surveyID && trans.data().uid == uid){
+                alreadyPurchased = true
+            }
+        })
+
+        if(alreadyPurchased){
+            return res.status(409).json({
+                status : "Failed",
+                code: "transaction/alreadyPurchased",
+                message : `You have purchased this survey`
+            })
+        }
+        if(userBalance < price){
             return res.status(409).json({
                 status : "Failed",
                 code: "transaction/notEnoughBalance",
-                Message : `Your balance is not enough to make a withdrawal`
-            })
-        }
-        else if(total < 100000){
-            return res.status(409).json({
-                status : "Failed",
-                code: "transaction/minimumWithdrawal",
-                Message : `The minimum withdrawal balance is Rp100,000 `
+                message : `Your balance is not enough to make a purchase`
             })
         }
 
@@ -195,23 +207,25 @@ router.post('/buy', verifyToken, async (req, res) => {
         const date = dateTime.getDate() + " " + month[dateTime.getMonth().toString()] + " " + dateTime.getFullYear();
         const transactionID =  crypto.randomUUID() + dateTime.getMilliseconds();
 
-        const transactionRef = DB.collection('transaction').doc(transactionID)
+        const transactionRef = transaction.doc(transactionID)
         
         const transactionData = {
-            type : "withdrawal",
+            type : "buySurvey",
             uid : uid,
-            total : total,
+            total : price,
             date : date,
-            method : method,
+            method : "wallet",
             transactionID : transactionID
         }
 
-        await userRef.update({balance : newBalance})
+        await userRef.update({
+            balance : newBalance
+        })
         await transactionRef.set(transactionData)
         
         const response = {
             status : "Success",
-            Message : "Success Withdrawal",
+            Message : "Success buy survey",
             transactionID : transactionID
         }
         res.status(200).json(response)

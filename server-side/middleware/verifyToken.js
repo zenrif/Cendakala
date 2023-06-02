@@ -7,7 +7,6 @@ exports.verifyToken = async (req, res, next) => {
     const arrOriginal = original.split(" ");
     const token = arrOriginal[1];
     try {
-        
         const verify = await auth.verifyIdToken(token);
         req.body.uid = verify.uid
         next()
@@ -30,11 +29,11 @@ exports.verifyToken = async (req, res, next) => {
 
             const data ={}
         
-            const getUser = await axios.post('http://localhost:9080/authentication/newAccess', data, config);
+            const getUser = await axios.post('https://client-side-dot-cendakala.et.r.appspot.com/authentication/newAccess', data, config);
 
             return res.status(403).json({
                 status : "Failed",
-                code : error.code,
+                code : "auth/id-token-expired",
                 message : "Your token expired, please replace the token",
                 newToken : getUser.data
             })

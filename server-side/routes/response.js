@@ -22,7 +22,8 @@ router.post('/create', verifyToken, async (req, res) => {
             uid : uid,
             answers : answers,
             responseID : responseID,
-            reward : reward
+            reward : reward,
+            timestamp : FieldValue.serverTimestamp()
         }
         
         //Survey
@@ -84,8 +85,8 @@ router.post('/create', verifyToken, async (req, res) => {
             interest:{}
         }
 
-        if(surveyData.interest.surveyCategory1 != "none"){surveyData.interest.surveyCategory1 = increment}
-        if(surveyData.interest.surveyCategory2 != "none"){surveyData.interest.surveyCategory2 = increment}
+        if(surveyData.interest.surveyCategory1 != "null" || surveyData.interest.surveyCategory1 != null ){surveyData.interest.surveyCategory1 = increment}
+        if(surveyData.interest.surveyCategory2 != "null" || surveyData.interest.surveyCategory2 != null){surveyData.interest.surveyCategory2 = increment}
 
         //Eksekusi 
         if(newQuota == 0){

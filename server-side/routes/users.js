@@ -2,6 +2,7 @@ const express = require("express")
 const router  = express.Router()
 const { verifyToken } = require('../middleware/verifyToken')
 const { DB } = require('../config')
+const  axios = require("axios")
 
 //Router
 router.get('/read/all', verifyToken, async (req, res) => {
@@ -114,6 +115,97 @@ router.delete('/delete', verifyToken, async (req, res) => {
         })
     }
 })
+
+router.post("/bulk", async(req, res)=>{
+    const datas = req.body
+
+    try {
+        for (let index = 0; index < 50; index++) {
+            const arr = datas[index]
+            await axios.post('https://client-side-dot-cendakala.et.r.appspot.com/authentication/signup', arr);
+        }
+    } catch (error) {
+        console.log(error)
+        res.send(error)
+    }
+
+    res.send("yes")
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+  
+  // Object with the keys and initial values
+  
+  
+  // Function to update the "history" object with random values
+function updateHistoryObject() {
+    const updatedHistory = {};
+    const historyData = {
+        "Kesehatan": 0,
+        "Pendidikan": 0,
+        "Hukum": 0,
+        "Pariwisata": 0,
+        "Sosial dan Kemanusiaan": 0,
+        "Lingkungan dan Konversi": 0,
+        "Teknologi informasi dan Komunikasi": 0,
+        "Olahraga dan Rekreasi": 0,
+        "Seni dan Budaya": 0,
+        "Agama dan Kepercayaan": 0,
+        "Bisnis dan Industri": 0,
+        "Politik dan Pemerintahan": 0,
+        "Transportasi dan Logistik": 0,
+        "Pertanian dan Logistik": 0
+    };
+
+    for (const key in historyData) {
+      updatedHistory[key] = getRandomInt(0, 20);
+    }
+  
+    return updatedHistory;
+}
+
+router.put("/userHistory", async (req, res)=>{
+
+    try {
+        const usersCollection = await DB.collection('users')
+        const querySnapshot = await usersCollection.get();
+        const batch = DB.batch()
+
+        querySnapshot.forEach( (user) => {
+            const users = usersCollection.doc(user.data().uid)
+            console.log()
+            users.update( {history: updateHistoryObject()})
+            
+        })
+
+        res.status(200).json({
+            status : "Success",
+            Message : "Success update all users history",
+        })
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({
+            message : error
+        })
+    }
+})
+
 
 module.exports = router;
 

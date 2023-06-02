@@ -8,25 +8,32 @@ const { collection, doc, setDoc, getFirestore } = require("firebase/firestore")
 router.post('/signin', async (req, res) => {
     const {email, password} = req.body
     try {
-        signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+
+        const userCredential = await signInWithEmailAndPassword(auth, email, password)
             res.status(200).json({
                 status: "Success",
                 token : `Bearer ${userCredential.user.stsTokenManager.accessToken}`,
                 expirationTime : userCredential.user.stsTokenManager.expirationTime
             });
-            }).catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-        
-                if(errorCode === 'auth/invalid-credential'){
-                    return res.status(401).json({
-                        status : "Failed",
-                        code : "auth/invalid-credential",
-                        message : "Your E-Mail or Password is incorrect"
-                    })
-                }
-            })
         } catch (error) {
+            const errorCode = error.code;
+        
+            if(errorCode === 'auth/invalid-credential'){
+                return res.status(401).json({
+                    status : "Failed",
+                    code : "auth/invalid-credential",
+                    message : "Your E-Mail or Password is incorrect"
+                })
+            }
+
+            else if(errorCode === 'auth/user-not-found'){
+                return res.status(401).json({
+                    status : "Failed",
+                    code : "auth/user-not-found",
+                    message : "Your E-Mail or Password is incorrect"
+                })
+            }
+
             console.error(error);
             res.status(500).send('Server error');
     }
