@@ -3,6 +3,8 @@ package com.zen.cendakala.route
 sealed class Routes(val routes: String) {
     object Splash : Routes("splash")
     object Home : Routes("home")
+    object Login : Routes("login")
+    object Register : Routes("register")
     object Survey : Routes("survey")
     object History : Routes("history")
     object Wallet : Routes("wallet")

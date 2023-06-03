@@ -51,7 +51,7 @@ fun SplashScreen(navController: NavController) {
             ))
         delay(2500L)
         navController.popBackStack()
-        navController.navigate(Routes.Home.routes) {
+        navController.navigate(Routes.Login.routes) {
             popUpTo(Routes.Splash.routes) {
                 inclusive = true
             }

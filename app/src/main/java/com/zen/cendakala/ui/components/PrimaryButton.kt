@@ -7,8 +7,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.zen.cendakala.ui.theme.Color1
+import com.zen.cendakala.ui.theme.White2
 import com.zen.cendakala.utils.CapsText
+import com.zen.cendakala.utils.Constants
 
 @Composable
 fun PrimaryButton(
@@ -27,7 +30,9 @@ fun PrimaryButton(
         modifier = modifier
         ) {
         CapsText(
-            text = text
+            text = text,
+            color = White2,
+            letterSpacing = Constants.LETTER_SPACING.sp
         )
     }
 }

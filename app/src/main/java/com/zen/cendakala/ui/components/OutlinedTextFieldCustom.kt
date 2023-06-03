@@ -11,8 +11,10 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -23,7 +25,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.zen.cendakala.R
 import com.zen.cendakala.ui.theme.*
 import com.zen.cendakala.utils.Constants
 
@@ -35,14 +36,18 @@ fun OutlinedTextFieldCustom (
     imeActionParam: ImeAction,
     keyboardTypeParam: KeyboardType,
     iconParam: Int,
-    iconContentDescription: String
+    iconContentDescription: String,
+    onTextChanged: (String) -> Unit,
+    errorStatus: Boolean = false
     ){
     val keyboardController = LocalSoftwareKeyboardController.current
-    var text by rememberSaveable { mutableStateOf("") }
+    val text = rememberSaveable { mutableStateOf("") }
 
     OutlinedTextField(
-        value = text,
-        onValueChange = { text = it },
+        value = text.value,
+        onValueChange = {
+            text.value = it
+            onTextChanged(it) },
         shape = RoundedCornerShape(topEnd =12.dp, bottomStart =12.dp),
         label = {
             Text(text = labelText,
@@ -66,5 +71,6 @@ fun OutlinedTextFieldCustom (
         },
         singleLine = true,
         modifier = Modifier.fillMaxWidth(0.8f),
+        isError = !errorStatus
     )
 }

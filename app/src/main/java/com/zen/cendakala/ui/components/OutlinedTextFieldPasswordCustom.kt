@@ -25,6 +25,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -52,6 +53,11 @@ fun OutlinedTextFieldPasswordCustom (
         mutableStateOf(TextFieldValue(""))
     }
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
+    var lengthText = text.text.length
+    var isError = false
+    if (lengthText > 0) {
+        isError = true
+    }
     OutlinedTextField(
         value = text,
         onValueChange = { value ->
@@ -93,19 +99,17 @@ fun OutlinedTextFieldPasswordCustom (
                 Icon(imageVector = image, contentDescription = "")
             }
         },
-        isError = true,
         supportingText = {
-            val isError = text.text.length < 8
             if (isError) {
                 Text(
                     text = stringResource(id = R.string.password_error),
-                    color = Color1,
+                    color = Color.Red,
                     style = MaterialTheme.typography.bodyMedium,
                 )
             } else {
                 Text(
                     text = stringResource(id = R.string.password_error),
-                    color = Color1,
+                    color = Color.Red,
                     style = MaterialTheme.typography.bodyMedium,
                 )
             }
