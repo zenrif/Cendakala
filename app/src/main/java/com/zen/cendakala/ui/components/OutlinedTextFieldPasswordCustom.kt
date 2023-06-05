@@ -48,20 +48,18 @@ import com.zen.cendakala.ui.theme.*
 @Composable
 fun OutlinedTextFieldPasswordCustom (
     placeholderText: String,
+    onTextChanged: (String) -> Unit,
+    errorStatus: Boolean = false
     ) {
     var text by remember {
         mutableStateOf(TextFieldValue(""))
     }
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
-    var lengthText = text.text.length
-    var isError = false
-    if (lengthText > 0) {
-        isError = true
-    }
     OutlinedTextField(
         value = text,
-        onValueChange = { value ->
-            text = value
+        onValueChange = {
+            text = it
+            onTextChanged(it.text)
         },
         colors = TextFieldDefaults.outlinedTextFieldColors(
             focusedBorderColor = Color4,
@@ -99,20 +97,6 @@ fun OutlinedTextFieldPasswordCustom (
                 Icon(imageVector = image, contentDescription = "")
             }
         },
-        supportingText = {
-            if (isError) {
-                Text(
-                    text = stringResource(id = R.string.password_error),
-                    color = Color.Red,
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-            } else {
-                Text(
-                    text = stringResource(id = R.string.password_error),
-                    color = Color.Red,
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-            }
-        }
+        isError = !errorStatus
     )
 }

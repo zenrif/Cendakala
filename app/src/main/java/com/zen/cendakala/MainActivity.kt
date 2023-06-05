@@ -17,7 +17,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.zen.cendakala.route.Routes
-import com.zen.cendakala.ui.auth.LoginScreen
+import com.zen.cendakala.ui.auth.login.LoginScreen
 import com.zen.cendakala.ui.components.BottomNavigationBar
 import com.zen.cendakala.ui.home.HomeScreen
 import com.zen.cendakala.ui.home.SplashScreen

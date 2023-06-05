@@ -37,13 +37,12 @@ class SurveyRepository (
         email: String,
         password: String
     ): LiveData<Result<LoginResponse>> = liveData {
-        emit(Result.Loading)
         try {
             val response = apiService.login(
                 email,
                 password
             )
-            if (response.error) {
+            if (response.status == "Failed") {
                 emit(Result.Error(response.message))
             } else {
                 emit(Result.Success(response))
@@ -62,7 +61,6 @@ class SurveyRepository (
         gender: String,
         interest: Objects
     ): LiveData<Result<RegisterResponse>> = liveData {
-        emit(Result.Loading)
         try {
             val response = apiService.register(
                 name,
@@ -89,7 +87,6 @@ class SurveyRepository (
         lat: Double,
         lon: Double
     ): LiveData<Result<GeneralResponse>> = liveData {
-        emit(Result.Loading)
         try {
             val response = apiService.addStory(
                 token = "Bearer ${pref.getUser().token}",
@@ -109,7 +106,6 @@ class SurveyRepository (
     }
 
     fun stories(): LiveData<Result<SurveyResponse>> = liveData {
-        emit(Result.Loading)
         try {
             val response = apiService.survey(
                 token = "Bearer ${pref.getUser().token}",

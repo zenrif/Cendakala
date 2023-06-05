@@ -2,6 +2,7 @@ package com.zen.cendakala.data.source.local
 
 import android.content.Context
 import com.zen.cendakala.data.model.LoginModel
+import com.zen.cendakala.ui.auth.login.LoginViewModel
 
 class UserPreference(context: Context) {
     private val preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)

@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class LoginResponse(
     @field:SerializedName("status")
-    val error: Boolean,
+    val status: String,
 
     @field:SerializedName("code")
     val code: String,

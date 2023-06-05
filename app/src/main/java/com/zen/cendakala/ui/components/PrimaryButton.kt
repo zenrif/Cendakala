@@ -15,19 +15,21 @@ import com.zen.cendakala.utils.Constants
 
 @Composable
 fun PrimaryButton(
+    modifier: Modifier = Modifier,
     text: String,
     onClickButton: () -> Unit,
-    modifier: Modifier = Modifier
+//    isEnabled: Boolean = false,
 ) {
     Button(
         onClick = {
-        onClickButton
+            onClickButton.invoke()
         },
         colors = ButtonDefaults.buttonColors(
             containerColor = Color1
         ),
         shape = RoundedCornerShape(20.dp),
-        modifier = modifier
+        modifier = modifier,
+//        enabled = isEnabled
         ) {
         CapsText(
             text = text,
