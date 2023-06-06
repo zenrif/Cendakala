@@ -85,7 +85,6 @@ router.put('/update', verifyToken, async (req, res) => {
     }
 })
 
-
 router.delete('/delete', verifyToken, async (req, res) => {
     const uid = req.body.uid;
 

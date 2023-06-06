@@ -9,8 +9,8 @@ const StemmerFactory = require('node-stemmer').StemmerFactory;
 const factory = new StemmerFactory();
 const stemmer = factory.createStemmer();
 
-const indonesianWordList = fs.readFileSync('indonesian-wordlist.lst', 'utf-8').split('\n').map(line => line.trim());
-const stopWords = new Set(fs.readFileSync('combined_stop_words.txt', 'utf-8').split('\n').map(line => line.trim()));
+const indonesianWordList = fs.readFileSync('./search_word/indonesian-wordlist.lst', 'utf-8').split('\n').map(line => line.trim());
+const stopWords = new Set(fs.readFileSync('./search_word/combined_stop_words.txt', 'utf-8').split('\n').map(line => line.trim()));
 
 function removeStopWords(text) {
   const words = text.split(' ');

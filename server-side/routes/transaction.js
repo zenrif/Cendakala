@@ -218,8 +218,22 @@ router.post('/buy', verifyToken, async (req, res) => {
             transactionID : transactionID
         }
 
+        
+
+        // Add money to seller
+        const surveyRef = await DB.collection('surveys').doc(surveyID).get()
+        const sellerUID = surveyRef.uid
+        const sellerRef = await DB.collection('users').doc(sellerUID).get()
+        const newSellerBalance = sellerRef.balance + price
+
+
+
         await userRef.update({
             balance : newBalance
+        })
+
+        await sellerRef.update({
+            balance : newSellerBalance
         })
         await transactionRef.set(transactionData)
         

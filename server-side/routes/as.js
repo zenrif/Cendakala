@@ -89,3 +89,14 @@
 // and update it to database with firebase-admin nodejs
 
 
+// const a = 
+// {
+//     status : "Failed",
+//     code : 'surveys/noCategory',
+//     message : "Please provide 1 category"
+// }
+
+// {
+//     status : "Success",
+//     message : "Success add sell status to the survey"
+// }

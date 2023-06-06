@@ -56,7 +56,7 @@ router.post('/create',verifyToken, async (req, res) => {
         await docRef.set(surveyData);
         const response = {
             status : "Success",
-            Message : "Success adding survey",
+            message : "Success adding survey",
             surveyID : docID
         }
         res.status(200).json(response)
@@ -78,7 +78,7 @@ router.get('/read/all',verifyToken, async (req, res) => {
 
         res.status(200).json({
             status : "Success",
-            Message : "Success get all surveys",
+            message : "Success get all surveys",
             surveys : responseArr
         })
     } catch (error) {
@@ -89,14 +89,29 @@ router.get('/read/all',verifyToken, async (req, res) => {
     }
 })
 
-router.get('/read',verifyToken, async (req, res) => {
+router.get('/read/:surveyID',verifyToken, async (req, res) => {
     try {
-        const surveyRef = await DB.collection('surveys').doc(req.body.surveyID);
-        const selectedSurvey = await surveyRef.get()
+        const surveyID = req.params.surveyID
+        const uid = req.body.uid
+        const surveyRef = await DB.collection('surveys').doc(surveyID);
+        const selectedSurvey = await surveyRef.get() 
+    
         if(selectedSurvey.exists){
+            const transactionRef = await DB.collection('transaction').where("uid", "==", uid).get()
+            let owned = false
+            transactionRef.forEach((trans) => {
+                if(trans.data().surveyID == surveyID && trans.data().uid == uid) owned = true
+            })
+
+            let ownership = null
+
+            if(selectedSurvey.uid == uid){ ownership = "creator" }
+            else if(owned){ ownership = "buyer" }
+            else{ ownership = "public" }
             res.status(200).json({
                 status : "Success",
-                Message : "Success get survey",
+                message : "Success get survey",
+                ownership : ownership,
                 survey : selectedSurvey.data()
             });
         }
@@ -104,7 +119,7 @@ router.get('/read',verifyToken, async (req, res) => {
             res.status(404).json({ 
                 status : "Failed",
                 code : "surveys/notFound",
-                "Message" : "Survey does not exist" 
+                "message" : "Survey does not exist" 
             })
         }
     } catch (error) {
@@ -115,8 +130,8 @@ router.get('/read',verifyToken, async (req, res) => {
     }
 })
 
-router.get('/search/category', verifyToken, async (req, res) => {
-    const category = req.body.category || null
+router.get('/search/category/:category', verifyToken, async (req, res) => {
+    const category = req.params.category || null
 
     let responseArr = [];
     try {
@@ -145,7 +160,7 @@ router.get('/search/category', verifyToken, async (req, res) => {
         })
         res.status(200).json({
             status : "Success",
-            Message : "Success get the spesific category surveys",
+            message : "Success get the spesific category surveys",
             surveys : responseArr
         })
     } catch (error) {
@@ -187,7 +202,6 @@ router.put('/update', verifyToken, async (req, res) => {
     }
 })
 
-
 router.delete('/delete', verifyToken, async (req, res) => {
     const surveyID = req.body.surveyID;
 
@@ -217,6 +231,80 @@ router.delete('/delete', verifyToken, async (req, res) => {
         })
     }
 })
+
+router.put('/sell', verifyToken, async (req, res) => {
+    const {surveyID, price, uid} = req.body
+
+    try {
+        //Check, is survey sellable
+        const surveyRef = DB.collection('surveys').doc(surveyID)
+        const survey = await surveyRef.get()
+        
+        if(uid != survey.uid){
+            return res.status(403).json({
+                status : "Failed",
+                code : "surveys/notSurveyOwner",
+                message : "Only the owner of the survey can sell the survey"
+            })
+        }
+        if(!survey.finished){
+            return res.status(409).json({
+                status : "Failed",
+                code : "surveys/notFinished",
+                message : "Surveys must meet the quota of respondents to be sold (finished first)"
+            })
+        }
+        if(price < 0){
+            return res.status(409).json({
+                status : "Failed",
+                code : "surveys/invalidPrice",
+                message : "Price must be 0 or more than 0 to be sold"
+            })
+        }
+            
+        // Yes
+        await surveyRef.update({sell : true})
+        
+        const response = {
+            status : "Success",
+            message : "Success add sell status to the survey"
+        }
+        res.status(200).json(response)
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
+})
+
+router.post("/home", verifyToken, async(req,res)=>{
+    const getRecommendationColla = null
+    const getRecommendationContent = null
+
+    const recommedationSurvey = []
+
+    //randomize Surveys
+    //const keys = Object.keys,
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 router.post("/bulkInsert",verifyToken, async (req, res) => {
@@ -279,7 +367,7 @@ router.post("/bulkInsert",verifyToken, async (req, res) => {
                         }
                     },
                     "2": {
-                        "question": "Mengapa ibu puan maharani selalu menjadi kontroversi setiap ngomong sesuatu?",
+                        "question": "mengapa ibu puan maharani selalu menjadi kontroversi setiap ngomong sesuatu?",
                         "type": "essay"
                     },
                     "3": {
@@ -303,7 +391,7 @@ router.post("/bulkInsert",verifyToken, async (req, res) => {
                         }
                     },
                     "5": {
-                        "question": "Mengapa ibu puan maharani selalu menjadi kontroversi setiap ngomong sesuatu?",
+                        "question": "mengapa ibu puan maharani selalu menjadi kontroversi setiap ngomong sesuatu?",
                         "type": "essay"
                     }
                 }
@@ -315,7 +403,7 @@ router.post("/bulkInsert",verifyToken, async (req, res) => {
         
         const response = {
             status : "Success",
-            Message : "Success adding bulk survey",
+            message : "Success adding bulk survey",
         }
         res.status(200).json(response)
     } catch (error) {
@@ -337,7 +425,7 @@ router.delete("/deleteAll", async (req, res) => {
         await Promise.all(deletePromises);
         const response = {
             status : "Success",
-            Message : "Success delete bulk survey",
+            message : "Success delete bulk survey",
         }
         res.status(200).json(response)
     } catch (error) {
