@@ -18,7 +18,7 @@ router.post('/signin', async (req, res) => {
         } catch (error) {
             const errorCode = error.code;
         
-            if(errorCode === 'auth/invalid-credential'){
+            if(errorCode === 'auth/invalid-credential' || errorCode === "auth/wrong-password"){
                 return res.status(401).json({
                     status : "Failed",
                     code : "auth/invalid-credential",
@@ -26,7 +26,7 @@ router.post('/signin', async (req, res) => {
                 })
             }
 
-            else if(errorCode === 'auth/user-not-found'){
+            else if(errorCode === 'auth/user-not-found' || errorCode === "auth/wrong-password"){
                 return res.status(401).json({
                     status : "Failed",
                     code : "auth/user-not-found",
@@ -40,7 +40,7 @@ router.post('/signin', async (req, res) => {
 })
 
 router.post('/signup', async (req, res) => {
-    const {email, password, name, gender, birthday, job, interest} = req.body;
+    const {email, password, name, gender, job, interest} = req.body;
 
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -49,7 +49,6 @@ router.post('/signup', async (req, res) => {
             "uid" : docID,
             "name" : name,
             "gender" : gender,
-            "birthday" : birthday,
             "job" : job,
             "interest" : interest,
             "history" : {

@@ -4,6 +4,13 @@ const axios = require("axios")
 
 exports.verifyToken = async (req, res, next) => {
     const original = req.headers.authtoken
+    if(original == "" || original == undefined || original == null){
+        return res.status(403).json({
+            status : "Failed",
+            code : "auth/no-token",
+            message : "Please provide token"
+        })
+    }
     const arrOriginal = original.split(" ");
     const token = arrOriginal[1];
     try {
