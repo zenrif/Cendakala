@@ -58,7 +58,7 @@ The dummy dataset consists of 3 columns, namely user_id, kategori, and history. 
 
 Dataset Preview<br>
 
-| user_id   | kategori                           | history  |
+| user_id   | category                           | history  |
 | --------- | ---------------------------------- | -------- |
 | 1         | Kesehatan                          | 7        |
 | 1         | Pendidikan                         | 4        |
