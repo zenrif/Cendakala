@@ -9,44 +9,57 @@ This algorithm is a type of collaborative filtering algorithm that takes into ac
 <p align="center"> <img src="https://github.com/zenrif/Cendakala/assets/101646114/9c9187f3-a89a-4473-895f-dd40e94a9d86"></p>
 <p align="center">Collaborative Filtering Illustration</p>
 
+### Content-Based Filtering
+Content-based filtering is a recommendation system technique that analyzes item characteristics to provide personalized recommendations. It represents items based on their content features and creates user profiles. Similarity is calculated between user profiles and items to generate recommendations. It offers personalized suggestions and handles the cold-start problem, but may struggle with complex preferences. Hybrid approaches are used to overcome limitations and offer diverse recommendations.
+
+<p align="center"> <img src="https://github.com/zenrif/Cendakala/assets/101646114/9c9187f3-a89a-4473-895f-dd40e94a9d86"></p>
+<p align="center">Content-Based Filtering Illustration</p>
+
 ### Datasets
 #### Dataset dataset_kuesioner
-The questionnaire dataset consists of 4 columns, namely number, judul, category_1, and category_2. Number is the index of the dataset, judul is the title of the questionnaire, category_1 and category_2 are the categories of the questionnaire (ie health, education, etc). The data in the dataset was generated with the Python library and completed manually by team members.
+The questionnaire dataset consists of 4 columns, namely number, survey, category_1, and category_2. Number is the index of the dataset, survey is the title of the questionnaire, category_1 and category_2 are the categories of the questionnaire (ie health, education, etc). The data in the dataset was generated with the Python library and completed manually by team members.
 
 Dataset Preview<br>
 
 <table>
         <tr>
-            <th>judul</th>
+            <th>number</th>
+            <th>survey</th>
             <th>category_1</th>
             <th>category_2</th>
         </tr>
         <tr>
+            <td>1</td>
             <td>Efektivitas Program Pendidikan Kesehatan dalam Meningkatkan Pengetahuan dan Perilaku Hidup Sehat Siswa Sekolah Dasar: Penelitian pada Sekolah Dasar di Kota Makassar</td>
             <td>Kesehatan</td>
             <td>Pendidikan</td>
         </tr>
         <tr>
+            <td>2</td>
             <td>Tinjauan atas Implementasi Program Pendidikan Pariwisata di Sekolah: Penilaian Efektivitas dan Dampak pada Pengetahuan dan Minat Siswa terhadap Industri Pariwisata</td>
             <td>Pendidikan</td>
             <td>Pariwisata</td>
         </tr>
         <tr>
+            <td>3</td>
             <td>Pengaruh Hukum terhadap Kebebasan Berpendapat dan Ekspresi dalam Era Digital: Studi Kasus tentang Batasan dan Perlindungan Hukum dalam Konteks Teknologi Informasi dan Komunikasi</td>
             <td>Hukum</td>
             <td>Teknologi Informasi dan Komunikasi</td>
         </tr>
         <tr>
+            <td>4</td>
             <td>Evaluasi Fasilitas dan Infrastruktur Olahraga di Destinasi Pariwisata</td>
             <td>Pariwisata</td>
             <td>Olahraga dan Rekreasi</td>
         </tr>
         <tr>
+            <td>5</td>
             <td>Kontribusi Seni dan Budaya dalam Mendorong Perlindungan Lingkungan dan Konservasi Warisan Budaya</td>
             <td>Lingkungan dan Konservasi</td>
             <td>Seni dan Budaya</td>
         </tr>
         <tr>
+            <td>6</td>
             <td>Studi Tentang Inovasi Bisnis dalam Menyelesaikan Tantangan Sosial dan Kemanusiaan</td>
             <td>Bisnis dan Industri</td>
             <td>Sosial dan Kemanusiaan</td>
@@ -54,7 +67,7 @@ Dataset Preview<br>
     </table>
 
 #### Dataset dataset_dummy
-The dummy dataset consists of 3 columns, namely user_id, kategori, and history. user_id is the identification of the user in the database, category is the category of the questionnaire (i.e. health, education, etc.), and history describes how many questionnaires were completed by users in the same category. The data in the dummydataset is generated with a Python library.
+The dummy dataset consists of 3 columns, namely user_id, category, and history. user_id is the identification of the user in the database, category is the category of the questionnaire (i.e. health, education, etc.), and history describes how many questionnaires were completed by users in the same category. The data in the dummy dataset is generated with a Python library.
 
 Dataset Preview<br>
 
@@ -93,11 +106,11 @@ The model architecture is deployed to the backend service. The model then gets t
 * NumPy
 * Tensorflow
 * Sklearn
+* json
 * Datetime
 * Embeddings
 * Model Evaluation
 * Top-N recommendation
-* Accuracy and Loss Graph
 
 ### Requirements
 * [Jupyter Notebook](https://jupyter.org/install).
