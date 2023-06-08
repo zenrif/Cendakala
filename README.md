@@ -6,13 +6,13 @@ A recommendation system is a type of information filtering system that predicts 
 ### Collaborative Filtering
 This algorithm is a type of collaborative filtering algorithm that takes into account the number of surveys that a user has filled out when making recommendations.
 
-<p align="center"> <img src="https://github.com/zenrif/Cendakala/assets/101646114/9c9187f3-a89a-4473-895f-dd40e94a9d86"></p>
+<p align="center"> <img src="https://github.com/zenrif/Cendakala/assets/101646114/4f201bb2-a582-4c4c-95b6-e134c0fb758e"></p>
 <p align="center">Collaborative Filtering Illustration</p>
 
 ### Content-Based Filtering
 Content-based filtering is a recommendation system technique that analyzes item characteristics to provide personalized recommendations. It represents items based on their content features and creates user profiles. Similarity is calculated between user profiles and items to generate recommendations. It offers personalized suggestions and handles the cold-start problem, but may struggle with complex preferences. Hybrid approaches are used to overcome limitations and offer diverse recommendations.
 
-<p align="center"> <img src="https://github.com/zenrif/Cendakala/assets/101646114/9c9187f3-a89a-4473-895f-dd40e94a9d86"></p>
+<p align="center"> <img src="https://github.com/zenrif/Cendakala/assets/101646114/f4c46e75-a478-4814-a2af-397af588431b"></p>
 <p align="center">Content-Based Filtering Illustration</p>
 
 ### Datasets
