@@ -5,16 +5,20 @@ def predict(url_json,id):
     import tensorflow_recommenders as tfrs
     import keras
     import json
+    import os
     from datetime import datetime
     from sklearn import preprocessing
     from urllib.request import urlopen
     
+    
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    key_path = os.path.join(current_dir, 'saved_model')
+    
     # Open saved_model file
-    model= tf.saved_model.load("saved_model")
+    model= tf.saved_model.load(key_path)
 
     # Open json file by url_json
-    response = urlopen(url_json)
-    data = json.load(response)
+    data = url_json
     dataframe = pd.DataFrame(data)
     dataframe['category'] = dataframe.category.astype(np.str)
     unique_category = np.unique(list(dataframe['category']))

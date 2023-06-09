@@ -7,3 +7,5 @@ scikit_learn==1.2.2
 tensorflow==2.12.0
 tensorflow_recommenders==0.7.3
 gunicorn
+firebase-admin
+flask[async]

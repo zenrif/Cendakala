@@ -10,9 +10,7 @@ def train(url_json):
     from datetime import datetime
     from sklearn import preprocessing
 
-    response = urlopen(url_json)
-
-    data = json.load(response)
+    data = url_json
     data2 = pd.DataFrame(data)
 
     # Data preprocessing

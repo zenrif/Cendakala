@@ -4,6 +4,7 @@ const { DB } = require('../config')
 const crypto = require('crypto')
 const { verifyToken } = require("../middleware/verifyToken")
 
+// Number to String Month
 const month = {
     1:"Jan",
     2:"Feb",
@@ -33,11 +34,14 @@ router.post('/topup', verifyToken, async (req, res) => {
                 message : "Minimum amount for top up is Rp10,000"
             })
         }
+
+        // Get Date and Make custom transactionID
         const current = Date.now()
         const dateTime = new Date(current);
         const date = dateTime.getDate() + " " + month[dateTime.getMonth().toString()] + " " + dateTime.getFullYear();
         const transactionID =  crypto.randomUUID() + dateTime.getMilliseconds();
 
+        // Get user balance and transaction data
         const transactionRef = DB.collection('transaction').doc(transactionID)
         const userRef = DB.collection('users').doc(uid)
         const userBalance = (await userRef.get()).data().balance
@@ -53,6 +57,7 @@ router.post('/topup', verifyToken, async (req, res) => {
             transactionID : transactionID
         }
 
+        // Update new balance and add transaction to database
         await userRef.update({balance : newBalance})
         await transactionRef.set(transactionData)
         
@@ -77,6 +82,7 @@ router.post('/withdrawal', verifyToken, async (req, res) => {
         const {total, method} = req.body;
         const uid = req.body.uid;
     
+        // Get current user balance and verify it
         const userRef = DB.collection('users').doc(uid)
         const userBalance = (await userRef.get()).data().balance
         const newBalance = userBalance - total
@@ -95,6 +101,7 @@ router.post('/withdrawal', verifyToken, async (req, res) => {
             })
         }
 
+        // Get Date and Make custom transactionID
         const current = Date.now()
         const dateTime = new Date(current);
         const date = dateTime.getDate() + " " + month[dateTime.getMonth().toString()] + " " + dateTime.getFullYear();
@@ -111,6 +118,7 @@ router.post('/withdrawal', verifyToken, async (req, res) => {
             transactionID : transactionID
         }
 
+        // Update new balance and add transaction to database
         await userRef.update({balance : newBalance})
         await transactionRef.set(transactionData)
         
@@ -135,13 +143,15 @@ router.get('/read', verifyToken, async (req, res) => {
     try {
         const uid = req.body.uid;
 
+        // Get current user balance
         const userRef = DB.collection('users').doc(uid)
         const userBalance = (await userRef.get()).data().balance
 
-
+        // Get all transaction data
         const transactionRef = DB.collection('transaction')
         const querySnapshot = await transactionRef.get()
 
+        // Get user transaction info
         querySnapshot.forEach( (transactionData) => {
             if(transactionData.data().uid === uid && transactionData.data().type === "topUp" || transactionData.data().type === "withdrawal") history.push(transactionData.data())
         })
@@ -172,6 +182,7 @@ router.post('/buy', verifyToken, async (req, res) => {
         const {surveyID, price} = req.body;
         const uid = req.body.uid;
     
+        // Get current user balance and all transaction data
         const userRef = DB.collection('users').doc(uid)
         const userBalance = (await userRef.get()).data().balance
         const transaction = DB.collection('transaction')
@@ -202,6 +213,7 @@ router.post('/buy', verifyToken, async (req, res) => {
             })
         }
 
+        // Get Date and Make custom transactionID
         const current = Date.now()
         const dateTime = new Date(current);
         const date = dateTime.getDate() + " " + month[dateTime.getMonth().toString()] + " " + dateTime.getFullYear();
@@ -218,15 +230,11 @@ router.post('/buy', verifyToken, async (req, res) => {
             transactionID : transactionID
         }
 
-        
-
         // Add money to seller
         const surveyRef = await DB.collection('surveys').doc(surveyID).get()
         const sellerUID = surveyRef.uid
         const sellerRef = await DB.collection('users').doc(sellerUID).get()
         const newSellerBalance = sellerRef.balance + price
-
-
 
         await userRef.update({
             balance : newBalance

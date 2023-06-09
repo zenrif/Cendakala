@@ -3,15 +3,193 @@ const router  = express.Router()
 const { DB } = require('../config')
 const crypto = require('crypto')
 const { verifyToken } = require("../middleware/verifyToken")
+const axios = require('axios')
+
+
+//Function
+
+// Randomize all survey inside array
+function randomize(array){
+    for(let i = array.length - 1; i > 0 ; i--){
+        const j = Math.floor(Math.random() * (i+1));
+        [array[i], array[j]] = [array[j], array[i]]
+    }
+    return array
+}
+
+// Get recommendation using special pattern from category
+function getRecommendedSurvey(cat1, cat2, cat3, allSur, number = 10){
+    let recommededSurvey = {}
+    let counter = 0
+    let check = {
+        "0": "",
+        "1": "",
+        "2":"",
+        "3":"",
+        "4":"",
+        "5":"",
+        "6":"",
+        "7":"",
+        "8":"",
+        "9":""
+    }
+
+    if(number == 10){
+
+        for(let i = 0 ; i < allSur.length ; i++){
+            const survey = allSur[i]
+            const category1 = survey.category1
+            const category2 = survey.category2
+    
+            //Pattern AB
+            if(check["0"] == "" && category1 == cat1 && category2 == cat2){
+                recommededSurvey[counter] = survey.surveyID
+                check["0"] = survey.surveyID
+                counter++
+            }
+            //Pattern AB 2
+            else if(check["1"] == "" && category1 == cat1 && category2 == cat2){
+                recommededSurvey[counter] = survey.surveyID
+                check["1"] = false
+                counter++
+            }
+            //Pattern AB 3
+            else if(check["2"] == "" && category1 == cat1 && category2 == cat2){
+                recommededSurvey[counter] = survey.surveyID
+                check["2"] = false
+                counter++
+            }
+            //Pattern AC
+            else if(check["3"] == "" && category1 == cat1 && category2 == cat3){
+                recommededSurvey[counter] = survey.surveyID
+                check["3"] = false
+                counter++
+            }
+            //Pattern AC 2
+            else if(check["4"] == "" && category1 == cat1 && category2 == cat3){
+                recommededSurvey[counter] = survey.surveyID
+                check["4"] = false
+                counter++
+            }
+            //Pattern AC 3
+            else if(check["5"] == "" && category1 == cat1 && category2 == cat3){
+                recommededSurvey[counter] = survey.surveyID
+                check["5"] = false
+                counter++
+            }
+            //Pattern BC
+            else if(check["6"] == "" && category1 == cat2 && category2 == cat3){
+                recommededSurvey[counter] = survey.surveyID
+                check["6"] = false
+                counter++
+            }
+            //Pattern AC
+            else if(check["7"] == "" && category1 == cat2 && category2 == cat3){
+                recommededSurvey[counter] = survey.surveyID
+                check["7"] = false
+                counter++
+            }
+            //Pattern AA
+            else if(check["8"] == "" && category1 == cat1 && category2 == "null"){
+                recommededSurvey[counter] = survey.surveyID
+                check["8"] = false
+                counter++
+            }
+            //Pattern AA 2
+            else if(check["9"] == "" && category1 == cat1 && category2 == "null"){
+                recommededSurvey[counter] = survey.surveyID
+                check["9"] = false
+                counter++
+            }
+
+            if(counter == 10) break;
+        }
+    }
+    else if(number == 5){
+        for(let i = 0 ; i < allSur.length ; i++){
+            const survey = allSur[i]
+            const category1 = survey.category1
+            const category2 = survey.category2
+        
+            //Pattern AB
+            if(check["0"] == "" && category1 == cat1 && category2 == cat2){
+                recommededSurvey[counter] = survey.surveyID
+                check["0"] = survey.surveyID
+                counter++
+            }
+            //Pattern AB 2
+            else if(check["1"] == "" && category1 == cat1 && category2 == cat2){
+                recommededSurvey[counter] = survey.surveyID
+                check["1"] = false
+                counter++
+            }
+            //Pattern AC
+            else if(check["2"] == "" && category1 == cat1 && category2 == cat3){
+                recommededSurvey[counter] = survey.surveyID
+                check["2"] = false
+                counter++
+            }
+            //Pattern BC
+            else if(check["3"] == "" && category1 == cat2 && category2 == cat3){
+                recommededSurvey[counter] = survey.surveyID
+                check["3"] = false
+                counter++
+            }
+            //Pattern AA
+            else if(check["4"] == "" && category1 == cat1 && category2 == "null"){
+                recommededSurvey[counter] = survey.surveyID
+                check["4"] = false
+                counter++
+            }
+
+            if(counter == 5) break
+        }
+    }
+    if(counter != number){
+        for(let i = 0; i < allSur.length; i++){
+            if(allSur[i].category1 == cat1 || allSur[i].category1 == cat2 || allSur[i].category1 == cat3){
+                const id = allSur[i].surveyID 
+                if( id != check["0"] && id != check["1"] && id != check["2"] && id != check["3"] && id != check["4"] && id != check["5"] && id != check["6"] && id != check["7"] && id != check["8"] && id != check["9"]){
+                    recommededSurvey[counter] = id
+                    counter++
+
+                    if(counter == number) break;
+                }
+            }
+        }
+    }
+
+    return recommededSurvey
+}
+
+// Get selected surveys data from database
+async function getSurveyData(surveyIDs, db) {
+    const docRefs = surveyIDs.map((id) => db.collection("surveys").doc(id));
+    const snapshots = await Promise.all(docRefs.map((docRef) => docRef.get()));
+    const surveyData = [];
+    snapshots.forEach((snap) => {
+        surveyData.push(snap.data());
+    });
+    return surveyData;
+}
+ 
+// Get survey title from database
+async function getSurveyName(surveyID, db) {
+    const surveyRef = await db.collection("surveys").doc(surveyID).get();
+    return surveyRef.data().title;
+}
 
 //Router
 router.post('/create',verifyToken, async (req, res) => {
     try {
+        // Get current date
         const currect = Date.now();
         const dateTime = new Date(currect);
         const date = dateTime.getDate() + "-" + dateTime.getMonth() + "-" + dateTime.getFullYear();
         
+        // Generate custom docID
         const docID =  crypto.randomUUID() + date + dateTime.getMilliseconds();
+
         const surveyData = {
             "surveyID" : docID,
             "title" : req.body.title,
@@ -70,7 +248,8 @@ router.get('/read/all',verifyToken, async (req, res) => {
     let responseArr = [];
 
     try {
-        const surveysCollection = await DB.collection('surveys')
+        // Get all current user surveys
+        const surveysCollection = await DB.collection('surveys').where("uid", "==", req.body.uid)
         const querySnapshot = await surveysCollection.get();
         querySnapshot.forEach( (survey) => {
             responseArr.push(survey.data())
@@ -78,7 +257,7 @@ router.get('/read/all',verifyToken, async (req, res) => {
 
         res.status(200).json({
             status : "Success",
-            message : "Success get all surveys",
+            message : "Success get all user surveys",
             surveys : responseArr
         })
     } catch (error) {
@@ -91,6 +270,7 @@ router.get('/read/all',verifyToken, async (req, res) => {
 
 router.get('/read/:surveyID',verifyToken, async (req, res) => {
     try {
+        // Get Survey
         const surveyID = req.params.surveyID
         const uid = req.body.uid
         const surveyRef = await DB.collection('surveys').doc(surveyID);
@@ -105,9 +285,11 @@ router.get('/read/:surveyID',verifyToken, async (req, res) => {
 
             let ownership = null
 
+            // Filter ownership of the survey
             if(selectedSurvey.uid == uid){ ownership = "creator" }
             else if(owned){ ownership = "buyer" }
             else{ ownership = "public" }
+
             res.status(200).json({
                 status : "Success",
                 message : "Success get survey",
@@ -135,6 +317,7 @@ router.get('/search/category/:category', verifyToken, async (req, res) => {
 
     let responseArr = [];
     try {
+        //Get Surveys
         const surveysCollection = await DB.collection('surveys')
         const querySnapshot = await surveysCollection.get();
 
@@ -145,10 +328,10 @@ router.get('/search/category/:category', verifyToken, async (req, res) => {
                 message : "Please provide 1 category"
             })
         }
-        querySnapshot.forEach( (survey) => {
-            console.log(survey.data().category1)
-            if(survey.data().category1 === category){
 
+        //Filter surveys by category
+        querySnapshot.forEach( (survey) => {
+            if(survey.data().category1 === category){
                 responseArr.push(survey.data())
             }
         } )
@@ -176,10 +359,12 @@ router.put('/update', verifyToken, async (req, res) => {
     const updatedData = req.body;
 
     try {
+        // Get survey by surveyID
         const surveyRef = DB.collection('surveys').doc(updatedData.surveyID)
         const docSnapshot = await surveyRef.get()
 
         if(docSnapshot.exists){
+            // Update survey data
             await surveyRef.set(updatedData, {merge : true})
             res.status(200).json({
                 status: "Update Success",
@@ -206,10 +391,12 @@ router.delete('/delete', verifyToken, async (req, res) => {
     const surveyID = req.body.surveyID;
 
     try {
+        // Get survey by surveyID
         const surveyRef = DB.collection('surveys').doc(surveyID)
         const docSnapshot = await surveyRef.get()
 
         if(docSnapshot.exists){
+            // Delete the survey
             await surveyRef.delete();
             res.status(200).json({
                 status: "Success",
@@ -236,7 +423,7 @@ router.put('/sell', verifyToken, async (req, res) => {
     const {surveyID, price, uid} = req.body
 
     try {
-        //Check, is survey sellable
+        //Get survey by surveyID and Check, is survey sellable
         const surveyRef = DB.collection('surveys').doc(surveyID)
         const survey = await surveyRef.get()
         
@@ -276,14 +463,137 @@ router.put('/sell', verifyToken, async (req, res) => {
     }
 })
 
-router.post("/home", verifyToken, async(req,res)=>{
-    const getRecommendationColla = null
-    const getRecommendationContent = null
+router.post("/recommedation/home", verifyToken, async (req, res) => {
+    try {
+      // Get latest surveys by uid
+      const uid = req.body.uid;
+      let latestData = null;
 
-    const recommedationSurvey = []
+      // Get lastest user response
+      const responseRef = await DB.collection('response').where("uid", "==", uid).orderBy("timestamp", "desc").limit(1).get();
+  
+      responseRef.forEach((doc) => {
+        const docData = doc.data();
+        latestData = docData;
+      });
+  
+      // Get Filtered Survey
+      const filteredSurveysSnapshot = await DB.collection("surveys").where("quota", ">", 0).get();
+      const surveys = [];
+      const allSur = [];
+  
+      filteredSurveysSnapshot.forEach((survey) => {
+        const surveyData = survey.data();
+        surveys.push({
+          survey: surveyData.title,
+          surveyID: surveyData.surveyID,
+        });
+        allSur.push({
+          survey: surveyData.title,
+          surveyID: surveyData.surveyID,
+          category1: surveyData.category1,
+          category2: surveyData.category2,
+        });
+      });
+  
+      // If user is new and never responded to any survey
+      if (latestData == null || latestData == undefined || latestData == '') {
+        const reqUID = { uid: uid };
 
-    //randomize Surveys
-    //const keys = Object.keys,
+        // Get Recommendation with collaborative-filtering
+        const colRecom = await axios.post('https://machine-learning-api-v5-5ojaxkbdyq-et.a.run.app/collaborative', reqUID); // Insert your request domain
+
+        // Get recommended category
+        const kat1 = colRecom.data['0'];
+        const kat2 = colRecom.data['1'];
+        const kat3 = colRecom.data['2'];
+  
+        // Get Recommendation Survey ID using pattern
+        let arrRecom = getRecommendedSurvey(kat1, kat2, kat3, allSur, 10);
+        const arrRecoms = Object.values(arrRecom);
+        const surveyData = await getSurveyData(arrRecoms, DB);
+  
+        const randomSurvey = randomize(surveyData);
+  
+        return res.status(200).json({
+          status: "Success",
+          message: "Success get recommendation",
+          surveys: randomSurvey
+        });
+      }
+      // If user already filled out a survey
+      else {
+        const reqUID = { uid: uid };
+        // Get Recommendation with collaborative-filtering
+        const colRecom = await axios.post('https://machine-learning-api-v5-5ojaxkbdyq-et.a.run.app/collaborative', reqUID); // Insert your request domain
+
+        // Get recommended category
+        const kat1 = colRecom.data['0'];
+        const kat2 = colRecom.data['1'];
+        const kat3 = colRecom.data['2'];
+  
+        // Get Recommendation Survey ID using pattern
+        let arrRecom = getRecommendedSurvey(kat1, kat2, kat3, allSur, 5);
+  
+        // Get Lastest Survey ID that User responded to
+        const surveyName = await getSurveyName(latestData.surveyID, DB);
+  
+        const data = {
+          survey_title: surveyName,
+          surveys: surveys
+        };
+  
+        // Get recommendation survey by content filtering
+        const getContentRecom = await axios.post('https://machine-learning-api-v5-5ojaxkbdyq-et.a.run.app/content', data); // Insert your request domain
+        const allSurveyRecom = [];
+  
+        for (let i = 0; i < 10; i++) {
+          if (i <= 4) {
+            allSurveyRecom.push(arrRecom[i]);
+          } else {
+            const a = i - 5;
+            allSurveyRecom.push(getContentRecom.data[a]);
+          }
+        }
+  
+        let surveyTemp = await getSurveyData(allSurveyRecom, DB);
+        const randomizeRecomSurveys = randomize(surveyTemp);
+  
+        return res.status(200).json({
+          status: "Success",
+          message: "Success get recommendation",
+          surveys: randomizeRecomSurveys
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      res.send(error);
+    }
+  });
+
+router.get("/purchaseAble", verifyToken, async(req,res)=>{
+    try {
+        // Get sellAble surveys
+        const surveyRef = DB.collection("surveys").where("sell", "==", true).limit(10)
+        const selectedSurvey = await surveyRef.get()
+        
+        let data = []
+        selectedSurvey.forEach((doc) => {
+            const docData = doc.data();
+            data.push(docData)
+        });
+        res.status(200).json({
+            status : "Success",
+            message : "Success get survey",
+            surveys : data 
+        });
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({
+            message : error
+        })
+    }
 
 })
 

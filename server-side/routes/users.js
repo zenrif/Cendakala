@@ -9,6 +9,7 @@ router.get('/read/all', verifyToken, async (req, res) => {
     let responseArr = [];
 
     try {
+        //Get all users
         const usersCollection = await DB.collection('users')
         const querySnapshot = await usersCollection.get();
         querySnapshot.forEach( (user) => {
@@ -30,6 +31,7 @@ router.get('/read/all', verifyToken, async (req, res) => {
 
 router.get('/read', verifyToken, async (req, res) => {
     try {
+        //Get current user data
         const userRef = await DB.collection('users').doc(req.body.uid);
         const selectedUser = await userRef.get()
         if(selectedUser.exists){
@@ -59,10 +61,12 @@ router.put('/update', verifyToken, async (req, res) => {
     const updatedData = req.body;
 
     try {
+        // Get current user data
         const userRef = DB.collection('users').doc(req.body.uid)
         const docSnapshot = await userRef.get()
 
         if(docSnapshot.exists){
+            //Update current user data
             await userRef.set(updatedData, {merge : true})
             res.status(200).json({
                 status: "Update Success",
@@ -89,10 +93,12 @@ router.delete('/delete', verifyToken, async (req, res) => {
     const uid = req.body.uid;
 
     try {
+        // Get current user data
         const userRef = DB.collection('users').doc(uid)
         const docSnapshot = await userRef.get()
 
         if(docSnapshot.exists){
+            // Delete current user
             await userRef.delete();
             res.status(200).json({
                 status: "Success",
@@ -115,21 +121,22 @@ router.delete('/delete', verifyToken, async (req, res) => {
     }
 })
 
-router.post("/bulk", async(req, res)=>{
-    const datas = req.body
+// This is for bulk insert (Help you insert 50 user once)
+// router.post("/bulk", async(req, res)=>{
+//     const datas = req.body
 
-    try {
-        for (let index = 0; index < 50; index++) {
-            const arr = datas[index]
-            await axios.post('https://client-side-dot-cendakala.et.r.appspot.com/authentication/signup', arr);
-        }
-    } catch (error) {
-        console.log(error)
-        res.send(error)
-    }
+//     try {
+//         for (let index = 0; index < 50; index++) {
+//             const arr = datas[index]
+//             await axios.post('https://client-side-dot-cendakala.et.r.appspot.com/authentication/signup', arr);
+//         }
+//     } catch (error) {
+//         console.log(error)
+//         res.send(error)
+//     }
 
-    res.send("yes")
-})
+//     res.send("yes")
+// })
 
 
 

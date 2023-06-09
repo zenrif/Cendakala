@@ -5,4 +5,4 @@ __pycache__
 .pytest_cache
 env
 logs
-.gcloudignore
+serviceaccountkey.json

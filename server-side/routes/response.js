@@ -12,6 +12,7 @@ router.post('/create', verifyToken, async (req, res) => {
         const {answers, surveyID, reward} = req.body;
         const uid = req.body.uid;
 
+        //Get Date and generate custom responseID
         const current = Date.now()
         const dateTime = new Date(current);
         const date = dateTime.getDate() + "-" + dateTime.getMonth() + "-" + dateTime.getFullYear();
@@ -26,7 +27,7 @@ router.post('/create', verifyToken, async (req, res) => {
             timestamp : FieldValue.serverTimestamp()
         }
         
-        //Survey
+        //Get survey by surveyID
         const surveyRef = DB.collection('surveys').doc(req.body.surveyID)
         const docSnapshot = await surveyRef.get() 
 
@@ -43,7 +44,7 @@ router.post('/create', verifyToken, async (req, res) => {
         const surveyCategory1 = docSnapshot.data().surveyCategory1
         const surveyCategory2 = docSnapshot.data().surveyCategory2
 
-        //User
+        //Get User by uid
         const userRef = DB.collection('users').doc(req.body.uid)
         const docSnapshotU = await userRef.get()
 
@@ -55,10 +56,11 @@ router.post('/create', verifyToken, async (req, res) => {
             })
         }
 
+        // Get balance
         const userBalance = docSnapshotU.data().balance;
         const newBalance = userBalance + req.body.reward;
         
-        //Response
+        //Get all response
         const responseRef = DB.collection('response')
         const resSnap = await responseRef.get();
         const resDoc = resSnap.docs
@@ -88,7 +90,7 @@ router.post('/create', verifyToken, async (req, res) => {
         if(surveyData.interest.surveyCategory1 != "null" || surveyData.interest.surveyCategory1 != null ){surveyData.interest.surveyCategory1 = increment}
         if(surveyData.interest.surveyCategory2 != "null" || surveyData.interest.surveyCategory2 != null){surveyData.interest.surveyCategory2 = increment}
 
-        //Eksekusi 
+        // Update 
         if(newQuota == 0){
             await surveyRef.update(surveyData)
         }else{
@@ -116,7 +118,8 @@ router.get('/read/all', verifyToken, async(req, res) =>{
 try {
     let responseArr = []
 
-    const responseRef = DB.collection('response')
+    // Get current user responses
+    const responseRef = DB.collection('response').where("uid", "==", req.body.uid)
     const resSnap = await responseRef.get();
 
     resSnap.forEach( (response) => {
@@ -141,7 +144,8 @@ router.get('/read/surveys/:surveyID',verifyToken, async(req, res) =>{
     try {
         const surveyID = req.params.surveyID
         let responseArr = []
-        console.log(typeof(responseArr))
+
+        // Get responses by surveyID
         const responseRef = DB.collection('response')
         const resSnap = await responseRef.get();
 
@@ -175,6 +179,7 @@ router.get('/read/uid',verifyToken, async(req, res) =>{
     try {
         let responseArr = []
     
+        // Get responses by uid
         const responseRef = DB.collection('response')
         const resSnap = await responseRef.get();
     
@@ -199,6 +204,8 @@ router.get('/read/uid',verifyToken, async(req, res) =>{
 router.get("/read/:responseID",verifyToken, async (req, res) => {
     try {
         const responseID = req.params.responseID
+
+        // Get response by responseID
         const responseRef = DB.collection('response').doc(responseID)
         const resSnap = await responseRef.get();
 
@@ -224,7 +231,5 @@ router.get("/read/:responseID",verifyToken, async (req, res) => {
         }) 
     }
 })
-
-
 
 module.exports = router
