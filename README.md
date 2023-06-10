@@ -8,7 +8,14 @@ The Cendakala application uses Google Cloud Platform Services to share and store
 
 ## 1. Setup Google Cloud Platform
 - Create Project & Configure Identity and Access Management.
-- Enable App Engine API & configure App Engine services.
+- Enable the following API :
+  -  App Engine API
+  -  Cloud Run Admin API
+  -  Compute Engine API
+  -  Cloud Logging API
+  -  Cloud Firestore API
+  -  Cloud Pub/Sub API
+  -  Cloud Build API
 
 ## 2. Download Google Cloud SDK and Run Cloud Shell in Your Code Editor
 - Download Google Cloud SDK & Install.
