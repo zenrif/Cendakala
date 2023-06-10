@@ -14,7 +14,7 @@ The Cendakala application uses Google Cloud Platform Services to share and store
 - Download Google Cloud SDK & Install.
 
 ## 3. Setup Firebase 
-- Open Firebase console & connect it To Google Cloud Project.
+- Open [Firebase](https://firebase.google.com/), go to console & connect it To Google Cloud Project.
 - Active Firebase Auth & Firebase Firestore.
 - Make a **Service Account** and download the file.
 
@@ -24,7 +24,7 @@ The Cendakala application uses Google Cloud Platform Services to share and store
 - In terminal use "**git init**" and connect your google cloud account.
 
 ## 5. Set Project and Deploy Application to App Engine
-- Set your project in the terminal by execute "gcloud config set project cendakala".
+- Set your project in the terminal by execute "gcloud config set project **your-project**".
 
 ## 6. REST-API
 - For API Documentation, see the following link : [API Documentation](https://docs.google.com/document/d/1y4ClCsz6hy0ygxJ8HvCwDNeSdZL8LUDqe-rE3bVlZBY/edit?usp=sharing)
