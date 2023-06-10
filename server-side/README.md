@@ -21,7 +21,7 @@
   - "jsonwebtoken": "^9.0.0",
   - "node-fetch": "^3.3.1",
   - "nodemon": "^2.0.2- 
-4. Copy service account firebase ke folder server-side dengan nama **serviceaccountkey.json**
+4. Copy the firebase service account to the server-side folder with the name **serviceaccountkey.json**
 5. Change url :
   - Go to "/middleware/verifyToken.js", change **clientSideUrl** value with your client-side backend url  
   - Go to "/routes/surveys.js", in router.post "/recommendation/home"
