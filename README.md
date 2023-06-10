@@ -1,7 +1,8 @@
-<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/a3d15ccc-2bff-4901-aefc-5e0e3302d6b0"></p>
 <h1 align="center">Cendakala</h1>
 <h3 align="center">Application for filling out questionnaire data and data transactions. We're ready to help you!</h3>
-<p align="center">Project for fulfill the <a href="https://grow.google/intl/id_id/bangkit/?tab=machine-learning">Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka</a> Program.</p>
+<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/06f22a46-cf26-4cfe-9488-44fc9c826a20"></p>
+<p align="center">Project for fulfill the <a href="https://grow.google/intl/id_id/bangkit/?tab=machine-learning">Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka</a> program.</p>
+
 <h2>Team Members</h2>
 <h3>Team ID : C23-PC618</h3>
 <table>
@@ -49,10 +50,9 @@ This project aims to make it easier for researchers to find the right respondent
 </p>
 <h2>App Overview</h2>
 <h3>Project Architecture</h3>
-<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/6e82390b-e348-47ce-81c2-527824d17a04"></p>
+<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/b7df1e83-755a-45f9-ae49-e7b27ab6bf8b"></p>
 <h3>Cendakala App</h3>
-<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/a4d338df-0cc6-435f-9f74-7a8f54d7111d"></p>
-<p align="center"><img src= "https://github.com/zenrif/Cendakala/assets/101646114/5f9fc2a1-9634-4719-8d3b-e78e06325892"></p>
+<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/503c538b-eca7-4bf6-9301-cdb3dc720eb7"></p>
 <h2>Documentation</h2>
 <h3>Machine Learning Development Documentation</h3>
 <a href="https://github.com/zenrif/Cendakala/tree/model">Here for Machine Learning Documentation</a>
@@ -63,7 +63,7 @@ This project aims to make it easier for researchers to find the right respondent
 <h3>REST API Documentation</h3>
 <a href="https://docs.google.com/document/d/1y4ClCsz6hy0ygxJ8HvCwDNeSdZL8LUDqe-rE3bVlZBY/edit#heading=h.fw2lbufe8uxb">Here for REST API Documentation</a>
 <p> </p>
-<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/d8d5315d-c5cf-44e7-848a-78ff1a3c973b"></p>
+<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/b3434c28-7c29-49d1-b8e1-96793455b9c7"></p>
 <h2>Contact</h2>
 
 | Name                         | Contact                                                                                                                                                                                                                                                                                      |
