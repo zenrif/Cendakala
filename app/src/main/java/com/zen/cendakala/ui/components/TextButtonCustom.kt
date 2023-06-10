@@ -23,9 +23,7 @@ fun TextButtonCustom(
     modifier: Modifier = Modifier
 ) {
     TextButton(
-        onClick = {
-            onClickButton
-        },
+        onClick = onClickButton,
         colors = ButtonDefaults.textButtonColors(
             contentColor = Black2,
         ),

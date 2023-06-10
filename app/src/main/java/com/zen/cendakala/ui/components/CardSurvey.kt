@@ -43,12 +43,11 @@ fun CardSurvey(
                 .fillMaxWidth()
                 .padding(10.dp),
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.bg_home),
-                contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
-            )
-
+//            Image(
+//                painter = painterResource(id = R.drawable.bg_home),
+//                contentDescription = null,
+//                modifier = Modifier.fillMaxSize(),
+//            )
             Text(
                 text = "Card with blue border",
                 modifier = Modifier.padding(16.dp)

@@ -15,12 +15,13 @@ import com.zen.cendakala.utils.Constants
 fun TextTitle(
     title: String,
     modifier: Modifier = Modifier,
-    fontSize : Int
+    fontSize : Int,
+    textAlign: TextAlign? = TextAlign.Center,
 ) {
     CapsText(
         text = title,
         modifier = modifier,
-        textAlign = TextAlign.Center,
+        textAlign = textAlign,
         fontSize = fontSize.sp,
         color = Black2,
         letterSpacing = Constants.LETTER_SPACING_TITLE.sp,

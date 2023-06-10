@@ -10,12 +10,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.graphics.Color.Companion.Gray
+import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.zen.cendakala.R
+import com.zen.cendakala.ui.theme.Black2
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,12 +40,12 @@ fun SearchField(
         value = value,
         enabled = enable,
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            containerColor = White,
-            unfocusedBorderColor = White,
-            focusedBorderColor = Gray,
-            cursorColor = Blue
+            containerColor = Transparent,
+            unfocusedBorderColor = Black2,
+            focusedBorderColor = Black2,
+            cursorColor = Black2,
         ),
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(20.dp),
         maxLines = 1,
         singleLine = true,
         textStyle = TextStyle(
@@ -81,5 +84,18 @@ fun SearchField(
                 )
             }
         },
+    )
+}
+
+@Preview
+@Composable
+fun SearchFieldPreview() {
+    SearchField(
+        placeholder = "Search",
+        value = "Naruto",
+        enable = true,
+        onClick = {},
+        onValueChange = {},
+        onClear = {}
     )
 }

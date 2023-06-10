@@ -16,4 +16,10 @@ object Injection {
         val apiService = ApiConfig.getApiService()
         return SurveyRepository.getInstance(preferences, apiService)
     }
+    fun provideServerRepository(context: Context): SurveyRepository {
+        val preferences = UserPreference(context)
+        val apiService = ApiConfig.serverApiService()
+        return SurveyRepository.getInstance(preferences, apiService)
+    }
+
 }

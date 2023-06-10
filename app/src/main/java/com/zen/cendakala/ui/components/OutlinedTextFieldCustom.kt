@@ -33,8 +33,8 @@ import com.zen.cendakala.utils.Constants
 fun OutlinedTextFieldCustom (
     labelText: String,
     placeholderText: String,
-    imeActionParam: ImeAction,
-    keyboardTypeParam: KeyboardType,
+    imeActionParam: ImeAction = ImeAction.Next,
+    keyboardTypeParam: KeyboardType = KeyboardType.Text,
     iconParam: Int,
     iconContentDescription: String,
     onTextChanged: (String) -> Unit,
@@ -72,5 +72,6 @@ fun OutlinedTextFieldCustom (
         singleLine = true,
         modifier = Modifier.fillMaxWidth(0.8f),
         isError = !errorStatus
+//        isError = errorStatus
     )
 }

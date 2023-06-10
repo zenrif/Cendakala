@@ -16,15 +16,15 @@ class SurveyPagingSource(
             val token = pref.getUser().token.toString()
 
             if (token.isNotEmpty()) {
-                val responseData = token.let { apiService.surveis("Bearer $it", page, params.loadSize, 0) }
+                val responseData = token.let { apiService.purchaseable(it) }
                 if (responseData.isSuccessful) {
                     LoadResult.Page(
-                        data = responseData.body()?.listSurvey ?: emptyList(),
+                        data = responseData.body()?.surveys ?: emptyList(),
                         prevKey = if (page == INITIAL_PAGE_INDEX) null else page -1,
-                        nextKey = if (responseData.body()?.listSurvey.isNullOrEmpty()) null else page + 1
+                        nextKey = if (responseData.body()?.surveys.isNullOrEmpty()) null else page + 1
                     )
                 } else {
-                    LoadResult.Error(Exception("Failed load story"))
+                    LoadResult.Error(Exception("Failed load survey"))
                 }
             } else {
                 LoadResult.Error(Exception("Token empty"))

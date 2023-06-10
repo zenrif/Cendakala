@@ -283,6 +283,7 @@ fun SurveyCreateQuestionScreen() {
                     OutlinedTextFieldSurvey(
                         labelText = "Question",
                         placeholderText = "Write anything ...",
+                        onTextChanged = {},
                         imeActionParam = ImeAction.Done,
                         keyboardTypeParam = KeyboardType.Text,
                         maxLine = 5,
@@ -298,6 +299,7 @@ fun SurveyCreateQuestionScreen() {
                     OutlinedTextFieldSurvey(
                         labelText = "Choice 1",
                         placeholderText = "Write anything ...",
+                        onTextChanged = {},
                         imeActionParam = ImeAction.Done,
                         keyboardTypeParam = KeyboardType.Text,
                         maxLine = 2,
@@ -313,6 +315,7 @@ fun SurveyCreateQuestionScreen() {
                     OutlinedTextFieldSurvey(
                         labelText = "Choice 2",
                         placeholderText = "Write anything ...",
+                        onTextChanged = {},
                         imeActionParam = ImeAction.Done,
                         keyboardTypeParam = KeyboardType.Text,
                         maxLine = 2,

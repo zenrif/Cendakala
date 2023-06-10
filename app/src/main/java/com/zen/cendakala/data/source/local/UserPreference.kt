@@ -2,6 +2,7 @@ package com.zen.cendakala.data.source.local
 
 import android.content.Context
 import com.zen.cendakala.data.model.LoginModel
+import com.zen.cendakala.data.model.SurveyModel
 import com.zen.cendakala.ui.auth.login.LoginViewModel
 
 class UserPreference(context: Context) {
@@ -23,8 +24,15 @@ class UserPreference(context: Context) {
         editor.apply()
     }
 
+    fun saveSurvey(it: SurveyModel) {
+        val editor = preferences.edit()
+        editor.putString(SURVEY, it.toString())
+        editor.apply()
+    }
+
     companion object {
         private const val PREFS_NAME = "user_preference"
         private const val TOKEN = "token"
+        private const val SURVEY = "survey"
     }
 }

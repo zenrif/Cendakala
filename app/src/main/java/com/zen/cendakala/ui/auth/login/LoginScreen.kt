@@ -36,6 +36,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import com.zen.cendakala.data.Result
 import com.zen.cendakala.data.source.local.UserPreference
+import com.zen.cendakala.route.Routes
+import com.zen.cendakala.ui.components.ErrorDialog
 
 
 @Composable
@@ -115,7 +117,7 @@ fun LoginScreen(navController: NavController) {
                     onClickButton = {
                         loginViewModel.onEvent(LoginUIEvent.LoginUIButtonClicked)
                     },
-//                    isEnabled = loginViewModel.allValidationsPassed.value,
+                    isEnabled = loginViewModel.allValidationsPassed.value,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 32.dp, end = 32.dp),
@@ -125,22 +127,23 @@ fun LoginScreen(navController: NavController) {
                     when (result) {
                         is Result.Success -> {
                             LoginViewModel.saveToken(context, result.data)
-//                            loginResult?.let {
-//                                Text(text = it.toString())
-//                            }
-                            navController.navigate("home") {
+                            navController.navigate(Routes.Home.routes) {
                                 popUpTo(navController.graph.startDestinationId)
                                 launchSingleTop = true
                             }
                         }
 
                         is Result.Error -> {
-                            val errorMessage = result.data
-                            println(errorMessage)
-                            loginResult?.let {
-                                Text(text = it.toString())
-                                Text(text = errorMessage)
-                            }
+//                            val errorMessage = result.data
+//                            println(errorMessage)
+//                            loginResult?.let {
+//                                Text(text = it.toString())
+//                                Text(text = errorMessage)
+//                            }
+                            ErrorDialog(
+                                message = result.data ,
+                                image = R.drawable.error_form,
+                            )
                         }
                     }
                 }
@@ -153,7 +156,7 @@ fun LoginScreen(navController: NavController) {
                     TextButtonCustom(
                         text = stringResource(id = R.string.signup),
                         onClickButton = {
-                            navController.navigate("register") {
+                            navController.navigate(Routes.Register.routes) {
                                 popUpTo(navController.graph.startDestinationId)
                                 launchSingleTop = true
                             }

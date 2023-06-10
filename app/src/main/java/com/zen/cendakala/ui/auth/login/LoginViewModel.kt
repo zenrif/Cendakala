@@ -73,7 +73,6 @@ class LoginViewModel (
     }
 
     private fun login() {
-
         loginInProgress.value = true
         val email = loginUIState.value.email
         val password = loginUIState.value.password

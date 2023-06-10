@@ -34,6 +34,7 @@ import com.zen.cendakala.utils.Constants
 @Composable
 fun OutlinedTextFieldSurvey (
     labelText: String,
+    onTextChanged: (String) -> Unit,
     placeholderText: String,
     imeActionParam: ImeAction,
     keyboardTypeParam: KeyboardType,
@@ -41,11 +42,13 @@ fun OutlinedTextFieldSurvey (
     maxLine: Int = 1
     ){
     val keyboardController = LocalSoftwareKeyboardController.current
-    var text by rememberSaveable { mutableStateOf("") }
+    val text = rememberSaveable { mutableStateOf("") }
 
     OutlinedTextField(
-        value = text,
-        onValueChange = { text = it },
+        value = text.value,
+        onValueChange = {
+            text.value = it
+            onTextChanged(it) },
         shape = RoundedCornerShape(topEnd =12.dp, bottomStart =12.dp),
         label = {
             Text(text = labelText,

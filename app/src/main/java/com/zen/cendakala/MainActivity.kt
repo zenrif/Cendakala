@@ -18,6 +18,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.zen.cendakala.route.Routes
 import com.zen.cendakala.ui.auth.login.LoginScreen
+import com.zen.cendakala.ui.auth.register.InterestScreen
+import com.zen.cendakala.ui.auth.register.RegisterScreen
 import com.zen.cendakala.ui.components.BottomNavigationBar
 import com.zen.cendakala.ui.home.HomeScreen
 import com.zen.cendakala.ui.home.SplashScreen
@@ -47,7 +49,7 @@ fun Dashboard(navController: NavHostController = rememberNavController()) {
     val currentRoute = navBackStackEntry?.destination?.route
 
     Scaffold(bottomBar = {
-        if (currentRoute != Routes.Splash.routes && currentRoute != Routes.Login.routes) {
+        if (currentRoute != Routes.Splash.routes && currentRoute != Routes.Login.routes && currentRoute != Routes.Register.routes && currentRoute != Routes.Interest.routes) {
             BottomNavigationBar(navController)
         }
     }) { paddingValues ->
@@ -57,6 +59,12 @@ fun Dashboard(navController: NavHostController = rememberNavController()) {
             }
             composable(Routes.Login.routes){
                 LoginScreen(navController = navController)
+            }
+            composable(Routes.Register.routes){
+                RegisterScreen(navController = navController)
+            }
+            composable(Routes.Interest.routes){
+                InterestScreen(navController = navController)
             }
             composable(Routes.Home.routes) {
                 HomeScreen(navController = navController, paddingValuesBottom = paddingValues)

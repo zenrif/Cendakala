@@ -15,4 +15,11 @@
     <string name="wallet">Wallet</string>
     <string name="topup">Topup</string>
     <string name="history">History</string>
+    <string name="finish">Finish</string>
+    <string name="back">Back</string>
+    <string name="overview">Overview</string>
+    <string name="done">Done</string>
+    <string name="recommended">Recommendation for you</string>
+    <string name="available_data">Available data to buy</string>
+    <string name="filter">Filter</string>
 </resources>

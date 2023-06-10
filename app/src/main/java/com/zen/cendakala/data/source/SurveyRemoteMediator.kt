@@ -26,18 +26,15 @@ class SurveyRemoteMediator(
         val token = pref.getUser().token.toString()
 
         try {
-            val responseData = token.let { apiService.surveis(
-                "Bearer $it",
-                page,
-                state.config.pageSize,
-                0
+            val responseData = token.let { apiService.purchaseable(
+                it,
             ) }
 
             return if (responseData.isSuccessful) {
-                val endOfPaginationReached = responseData.body()!!.listSurvey.isEmpty()
+                val endOfPaginationReached = responseData.body()!!.surveys.isEmpty()
                 MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
             } else {
-                MediatorResult.Error(Exception("Failed load story"))
+                MediatorResult.Error(Exception("Failed load survey"))
             }
         } catch (exception: Exception) {
             return MediatorResult.Error(exception)

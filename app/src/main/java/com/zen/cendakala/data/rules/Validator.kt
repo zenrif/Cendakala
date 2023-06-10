@@ -1,23 +1,8 @@
 package com.zen.cendakala.data.rules
 
-import android.util.Log
+import com.zen.cendakala.ui.components.Category
 
 object Validator {
-
-
-    fun validateFirstName(fName: String): ValidationResult {
-        return ValidationResult(
-            (!fName.isNullOrEmpty() && fName.length >= 2)
-        )
-
-    }
-
-    fun validateLastName(lName: String): ValidationResult {
-        return ValidationResult(
-            (!lName.isNullOrEmpty() && lName.length >= 2)
-        )
-    }
-
     fun validateEmail(email: String): ValidationResult {
         return ValidationResult(
             (email.isNotEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches())
@@ -30,12 +15,28 @@ object Validator {
         )
     }
 
-    fun validatePrivacyPolicyAcceptance(statusValue:Boolean):ValidationResult{
+    fun validateName(name: String): ValidationResult {
         return ValidationResult(
-            statusValue
+            (name.isNotEmpty() && name.length >= 3)
         )
     }
 
+    fun validateGender(gender: String): ValidationResult {
+        return ValidationResult(
+            (gender.isNotEmpty())
+        )
+    }
+    fun validateJob(job: String): ValidationResult {
+        return ValidationResult(
+            (job.isNotEmpty())
+        )
+    }
+
+    fun validateInterest(interest: List<Category>): ValidationResult {
+        return ValidationResult(
+            (interest.isNotEmpty())
+        )
+    }
 }
 
 data class ValidationResult(
