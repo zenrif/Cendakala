@@ -1,4 +1,4 @@
-package com.zen.cendakala.data.responses
+ package com.zen.cendakala.data.responses
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -39,3 +39,15 @@ data class Survey(
     @field:SerializedName("lon")
     val lon: Double,
 ): Parcelable
+
+ @Parcelize
+ data class CreateSurveyResponse(
+     @field:SerializedName("status")
+     val status: String,
+
+     @field:SerializedName("message")
+     val message: String,
+
+     @field:SerializedName("surveyID")
+     val surveyID : String,
+ ): Parcelable

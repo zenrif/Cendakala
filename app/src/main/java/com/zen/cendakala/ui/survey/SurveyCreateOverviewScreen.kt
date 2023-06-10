@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
@@ -19,6 +20,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -45,32 +48,48 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.zen.cendakala.R
+import com.zen.cendakala.route.Routes
+import com.zen.cendakala.ui.auth.register.RegisterUIEvent
+import com.zen.cendakala.ui.auth.register.RegisterViewModel
+import com.zen.cendakala.ui.components.DropdownCustom
 import com.zen.cendakala.ui.components.OutlinedTextFieldCustom
 import com.zen.cendakala.ui.components.OutlinedTextFieldSurvey
+import com.zen.cendakala.ui.components.TextButtonCustom
+import com.zen.cendakala.ui.components.TextTitle
 import com.zen.cendakala.ui.theme.Black2
 import com.zen.cendakala.ui.theme.Color1
+import com.zen.cendakala.ui.theme.Color4
 import com.zen.cendakala.ui.theme.White
+import com.zen.cendakala.ui.theme.White2
+import com.zen.cendakala.utils.ViewModelFactory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SurveyCreateOverviewScreen() {
+fun SurveyCreateOverviewScreen(
+    navController: NavController,
+) {
     val context = LocalContext.current
-    val coffeeDrinks = arrayOf("Americano", "Cappuccino", "Espresso", "Latte", "Mocha")
-    var expanded by remember { mutableStateOf(false) }
-    var selectedText by remember { mutableStateOf(coffeeDrinks[0]) }
-    var expanded2 by remember { mutableStateOf(false) }
-    var selectedText2 by remember { mutableStateOf(coffeeDrinks[0]) }
+    val factory = remember { ViewModelFactory.getInstance(context) }
+    val createSurveyViewModel: CreateSurveyViewModel = viewModel(factory = factory)
+    var selectedText by remember { mutableStateOf("") }
+    var selectedText2 by remember { mutableStateOf("") }
+    val pattern = remember { Regex("^\\d+\$") }
 
     Box(
         modifier = Modifier
@@ -86,6 +105,42 @@ fun SurveyCreateOverviewScreen() {
                 .fillMaxSize(),
             alignment = Alignment.TopCenter
         )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 44.dp),
+            horizontalArrangement = Arrangement.SpaceBetween ,
+            verticalAlignment = Alignment.Top
+        ) {
+            Button(
+                onClick = {
+                    navController.popBackStack()
+                },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color4,
+                    contentColor = Black2
+                ),
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_back),
+                    contentDescription = stringResource(id = R.string.back),
+                )
+            }
+            TextTitle(
+                title = stringResource(id = R.string.overview),
+                fontSize = 16,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(top = 12.dp)
+            )
+                TextButtonCustom(
+                    text = stringResource(id = R.string.done),
+                    onClickButton = {
+                        createSurveyViewModel.onEvent(CreateSurveyUIEvent.Done1ButtonClicked)
+                        navController.navigate(Routes.SurveyCreateQuestion.routes)
+                    },
+                )
+        }
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -106,7 +161,9 @@ fun SurveyCreateOverviewScreen() {
                         painter = painterResource(id = R.drawable.delete_icon),
                         contentDescription = "delete",
                         contentScale = ContentScale.Fit,
-                        colorFilter = ColorFilter.tint(White)
+                        colorFilter = ColorFilter.tint(Black2),
+                        modifier = Modifier
+                            .size(32.dp)
                     )
                 }
                 Row(
@@ -144,81 +201,19 @@ fun SurveyCreateOverviewScreen() {
                         .fillMaxSize(),
                     horizontalArrangement = Arrangement.Start ,
                 ) {
-                    ExposedDropdownMenuBox(
-                        expanded = expanded,
-                        onExpandedChange = {
-                            expanded = !expanded
-                        },
+
+                    DropdownCustom(
+                        onSelectedChange = { selectedText = it },
                         modifier = Modifier
                             .fillMaxSize(0.5f)
                             .padding(end = 12.dp)
-                    ) {
-                        TextField(
-                            value = selectedText,
-                            onValueChange = {},
-                            readOnly = true,
-                            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                            modifier = Modifier.menuAnchor()
-                        )
+                    )
 
-                        ExposedDropdownMenu(
-                            expanded = expanded,
-                            onDismissRequest = { expanded = false }
-                        ) {
-                            coffeeDrinks.forEach { item ->
-                                DropdownMenuItem(
-                                    text = { Text(text = item) },
-                                    onClick = {
-                                        selectedText = item
-                                        expanded = false
-                                        Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
-                                    }
-                                )
-                            }
-                        }
-                    }
-                    ExposedDropdownMenuBox(
-                        expanded = expanded2,
-                        onExpandedChange = {
-                            expanded2 = !expanded2
-                        },
+                    DropdownCustom(
+                        onSelectedChange = { selectedText2 = it },
                         modifier = Modifier
                             .fillMaxHeight(0.5f)
-                            .background(Color1) ,
-                    ) {
-                        TextField(
-                            value = selectedText,
-                            onValueChange = {},
-                            readOnly = true,
-                            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded2) },
-                            modifier = Modifier.menuAnchor(),
-                            colors = TextFieldDefaults.textFieldColors(
-                                containerColor = Color1,
-                                textColor = Color.White,
-                                cursorColor = Color.White,
-                                focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent,
-                                disabledIndicatorColor = Color.Transparent,
-                            )
                         )
-                        ExposedDropdownMenu(
-                            expanded = expanded2,
-                            onDismissRequest = { expanded2 = false },
-                            modifier = Modifier
-                                .background(Color1)
-                        ) {
-                            coffeeDrinks.forEach { item ->
-                                DropdownMenuItem(
-                                    text = { Text(text = item) },
-                                    onClick = {
-                                        selectedText2 = item
-                                        expanded2 = false
-                                        Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
-                                    }
-                                )
-                            }
-                        }
-                    }
                 }
                 Row(
                     modifier = Modifier
@@ -237,18 +232,30 @@ fun SurveyCreateOverviewScreen() {
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold,
                             fontFamily = FontFamily.SansSerif,
+                            modifier = Modifier
+                                .padding(start = 12.dp)
                         )
-                        var value by remember { mutableStateOf("") }
+                        var valueQuota by remember { mutableStateOf("") }
                         TextField(
-                            value = value,
-                            onValueChange = { value = it },
-                            label = { Text("Enter text") },
+                            value = valueQuota,
+                            onValueChange = {
+                                if (it.isEmpty() || it.matches(pattern)) {
+                                valueQuota = it
+                            }},
+                            label = { Text("input amount") },
                             maxLines = 1,
-                            textStyle = TextStyle(color = Color.Blue),
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Number,
                                 imeAction = ImeAction.Next
                             ),
+                            colors = TextFieldDefaults.textFieldColors(
+                                containerColor = White2,
+                                textColor = Black2,
+                                cursorColor = Black2,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                                disabledIndicatorColor = Color.Transparent,
+                            )
                         )
                     }
                     Column(
@@ -263,16 +270,28 @@ fun SurveyCreateOverviewScreen() {
                             fontWeight = FontWeight.Bold,
                             fontFamily = FontFamily.SansSerif,
                         )
-                        var value by remember { mutableStateOf("Hello\nWorld\nInvisible") }
+                        var valueReward by remember { mutableStateOf("") }
                         TextField(
-                            value = value,
-                            onValueChange = { value = it },
+                            value = valueReward,
+                            onValueChange = {
+                                if (it.isEmpty() || it.matches(pattern)) {
+                                valueReward = it
+                            } },
+                            label = { Text("input amount") },
                             maxLines = 1,
-                            textStyle = TextStyle(color = Color.Blue, fontWeight = FontWeight.Bold),
+//                            textStyle = TextStyle(color = Color.Blue, fontWeight = FontWeight.Bold),
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Number,
                                 imeAction = ImeAction.Next
                             ),
+                            colors = TextFieldDefaults.textFieldColors(
+                                containerColor = White2,
+                                textColor = Black2,
+                                cursorColor = Black2,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                                disabledIndicatorColor = Color.Transparent,
+                            )
                         )
                     }
                 }
@@ -299,5 +318,5 @@ fun SurveyCreateOverviewScreen() {
 @Preview
 @Composable
 fun SurveyCreateOverviewScreenPreview() {
-    SurveyCreateOverviewScreen()
+    SurveyCreateOverviewScreen(navController = rememberNavController())
 }

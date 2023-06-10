@@ -21,9 +21,7 @@ fun SecondaryButton(
     modifier: Modifier = Modifier
 ) {
     Button(
-        onClick = {
-        onClickButton
-        },
+        onClick = onClickButton,
         colors = ButtonDefaults.buttonColors(
             containerColor = Color4
         ),

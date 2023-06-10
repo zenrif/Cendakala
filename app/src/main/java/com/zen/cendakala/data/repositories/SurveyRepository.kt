@@ -1,21 +1,23 @@
 package com.zen.cendakala.data.repositories
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
-import androidx.paging.*
 import com.zen.cendakala.data.Result
+import com.zen.cendakala.data.model.Question
+import com.zen.cendakala.data.responses.CreateSurveyResponse
 import com.zen.cendakala.data.responses.GeneralResponse
 import com.zen.cendakala.data.responses.LoginResponse
 import com.zen.cendakala.data.responses.RegisterResponse
-import com.zen.cendakala.data.responses.Survey
 import com.zen.cendakala.data.responses.SurveyResponse
-import com.zen.cendakala.data.source.SurveyPagingSource
-import com.zen.cendakala.data.source.SurveyRemoteMediator
+import com.zen.cendakala.data.source.local.CreateSurvey
 import com.zen.cendakala.data.source.local.UserPreference
 import com.zen.cendakala.data.source.remote.ApiServices
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import java.util.Objects
 
 class SurveyRepository (
     private val pref: UserPreference, private val apiService: ApiServices
@@ -56,22 +58,20 @@ class SurveyRepository (
         name: String,
         email: String,
         password: String,
-        birthday: String,
         job: String,
         gender: String,
-        interest: Objects
+        interest: Map<String, String>
     ): LiveData<Result<RegisterResponse>> = liveData {
         try {
             val response = apiService.register(
                 name,
                 email,
                 password,
-                birthday,
                 job,
                 gender,
                 interest
             )
-            if (response.error) {
+            if (response.status == "Failed") {
                 emit(Result.Error(response.message))
             } else {
                 emit(Result.Success(response))
@@ -81,21 +81,29 @@ class SurveyRepository (
         }
     }
 
-    fun addSurvey(
-        imageFile: MultipartBody.Part,
-        desc: RequestBody,
-        lat: Double,
-        lon: Double
-    ): LiveData<Result<GeneralResponse>> = liveData {
+    fun createSurvey(
+         title: String,
+         questionNum: Int,
+         quota: Int,
+         reward: Int,
+         category1: String,
+         category2: String,
+         description: String,
+         questions: Map<String, Question>
+    ): LiveData<Result<CreateSurveyResponse>> = liveData {
         try {
-            val response = apiService.addStory(
-                token = "Bearer ${pref.getUser().token}",
-                file = imageFile,
-                description = desc,
-                lat = lat,
-                lon = lon
+            val response = apiService.createSurvey(
+                authtoken = "Bearer ${pref.getUser().token}",
+                title = title,
+                questionNum = questionNum,
+                quota = quota,
+                reward = reward,
+                category1 = category1,
+                category2 = category2,
+                description = description,
+                questions = questions
             )
-            if (response.error) {
+            if (response.status == "Failed") {
                 emit(Result.Error(response.message))
             } else {
                 emit(Result.Success(response))

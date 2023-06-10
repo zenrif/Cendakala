@@ -18,7 +18,7 @@ fun PrimaryButton(
     modifier: Modifier = Modifier,
     text: String,
     onClickButton: () -> Unit,
-//    isEnabled: Boolean = false,
+    isEnabled: Boolean = true,
 ) {
     Button(
         onClick = {
@@ -29,7 +29,7 @@ fun PrimaryButton(
         ),
         shape = RoundedCornerShape(20.dp),
         modifier = modifier,
-//        enabled = isEnabled
+        enabled = isEnabled
         ) {
         CapsText(
             text = text,
