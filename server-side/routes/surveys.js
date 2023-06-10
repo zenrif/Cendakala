@@ -469,6 +469,12 @@ router.post("/recommedation/home", verifyToken, async (req, res) => {
       const uid = req.body.uid;
       let latestData = null;
 
+      // Change the url with your machine learning backend url (Ex. https://this-is-your-url/collaborative)
+      const urlCollaborative = 'https://machine-learning-api-v5-5ojaxkbdyq-et.a.run.app/collaborative'
+
+      // Change the url with your machine learning backend url (Ex. https://this-is-your-url/content)
+      const urlContent = 'https://machine-learning-api-v5-5ojaxkbdyq-et.a.run.app/content'
+
       // Get lastest user response
       const responseRef = await DB.collection('response').where("uid", "==", uid).orderBy("timestamp", "desc").limit(1).get();
   
@@ -499,9 +505,9 @@ router.post("/recommedation/home", verifyToken, async (req, res) => {
       // If user is new and never responded to any survey
       if (latestData == null || latestData == undefined || latestData == '') {
         const reqUID = { uid: uid };
-
+        
         // Get Recommendation with collaborative-filtering
-        const colRecom = await axios.post('https://machine-learning-api-v5-5ojaxkbdyq-et.a.run.app/collaborative', reqUID); // Insert your request domain
+        const colRecom = await axios.post(urlCollaborative, reqUID); // Insert your request domain
 
         // Get recommended category
         const kat1 = colRecom.data['0'];
@@ -524,8 +530,9 @@ router.post("/recommedation/home", verifyToken, async (req, res) => {
       // If user already filled out a survey
       else {
         const reqUID = { uid: uid };
+        
         // Get Recommendation with collaborative-filtering
-        const colRecom = await axios.post('https://machine-learning-api-v5-5ojaxkbdyq-et.a.run.app/collaborative', reqUID); // Insert your request domain
+        const colRecom = await axios.post(urlCollaborative, reqUID); 
 
         // Get recommended category
         const kat1 = colRecom.data['0'];
@@ -544,7 +551,7 @@ router.post("/recommedation/home", verifyToken, async (req, res) => {
         };
   
         // Get recommendation survey by content filtering
-        const getContentRecom = await axios.post('https://machine-learning-api-v5-5ojaxkbdyq-et.a.run.app/content', data); // Insert your request domain
+        const getContentRecom = await axios.post(urlContent, data); // Insert your request domain
         const allSurveyRecom = [];
   
         for (let i = 0; i < 10; i++) {

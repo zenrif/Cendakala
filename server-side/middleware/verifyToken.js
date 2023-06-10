@@ -4,6 +4,10 @@ const axios = require("axios")
 
 exports.verifyToken = async (req, res, next) => {
     const original = req.headers.authtoken
+
+    // Change the url with your client-side backend url (Ex. https://this-is-your-url/authentication/newAccess)
+    const clientSideUrl = 'https://client-side-dot-cendakala.et.r.appspot.com/authentication/newAccess'
+
     if(original == "" || original == undefined || original == null){
         return res.status(403).json({
             status : "Failed",
@@ -35,8 +39,7 @@ exports.verifyToken = async (req, res, next) => {
             };
 
             const data ={}
-        
-            const getUser = await axios.post('https://client-side-dot-cendakala.et.r.appspot.com/authentication/newAccess', data, config);
+            const getUser = await axios.post(clientSideUrl, data, config);
 
             return res.status(403).json({
                 status : "Failed",
