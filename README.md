@@ -1,7 +1,8 @@
-<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/a3d15ccc-2bff-4901-aefc-5e0e3302d6b0"></p>
 <h1 align="center">Cendakala</h1>
+<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/06f22a46-cf26-4cfe-9488-44fc9c826a20"></p>
+
 <h3 align="center">Application for filling out questionnaire data and data transactions. We're ready to help you!</h3>
-<p align="center">Project for fulfill the <a href="https://grow.google/intl/id_id/bangkit/?tab=machine-learning">Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka</a> Program.</p>
+<p align="center">Project for fulfill the <a href="https://grow.google/intl/id_id/bangkit/?tab=machine-learning">Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka</a> program.</p>
 <h2>Team Members</h2>
 <h3>Team ID : C23-PC618</h3>
 <table>
@@ -51,8 +52,7 @@ This project aims to make it easier for researchers to find the right respondent
 <h3>Project Architecture</h3>
 <p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/b7df1e83-755a-45f9-ae49-e7b27ab6bf8b"></p>
 <h3>Cendakala App</h3>
-<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/a4d338df-0cc6-435f-9f74-7a8f54d7111d"></p>
-<p align="center"><img src= "https://github.com/zenrif/Cendakala/assets/101646114/5f9fc2a1-9634-4719-8d3b-e78e06325892"></p>
+<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/503c538b-eca7-4bf6-9301-cdb3dc720eb7"></p>
 <h2>Documentation</h2>
 <h3>Machine Learning Development Documentation</h3>
 <a href="https://github.com/zenrif/Cendakala/tree/model">Here for Machine Learning Documentation</a>
