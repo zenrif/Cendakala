@@ -25,7 +25,8 @@
 5. Change url :
   - Go to "/middleware/verifyToken.js", change **clientSideUrl** value with your client-side backend url  
   - Go to "/routes/surveys.js", in router.post "/recommendation/home"
-
     - Change **urlCollaborative** with "https://**this-is-your-url**/collaborative"
     - Change **urlContent** with "https://**this-is-your-url**/content"
+  - Go to "/routes/surveys.js", in router.get "/search/:input" 
+    - Change **urlSearch** with "https://**this-is-your-url**/search"
 6. Deploy the backend to App Engine with Google Cloud SDK in terminal: "gcloud app deploy --version **your-app-version** "
