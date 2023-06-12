@@ -9,3 +9,7 @@ tensorflow_recommenders==0.7.3
 gunicorn
 firebase-admin
 flask[async]
+Sastrawi
+python-Levenshtein
+fuzzywuzzy[speedup]
+thefuzz

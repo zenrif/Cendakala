@@ -63,6 +63,26 @@ async def getUsers():
 
     return res
 
+async def getSurveysTitle():
+    surveysRef = DB.collection('surveys').get()
+    count = 0
+    survey_id = {}
+    title = {}
+    surveys = []
+    for survey in surveysRef:
+        surveyData = survey.to_dict()
+        survey_id[count] = surveyData['surveyID']
+        title[count] = surveyData['title']
+        count += 1
+        surveys.append(surveyData)
+    
+    res = {
+        'surveyID': survey_id,
+        'title' : title,
+        'surveys' : surveys
+    }
+    
+    return res
 
 
 # Routing
@@ -79,7 +99,6 @@ async def trainModel():
         train(await getUsers())
         return "complete"
 
-
 @app.route("/collaborative", methods=["POST"])
 async def collaborativeRecommend():
     if(request.method == "POST"):
@@ -88,7 +107,6 @@ async def collaborativeRecommend():
         payload = request.json
         res = predict(await getUsers(), payload['uid'])
         return res
-
 
 @app.route("/content", methods=['POST'])
 def contentRecommend():
@@ -116,13 +134,51 @@ def contentRecommend():
 
         # Print the output and save the JSON output to a file
         return output_dict
-    
-@app.route("/test", methods=['POST'])
-def aa():
-    if(request.method == "POST"):
-        data = {'message': 'Hellow'}
-        return jsonify(data)    
 
+@app.route("/search/<input>", methods=['GET'])
+async def searchInput(input):
+    if(request.method == "GET"):
+        try:
+            from search import search
+
+            data = await getSurveysTitle()
+            list_Survey = []
+            
+            if input:
+                results = search(input, data)
+                for survey in results:
+                    for i in range(len(data['surveys'])):
+                        find = data['surveys'][i]['surveyID']
+                        if(survey["surveyID"] == find):
+                            list_Survey.append(data["surveys"][i])
+                            break
+                data = {
+                    'status' : "Success",
+                    'input': input,
+                    'results': list_Survey
+                }
+
+                response = {
+                    'message': 'Success',
+                    'data': data,
+                    'code': 200
+                }
+
+                # Return a JSON response
+                return jsonify(response), 200
+            else:
+                response = {
+                    'message': 'Input not found',
+                    'code': 400
+                }
+                return jsonify(response), 400
+
+        except Exception as e:
+            response = {
+                'message': e,
+                'code': 500
+            }
+            return jsonify(response), 500
 
 
 

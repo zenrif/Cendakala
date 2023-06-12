@@ -470,10 +470,10 @@ router.post("/recommedation/home", verifyToken, async (req, res) => {
       let latestData = null;
 
       // Change the url with your machine learning backend url (Ex. https://this-is-your-url/collaborative)
-      const urlCollaborative = 'https://machine-learning-api-v5-5ojaxkbdyq-et.a.run.app/collaborative'
+      const urlCollaborative = 'https://machine-learning-api-search-5ojaxkbdyq-et.a.run.app/collaborative'
 
       // Change the url with your machine learning backend url (Ex. https://this-is-your-url/content)
-      const urlContent = 'https://machine-learning-api-v5-5ojaxkbdyq-et.a.run.app/content'
+      const urlContent = 'https://machine-learning-api-search-5ojaxkbdyq-et.a.run.app/content'
 
       // Get lastest user response
       const responseRef = await DB.collection('response').where("uid", "==", uid).orderBy("timestamp", "desc").limit(1).get();
@@ -576,7 +576,7 @@ router.post("/recommedation/home", verifyToken, async (req, res) => {
       console.error(error);
       res.send(error);
     }
-  });
+});
 
 router.get("/purchaseAble", verifyToken, async(req,res)=>{
     try {
@@ -604,6 +604,31 @@ router.get("/purchaseAble", verifyToken, async(req,res)=>{
 
 })
 
+router.get('/search/:input', verifyToken, async (req, res) => {
+    const input = req.params.input || null
+
+    let responseArr = [];
+    try {
+        // Change the url with your machine learning backend url (Ex. https://this-is-your-url/search/)
+        const urlSearch = 'https://machine-learning-api-search-5ojaxkbdyq-et.a.run.app/search/' + input
+        const survey_list = await axios.get(urlSearch);
+        surveyData = survey_list.data.data.results
+
+        surveyData.forEach((survey) => {
+            responseArr.push(survey)
+        })
+        res.status(200).json({
+            status : "Success",
+            message : "Success get the surveys",
+            surveys : responseArr
+        })
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({
+            message : error
+        })
+    }
+})
 
 
 
