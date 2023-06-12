@@ -21,6 +21,10 @@
   - gunicorn
   - firebase-admin
   - flask[async]
+  - Sastrawi
+  - python-Levenshtein
+  - fuzzywuzzy[speedup]
+  - thefuzz
 4. Copy the firebase service account to the machine-learning folder with the name **serviceaccountkey.json**
 5. Build an image with and upload it to container registry with Google Cloud SDK in terminal: "gcloud builds submit --tag gcr.io/**your-project**/**name-of-the-image**"
 6. Deploy the image to Cloud Run with Google Cloud SDK in terminal : "gcloud run deploy --image gcr.io/**your-project**/**name-of-the-image** --platform managed"
