@@ -50,7 +50,7 @@ This project aims to make it easier for researchers to find the right respondent
 </p>
 <h2>App Overview</h2>
 <h3>Project Architecture</h3>
-<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/b7df1e83-755a-45f9-ae49-e7b27ab6bf8b"></p>
+<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/d4b2be86-4309-4fcf-b731-e29e6ecb4545"></p>
 <h3>Cendakala App</h3>
 <p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/503c538b-eca7-4bf6-9301-cdb3dc720eb7"></p>
 <h2>Documentation</h2>
