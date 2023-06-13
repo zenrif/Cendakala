@@ -649,6 +649,7 @@ router.get('/search/:input', verifyToken, async (req, res) => {
 
 
 
+
 router.post("/bulkInsert",verifyToken, async (req, res) => {
     const data = req.body
 

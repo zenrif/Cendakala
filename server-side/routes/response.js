@@ -4,6 +4,7 @@ const { DB } = require('../config')
 const crypto = require('crypto')
 const { verifyToken } = require("../middleware/verifyToken")
 const { FieldValue } = require("firebase-admin/firestore")
+const excelJs = require("exceljs")
 
 //router
 router.post('/create', verifyToken, async (req, res) => {
@@ -230,6 +231,235 @@ router.get("/read/:responseID",verifyToken, async (req, res) => {
             message : error
         }) 
     }
+})
+
+router.get('/download/:surveyID', async (req, res) => {
+    const surveyID = req.params.surveyID
+    const data = []
+    const users = []
+
+    try {
+        //Check response is already saved or no
+        const check = await DB.collection('download').doc(surveyID).get()
+
+        if(check.exists){
+            // Excel create
+            let workbook = new excelJs.Workbook();
+            const sheet = workbook.addWorksheet("answers")
+            let answers = check.data().data
+            let questions = check.data().questions
+            let title = check.data().title
+
+            //Columns
+            sheet.columns = [
+                {header : "number", key: "number", width: 25},
+                {header : "name", key: "name", width: 25},
+                {header : "gender", key: "gender", width: 25},
+                {header : "job", key: "job", width: 25},
+                {header : "type", key: "type", width: 25},
+                {header : "answer", key: "answer", width: 100}
+            ]
+
+            //Rows
+            await answers.forEach((ans)=>{
+                sheet.addRow({
+                    number : ans.number,
+                    name : ans.name,
+                    gender : ans.gender,
+                    job : ans.job,
+                    type : ans.type,
+                    answer : ans.answer
+                })
+            })
+
+            // Questions
+            const sheet2 = workbook.addWorksheet("questions")
+
+            //Columns
+            sheet2.columns = [
+                {header : "number", key: "number", width: 25},
+                {header : "question", key: "question", width: 100},
+                {header : "type", key: "type", width: 25},
+                {header : "choices", key: "choices", width: 100}
+            ]
+
+            let row = 2;
+
+            for (const key in questions) {
+                if (questions.hasOwnProperty(key)) {
+                    const question = questions[key];
+                    sheet2.getCell(`A${row}`).value = key;
+                    sheet2.getCell(`B${row}`).value = question.question;
+                    sheet2.getCell(`C${row}`).value = question.type;
+                    sheet2.getCell(`D${row}`).value = '';
+
+                    if (question.choices) {
+                    const choiceKeys = Object.keys(question.choices);
+                    const numChoices = Math.min(choiceKeys.length, 4);
+
+                    for (let i = 0; i < numChoices; i++) {
+                        const choiceKey = choiceKeys[i];
+                        const choice = question.choices[choiceKey];
+                        sheet2.getCell(`D${row}`).value += `Choice ${choiceKey}: ${choice}\n`;
+                    }
+                }
+
+                row++;
+            }
+            }
+
+            res.setHeader(
+                "Content-Type",
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+
+            res.setHeader(
+                "Content-Disposition",
+                "attachment;filename=" + title + ".xlsx"
+            )
+
+            return workbook.xlsx.write(res)
+
+        }
+        // Get survey questions
+        const surveySnap = await DB.collection('surveys').doc(surveyID).get()
+        const surveyQuest = surveySnap.data().questions
+
+        // Get survey responses
+        const resSnap = await DB.collection('response').where("surveyID", "==", surveyID).get()
+
+        // Get users data
+        const userSnap = await DB.collection('users').get()
+        userSnap.forEach((user) => {
+            users.push(user.data())
+        })
+
+        resSnap.forEach((resp) => {
+            const result = users.find(obj => obj.uid == resp.data().uid)
+            const respData = resp.data()
+            const ansArr = respData.answers
+            for (let index = 1; index < Object.keys(ansArr).length +1; index++) {
+                
+                if(ansArr[index].type == "multiple"){
+                    const merge = ansArr[index].choice + "." + ansArr[index].answer
+                    const tmp = {
+                        number: index,
+                        name : result.name,
+                        gender : result.gender,
+                        job : result.job,
+                        type : ansArr[index].type,
+                        answer : merge
+                    }
+                    data.push(tmp)
+                }
+                else{
+
+                    const tmp = {
+                        number: index,
+                        name : result.name,
+                        gender : result.gender,
+                        job : result.job,
+                        type : ansArr[index].type,
+                        answer : ansArr[index].answer
+                        
+                    }
+                    data.push(tmp)
+                }
+            }
+            
+        })
+        const template = {
+            title : surveySnap.data().title,
+            data : data,
+            questions : surveyQuest
+        }
+
+        await DB.collection('download').doc(surveyID).set(template);
+        
+        // Excel create
+        let workbook = new excelJs.Workbook();
+        const sheet = workbook.addWorksheet("answers")
+        let answers = data
+        let questions = surveySnap.data().questions
+        let title = surveySnap.data().title
+
+        //Columns
+        sheet.columns = [
+            {header : "number", key: "number", width: 25},
+            {header : "name", key: "name", width: 25},
+            {header : "gender", key: "gender", width: 25},
+            {header : "job", key: "job", width: 25},
+            {header : "type", key: "type", width: 25},
+            {header : "answer", key: "answer", width: 100}
+        ]
+
+        //Rows
+        await answers.forEach((ans)=>{
+            sheet.addRow({
+                number : ans.number,
+                name : ans.name,
+                gender : ans.gender,
+                job : ans.job,
+                type : ans.type,
+                answer : ans.answer
+            })
+        })
+
+        // Questions
+        const sheet2 = workbook.addWorksheet("questions")
+
+        //Columns
+        sheet2.columns = [
+            {header : "number", key: "number", width: 25},
+            {header : "question", key: "question", width: 100},
+            {header : "type", key: "type", width: 25},
+            {header : "choices", key: "choices", width: 100}
+        ]
+
+        let row = 2;
+
+        for (const key in questions) {
+            if (questions.hasOwnProperty(key)) {
+                const question = questions[key];
+                sheet2.getCell(`A${row}`).value = key;
+                sheet2.getCell(`B${row}`).value = question.question;
+                sheet2.getCell(`C${row}`).value = question.type;
+                sheet2.getCell(`D${row}`).value = '';
+
+                if (question.choices) {
+                const choiceKeys = Object.keys(question.choices);
+                const numChoices = Math.min(choiceKeys.length, 4);
+
+                for (let i = 0; i < numChoices; i++) {
+                    const choiceKey = choiceKeys[i];
+                    const choice = question.choices[choiceKey];
+                    sheet2.getCell(`D${row}`).value += `Choice ${choiceKey}: ${choice}\n`;
+                }
+            }
+
+            row++;
+        }
+        }
+
+        res.setHeader(
+            "Content-Type",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+
+        res.setHeader(
+            "Content-Disposition",
+            "attachment;filename=" + title + ".xlsx"
+        )
+
+        return workbook.xlsx.write(res)
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({
+            message : error
+        })
+    }
+
 })
 
 module.exports = router
