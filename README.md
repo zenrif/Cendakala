@@ -6,6 +6,8 @@ The Cendakala application uses Google Cloud Platform Services to share and store
 - Code editor (Visual studio code)
 - Google Cloud Account
 
+## Cloud Architecture
+
 ## 1. Setup Google Cloud Platform
 - Create Project & Configure Identity and Access Management
 - Enable the following API :
