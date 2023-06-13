@@ -202,7 +202,8 @@ router.post('/create',verifyToken, async (req, res) => {
             "category2" : req.body.category2,
             "finished" : false,
             "sell" : false,
-            "questions" : req.body.questions
+            "questions" : req.body.questions,
+            "description" : req.body.description
         }
 
         //filtering
@@ -698,44 +699,45 @@ router.post("/bulkInsert",verifyToken, async (req, res) => {
                 "finished" : false,
                 "sell" : false,
                 "price" : 0,
-                "questions" : {
+                "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis tincidunt id aliquet risus feugiat in. Porttitor leo a diam sollicitudin tempor. Tristique senectus et netus et malesuada fames ac turpis. Risus pretium quam vulputate dignissim suspendisse in est ante. Turpis nunc eget lorem dolor sed. Tincidunt arcu non sodales neque sodales ut etiam sit amet. Magna eget est lorem ipsum dolor sit. Ullamcorper malesuada proin libero nunc consequat interdum varius.",
+                "questions": {
                     "1": {
-                        "question": "Siapa yang lebih baik menjadi president ditahun 2024?",
-                        "choiceNum": 3,
                         "type": "multiple",
+                        "choiceNum": 3,
+                        "question": "Mengapa kendaraan berwarna hitam lebih digemari dibandingkan warna yang lain?",
                         "choices": {
-                            "1": "Bukan saya donkk",
-                            "2": "Yang pasti bukan saya hehe",
-                            "3": "Bolehlah kalau saya dipilih"
+                            "1": "Warnanya lebih general",
+                            "2": "Lebih keren",
+                            "3": "Tidak tahu"
                         }
                     },
                     "2": {
-                        "question": "mengapa ibu puan maharani selalu menjadi kontroversi setiap ngomong sesuatu?",
-                        "type": "essay"
+                        "type": "essay",
+                        "question": "Menurut anda apa merk mobil terbaik dan mengapa?"
                     },
                     "3": {
-                        "question": "Siapa yang lebih baik menjadi president ditahun 2024?",
-                        "choiceNum": 3,
                         "type": "multiple",
+                        "choiceNum": 3,
+                        "question": "Yang mana merupakan merk mobil kesukaan anda dari pilihan berikut!",
                         "choices": {
-                            "1": "Bukan saya donkk",
-                            "2": "Yang pasti bukan saya hehe",
-                            "3": "Bolehlah kalau saya dipilih"
+                            "1": "Toyota",
+                            "2": "Daihatsu",
+                            "3": "Mercy"
                         }
                     },
                     "4": {
-                        "question": "Siapa yang lebih baik menjadi president ditahun 2024?",
-                        "choiceNum": 3,
                         "type": "multiple",
+                        "choiceNum": 3,
+                        "question": "Mana merk mobil yang menurut anda paling tidak bagus di antara pilihan berikut. . .",
                         "choices": {
-                            "1": "Bukan saya donkk",
-                            "2": "Yang pasti bukan saya hehe",
-                            "3": "Bolehlah kalau saya dipilih"
+                            "1": "Wuling",
+                            "2": "Benz",
+                            "3": "Tidak ada"
                         }
                     },
                     "5": {
-                        "question": "mengapa ibu puan maharani selalu menjadi kontroversi setiap ngomong sesuatu?",
-                        "type": "essay"
+                        "type": "essay",
+                        "question": "Apa harapan anda untuk transportasi mobil kedepannya?"
                     }
                 }
             }
