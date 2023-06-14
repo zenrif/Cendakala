@@ -67,30 +67,30 @@ fun SplashScreen(navController: NavController) {
         delay(2500L)
 
         if (loginModel.token != null) {
-//            homeViewModel.cekToken()
-//            tokenResult?.let { result ->
-//                when (result) {
-//                    is Result.Success -> {
-//                        navController.navigate(Routes.Home.routes) {
-//                            popUpTo(navController.graph.startDestinationId)
-//                            launchSingleTop = true
-//                        }
-//                    }
-//                    is Result.Error -> {
-//                        HomeViewModel.saveToken(context, result.data)
-//                        navController.navigate(Routes.Home.routes) {
-//                            popUpTo(navController.graph.startDestinationId)
-//                            launchSingleTop = true
-//                        }
-//                    }
-//
-//                    else -> {}
-//                }
-//            }
-            navController.navigate(Routes.Home.routes) {
-                popUpTo(navController.graph.startDestinationId)
-                launchSingleTop = true
+            homeViewModel.cekToken()
+            tokenResult?.let { result ->
+                when (result) {
+                    is Result.Success -> {
+                        navController.navigate(Routes.Home.routes) {
+                            popUpTo(navController.graph.startDestinationId)
+                            launchSingleTop = true
+                        }
+                    }
+                    is Result.Error -> {
+                        HomeViewModel.saveToken(context, result.data)
+                        navController.navigate(Routes.Home.routes) {
+                            popUpTo(navController.graph.startDestinationId)
+                            launchSingleTop = true
+                        }
+                    }
+
+                    else -> {}
+                }
             }
+//            navController.navigate(Routes.Home.routes) {
+//                popUpTo(navController.graph.startDestinationId)
+//                launchSingleTop = true
+//            }
         } else
         navController.navigate(Routes.Login.routes) {
             popUpTo(Routes.Splash.routes) {
