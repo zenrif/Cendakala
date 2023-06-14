@@ -20,6 +20,7 @@ The Cendakala application uses Google Cloud Platform Services to share and store
   -  Cloud Firestore API
   -  Cloud Pub/Sub API
   -  Cloud Build API
+  -  Cloud Schduler API
 
 ## 2. Download Google Cloud SDK and Run Cloud Shell in Your Code Editor
 - Download Google Cloud SDK & Install
