@@ -12,10 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.zen.cendakala.route.Routes
 import com.zen.cendakala.ui.auth.login.LoginScreen
 import com.zen.cendakala.ui.auth.register.InterestScreen
@@ -23,6 +25,7 @@ import com.zen.cendakala.ui.auth.register.RegisterScreen
 import com.zen.cendakala.ui.components.BottomNavigationBar
 import com.zen.cendakala.ui.home.HomeScreen
 import com.zen.cendakala.ui.home.SplashScreen
+import com.zen.cendakala.ui.survey.detail.SurveyDetailScreen
 import com.zen.cendakala.ui.theme.CendakalaTheme
 
 class MainActivity : ComponentActivity() {
@@ -49,7 +52,7 @@ fun Dashboard(navController: NavHostController = rememberNavController()) {
     val currentRoute = navBackStackEntry?.destination?.route
 
     Scaffold(bottomBar = {
-        if (currentRoute != Routes.Splash.routes && currentRoute != Routes.Login.routes && currentRoute != Routes.Register.routes && currentRoute != Routes.Interest.routes) {
+        if (currentRoute != Routes.Splash.routes && currentRoute != Routes.Login.routes && currentRoute != Routes.Register.routes && currentRoute != Routes.Interest.routes && currentRoute != Routes.Detail.routes) {
             BottomNavigationBar(navController)
         }
     }) { paddingValues ->
@@ -68,6 +71,13 @@ fun Dashboard(navController: NavHostController = rememberNavController()) {
             }
             composable(Routes.Home.routes) {
                 HomeScreen(navController = navController, paddingValuesBottom = paddingValues)
+            }
+            composable(
+                Routes.Detail.routes,
+                arguments = listOf(navArgument("surveyID") { type = NavType.StringType })
+            ) {
+                val surveyID = it.arguments?.getString("surveyID") ?: ""
+                SurveyDetailScreen(navController = navController, surveyID = surveyID)
             }
         }
     }

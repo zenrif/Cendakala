@@ -16,9 +16,21 @@ import kotlinx.parcelize.Parcelize
      val surveys: List<Survey>
  ) : Parcelable
 
+@Parcelize
+data class SurveyByIdResponse(
+    @field:SerializedName("status")
+    val status: String,
+
+    @field:SerializedName("message")
+    val message: String,
+
+    @field:SerializedName("survey")
+    val survey: Survey
+) : Parcelable
+
  @Parcelize
  data class Survey(
-     val reward: Int,
+     val reward: Long,
      val category2: String,
      val surveyID: String,
      val category1: String,
@@ -30,7 +42,8 @@ import kotlinx.parcelize.Parcelize
      val finished: Boolean,
      val quota: Int,
      val sell: Boolean,
-     val price: Int
+     val price: Int,
+     val description: String,
  ) : Parcelable
 
  @Parcelize

@@ -16,8 +16,12 @@ import com.zen.cendakala.data.responses.GeneralResponse
 import com.zen.cendakala.data.responses.LoginResponse
 import com.zen.cendakala.data.responses.RegisterResponse
 import com.zen.cendakala.data.responses.Survey
+import com.zen.cendakala.data.responses.SurveyByIdResponse
 import com.zen.cendakala.data.responses.SurveyResponse
+import com.zen.cendakala.data.responses.TokenResponse
 import com.zen.cendakala.data.source.SurveyPagingSource
+import com.zen.cendakala.data.source.SurveyRecomPagingSource
+import com.zen.cendakala.data.source.SurveyRecomRemoteMediator
 import com.zen.cendakala.data.source.SurveyRemoteMediator
 import com.zen.cendakala.data.source.local.CreateSurvey
 import com.zen.cendakala.data.source.local.UserPreference
@@ -41,53 +45,31 @@ class SurveyRepository (
                 SurveyPagingSource(pref, apiService)
             }
         ).flow
+    @OptIn(ExperimentalPagingApi::class)
+    fun recomSurveys() = Pager(
+            config = PagingConfig(
+                pageSize = 2,
+            ),
+            remoteMediator = SurveyRecomRemoteMediator(pref, apiService),
+            pagingSourceFactory = {
+                SurveyRecomPagingSource(pref, apiService)
+            }
+        ).flow
 
-    fun login(
-        email: String,
-        password: String
-    ): LiveData<Result<LoginResponse>> = liveData {
+    fun cekToken(): LiveData<Result<TokenResponse>> = liveData {
         try {
-            val response = apiService.login(
-                email,
-                password
+            val response = apiService.cekToken(
+                authtoken = "${pref.getUser().token}"
             )
             if (response.status == "Failed") {
-                emit(Result.Error(response.message))
+                emit(Result.Error(response))
             } else {
                 emit(Result.Success(response))
             }
         } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
+            emit(Result.Failure(e))
         }
     }
-
-    fun register(
-        name: String,
-        email: String,
-        password: String,
-        job: String,
-        gender: String,
-        interest: Map<String, String>
-    ): LiveData<Result<RegisterResponse>> = liveData {
-        try {
-            val response = apiService.register(
-                name,
-                email,
-                password,
-                job,
-                gender,
-                interest
-            )
-            if (response.status == "Failed") {
-                emit(Result.Error(response.message))
-            } else {
-                emit(Result.Success(response))
-            }
-        } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
-        }
-    }
-
     fun createSurvey(
          title: String,
          questionNum: Int,
@@ -111,12 +93,28 @@ class SurveyRepository (
                 questions = questions
             )
             if (response.status == "Failed") {
-                emit(Result.Error(response.message))
+                emit(Result.Error(response))
             } else {
                 emit(Result.Success(response))
             }
         } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
+            emit(Result.Failure(e))
+        }
+    }
+
+    fun getById(surveyID: String): LiveData<Result<SurveyByIdResponse>> = liveData {
+        try {
+            val response = apiService.surveyById(
+                authtoken = "${pref.getUser().token}",
+                surveyID = surveyID
+            )
+            if (response.status == "Failed") {
+                emit(Result.Error(response))
+            } else {
+                emit(Result.Success(response))
+            }
+        } catch (e: Exception) {
+            emit(Result.Failure(e))
         }
     }
 

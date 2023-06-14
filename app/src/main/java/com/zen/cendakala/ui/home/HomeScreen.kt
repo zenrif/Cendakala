@@ -2,6 +2,9 @@ package com.zen.cendakala.ui.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.FlingBehavior
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,11 +13,16 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -35,6 +43,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.zen.cendakala.R
+import com.zen.cendakala.route.Routes
 import com.zen.cendakala.ui.components.CardSurvey
 import com.zen.cendakala.ui.components.CardSurveyRow
 import com.zen.cendakala.ui.components.ImageBackground
@@ -53,16 +62,20 @@ fun HomeScreen(
     val searchText = remember {
         mutableStateOf("")
     }
-    val listState = rememberLazyListState()
+    val columnState = rememberLazyListState()
+    val rowState = rememberLazyListState()
+    val scrollState = rememberScrollState()
+
     val context = LocalContext.current
     val factory = remember { ViewModelServerFactory.getInstance(context) }
     val homeViewModel: HomeViewModel = viewModel(factory = factory)
     val surveys = homeViewModel.getSurveys().collectAsLazyPagingItems()
+    val recomSurveys = homeViewModel.recomSurveys().collectAsLazyPagingItems()
 
     Box(
         modifier = Modifier
             .background(
-                color = Color.White,
+                color = White2,
             )
     ) {
         ImageBackground(image = R.drawable.bg_home)
@@ -72,7 +85,7 @@ fun HomeScreen(
                 .fillMaxSize(),
         ) {
             SearchField(
-                placeholder = "Cari berdasarkan nama karakter...",
+                placeholder = "Cari...",
                 value = "",
                 onValueChange = {  },
                 onClear = { }
@@ -112,86 +125,157 @@ fun HomeScreen(
                     color = MaterialTheme.colorScheme.onPrimary,
                     shape = RoundedCornerShape(25.dp, 5.dp, 25.dp, 5.dp)
                 )*/
+                .padding(top = 180.dp)
                 .align(Alignment.CenterStart)
+
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 180.dp, start = 18.dp)
+                    .padding(start = 18.dp)
             ) {
-                Text(
-                    text = stringResource(id = R.string.recommended),
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = Black2,
-                    modifier = Modifier
-                        .padding(start = 12.dp,bottom = 16.dp)
-                )
-                LazyRow(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(color = White)
-                        .padding(bottom = 16.dp),
-                    state = listState,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    items(10) {
-                        Box(
-                            modifier = Modifier
-                                .background(color = White)
-                        ) {
-                            CardSurveyRow(
-                                title = "ROW Card with blue border",
+                    Text(
+                        text = stringResource(id = R.string.recommended),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = Black2,
+                        modifier = Modifier
+                            .padding(start = 12.dp, bottom = 16.dp)
+                    )
+                    LazyRow(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(color = White2)
+                            .padding(bottom = 16.dp),
+                        horizontalArrangement = Arrangement.SpaceAround
+                    ) {
+                        items(
+                            count = recomSurveys.itemCount,
+                            key = { index -> recomSurveys[index]?.surveyID ?: index }
+                        ) { index ->
+                            Box(
                                 modifier = Modifier
-                                    .padding(top = 0.dp, bottom = 0.dp, start = 8.dp, end = 8.dp)
-                            )
+                                    .background(color = White2)
+                            ) {
+                                CardSurveyRow(
+                                    title = recomSurveys[index]?.title ?: "",
+                                    category1 = recomSurveys[index]?.category1 ?: "",
+                                    category2 = recomSurveys[index]?.category2 ?: "",
+                                    quota = recomSurveys[index]?.quota ?: 0,
+                                    reward = recomSurveys[index]?.reward ?: 0,
+                                    modifier = Modifier
+                                        .padding(
+                                            top = 0.dp,
+                                            bottom = 0.dp,
+                                            start = 8.dp,
+                                            end = 8.dp
+                                        )
+                                        .clickable {
+                                            navController.navigate(Routes.Detail.createRoute(surveys[index]?.surveyID ?: ""))
+                                        }
+                                        .heightIn(100.dp,500.dp) ,
+                                )
+                            }
                         }
-                    }
+//                    }
                 }
-            }
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 360.dp)
-            ) {
                 Text(
                     text = stringResource(id = R.string.available_data),
                     style = MaterialTheme.typography.bodyLarge,
                     color = Black2,
                     modifier = Modifier
-                        .padding(start = 38.dp)
+                        .padding(top = 16.dp, start = 20.dp)
                 )
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(color = White)
+                        .background(color = White2)
                         .padding(
                             top = 16.dp,
                             bottom = paddingValuesBottom.calculateBottomPadding()
                         ),
-                    state = listState,
+                    state = columnState,
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     items(
                         count = surveys.itemCount,
                         key = { index -> surveys[index]?.surveyID ?: index }
-                    ) { survey ->
+                    ) { index ->
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .fillMaxHeight()
-                                .background(color = White)
+                                .background(color = White2)
                         ) {
                             CardSurvey(
-                                title = survey?.toString() ?: "",
+                                title = surveys[index]?.title ?: "",
+                                category1 = surveys[index]?.category1 ?: "",
+                                category2 = surveys[index]?.category2 ?: "",
+                                quota = surveys[index]?.quota ?: 0,
+                                reward = surveys[index]?.reward ?: 0,
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .fillMaxHeight()
-                                    .padding(top = 0.dp, bottom = 0.dp, start = 26.dp, end = 26.dp)
+                                    .padding(top = 0.dp, bottom = 0.dp, start = 8.dp, end = 26.dp)
+                                    .clickable {
+                                        navController.navigate(Routes.Detail.createRoute(surveys[index]?.surveyID ?: ""))
+                                    },
                             )
                         }
                     }
                 }
             }
+//            Column(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .padding(top = 40.dp)
+//            ) {
+//                Text(
+//                    text = stringResource(id = R.string.available_data),
+//                    style = MaterialTheme.typography.bodyLarge,
+//                    color = Black2,
+//                    modifier = Modifier
+//                        .padding(start = 38.dp)
+//                )
+//                LazyColumn(
+//                    modifier = Modifier
+//                        .fillMaxSize()
+//                        .background(color = White2)
+//                        .padding(
+//                            top = 16.dp,
+//                            bottom = paddingValuesBottom.calculateBottomPadding()
+//                        ),
+//                    state = columnState,
+//                    verticalArrangement = Arrangement.spacedBy(16.dp)
+//                ) {
+//                    items(
+//                        count = surveys.itemCount,
+//                        key = { index -> surveys[index]?.surveyID ?: index }
+//                    ) { index ->
+//                        Box(
+//                            modifier = Modifier
+//                                .fillMaxWidth()
+//                                .fillMaxHeight()
+//                                .background(color = White2)
+//                        ) {
+//                            CardSurvey(
+//                                title = surveys[index]?.title ?: "",
+//                                category1 = surveys[index]?.category1 ?: "",
+//                                category2 = surveys[index]?.category2 ?: "",
+//                                quota = surveys[index]?.quota ?: 0,
+//                                reward = surveys[index]?.reward ?: 0,
+//                                modifier = Modifier
+//                                    .fillMaxWidth()
+//                                    .fillMaxHeight()
+//                                    .padding(top = 0.dp, bottom = 0.dp, start = 26.dp, end = 26.dp)
+//                                    .clickable {
+//                                        navController.navigate(Routes.Detail.createRoute(surveys[index]?.surveyID ?: ""))
+//
+//                                    },
+//                            )
+//                        }
+//                    }
+//                }
+//            }
         }
     }
 }

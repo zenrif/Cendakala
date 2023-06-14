@@ -13,6 +13,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,10 +26,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.zen.cendakala.R
+import com.zen.cendakala.data.Result
+import com.zen.cendakala.data.source.local.UserPreference
 import com.zen.cendakala.route.Routes
+import com.zen.cendakala.ui.auth.login.LoginViewModel
+import com.zen.cendakala.ui.components.ErrorDialog
 import com.zen.cendakala.ui.theme.Color1
+import com.zen.cendakala.utils.ViewModelServerFactory
 import kotlinx.coroutines.delay
 
 @Composable
@@ -35,6 +43,13 @@ fun SplashScreen(navController: NavController) {
     val scale = remember {
         Animatable(0.2f)
     }
+
+    val context = LocalContext.current
+    val factory = remember { ViewModelServerFactory.getInstance(context) }
+    val homeViewModel: HomeViewModel = viewModel(factory = factory)
+    val tokenResult by homeViewModel.tokenResult.observeAsState()
+    val userPreference = UserPreference(context)
+    val loginModel = userPreference.getUser()
 
     Image(
         painter = painterResource(id = R.drawable.bg_splash),
@@ -50,7 +65,33 @@ fun SplashScreen(navController: NavController) {
                 durationMillis = 2000,
             ))
         delay(2500L)
-        navController.popBackStack()
+
+        if (loginModel.token != null) {
+//            homeViewModel.cekToken()
+//            tokenResult?.let { result ->
+//                when (result) {
+//                    is Result.Success -> {
+//                        navController.navigate(Routes.Home.routes) {
+//                            popUpTo(navController.graph.startDestinationId)
+//                            launchSingleTop = true
+//                        }
+//                    }
+//                    is Result.Error -> {
+//                        HomeViewModel.saveToken(context, result.data)
+//                        navController.navigate(Routes.Home.routes) {
+//                            popUpTo(navController.graph.startDestinationId)
+//                            launchSingleTop = true
+//                        }
+//                    }
+//
+//                    else -> {}
+//                }
+//            }
+            navController.navigate(Routes.Home.routes) {
+                popUpTo(navController.graph.startDestinationId)
+                launchSingleTop = true
+            }
+        } else
         navController.navigate(Routes.Login.routes) {
             popUpTo(Routes.Splash.routes) {
                 inclusive = true

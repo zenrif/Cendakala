@@ -8,6 +8,7 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.zen.cendakala.data.Result
 import com.zen.cendakala.data.model.LoginModel
+import com.zen.cendakala.data.repositories.AuthRepository
 import com.zen.cendakala.data.repositories.SurveyRepository
 import com.zen.cendakala.data.responses.LoginResponse
 import com.zen.cendakala.data.rules.Validator
@@ -15,7 +16,7 @@ import com.zen.cendakala.data.source.local.UserPreference
 import kotlinx.coroutines.launch
 
 class LoginViewModel (
-    private val surveyRepository: SurveyRepository
+    private val repo: AuthRepository
 ) : ViewModel() {
 
     private val TAG = LoginViewModel::class.simpleName
@@ -78,7 +79,7 @@ class LoginViewModel (
         val password = loginUIState.value.password
 
         viewModelScope.launch {
-            val result = surveyRepository.login(
+            val result = repo.login(
                 email = email,
                 password = password
             )

@@ -9,6 +9,7 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.zen.cendakala.data.Result
 import com.zen.cendakala.data.model.LoginModel
+import com.zen.cendakala.data.repositories.AuthRepository
 import com.zen.cendakala.data.repositories.SurveyRepository
 import com.zen.cendakala.data.responses.RegisterResponse
 import com.zen.cendakala.data.rules.Validator
@@ -17,7 +18,7 @@ import kotlinx.coroutines.launch
 
 
 class RegisterViewModel (
-    private val surveyRepository: SurveyRepository
+    private val repo: AuthRepository
 ) : ViewModel() {
 
     private val TAG = RegisterViewModel::class.simpleName
@@ -130,7 +131,7 @@ class RegisterViewModel (
         val interestsObject = interests.associateBy { it.id.toString() }.mapValues { it.value.text }
 
         viewModelScope.launch {
-            val result = surveyRepository.register(
+            val result = repo.register(
                 email = email,
                 password = password,
                 name = name,

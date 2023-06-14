@@ -12,7 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -102,7 +101,7 @@ fun RegisterScreen(navController: NavController) {
                     errorStatus = registerViewModel.registerUIState.value.nameError,
                     imeActionParam = ImeAction.Next,
                     keyboardTypeParam = KeyboardType.Text,
-                    iconParam = R.drawable.name_icon,
+                    iconParam = R.drawable.ic_name,
                     iconContentDescription = "name_icon",
                 )
                 Spacer(modifier = Modifier.padding(3.dp))
@@ -115,7 +114,7 @@ fun RegisterScreen(navController: NavController) {
                     errorStatus = registerViewModel.registerUIState.value.genderError,
                     imeActionParam = ImeAction.Next,
                     keyboardTypeParam = KeyboardType.Text,
-                    iconParam = R.drawable.gender_icon,
+                    iconParam = R.drawable.ic_gender,
                     iconContentDescription = "gender_icon",
                 )
                 Spacer(modifier = Modifier.padding(3.dp))
@@ -128,7 +127,7 @@ fun RegisterScreen(navController: NavController) {
                     errorStatus = registerViewModel.registerUIState.value.jobError,
                     imeActionParam = ImeAction.Next,
                     keyboardTypeParam = KeyboardType.Text,
-                    iconParam = R.drawable.job_icon,
+                    iconParam = R.drawable.ic_job,
                     iconContentDescription = "job_icon",
                 )
                 Spacer(modifier = Modifier.padding(3.dp))
@@ -141,7 +140,7 @@ fun RegisterScreen(navController: NavController) {
                     errorStatus = registerViewModel.registerUIState.value.emailError,
                     imeActionParam = ImeAction.Next,
                     keyboardTypeParam = KeyboardType.Email,
-                    iconParam = R.drawable.email_icon,
+                    iconParam = R.drawable.ic_email,
                     iconContentDescription = "email_icon",
                 )
                 Spacer(modifier = Modifier.padding(3.dp))
@@ -183,10 +182,12 @@ fun RegisterScreen(navController: NavController) {
 
                         is Result.Error -> {
                             ErrorDialog(
-                                message = result.data ,
+                                message = result.data.message ,
                                 image = R.drawable.error_form,
                             )
                         }
+
+                        else -> {}
                     }
                 }
                 Spacer(modifier = Modifier.padding(3.dp))

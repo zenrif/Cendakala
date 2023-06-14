@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ErrorDialog(
-    message: String,
+    message: String = "error",
     image: Int,
     action: (() -> Unit)? = null
 ) {

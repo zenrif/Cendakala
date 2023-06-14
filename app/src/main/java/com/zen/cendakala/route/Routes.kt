@@ -13,7 +13,7 @@ sealed class Routes(val routes: String) {
     object History : Routes("history")
     object Wallet : Routes("wallet")
     object Profile : Routes("profile")
-    object Detail : Routes("detail/{id}") {
-        fun createRoute(id: Int) = "detail/$id"
+    object Detail : Routes("detail/{surveyID}") {
+        fun createRoute(surveyID: String) = "detail/$surveyID"
     }
 }

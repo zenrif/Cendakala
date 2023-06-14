@@ -7,6 +7,7 @@ import com.zen.cendakala.data.repositories.SurveyRepository
 import com.zen.cendakala.di.Injection
 import com.zen.cendakala.ui.home.HomeViewModel
 import com.zen.cendakala.ui.survey.CreateSurveyViewModel
+import com.zen.cendakala.ui.survey.detail.SurveyDetailViewModel
 
 class ViewModelServerFactory private constructor(private val repo: SurveyRepository) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
@@ -16,6 +17,9 @@ class ViewModelServerFactory private constructor(private val repo: SurveyReposit
         }
         if (modelClass.isAssignableFrom(CreateSurveyViewModel::class.java)) {
             return CreateSurveyViewModel(repo) as T
+        }
+        if (modelClass.isAssignableFrom(SurveyDetailViewModel::class.java)) {
+            return SurveyDetailViewModel(repo) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

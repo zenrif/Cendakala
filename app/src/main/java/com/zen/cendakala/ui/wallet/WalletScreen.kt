@@ -96,7 +96,7 @@ fun WalletScreen() {
                 ,
                 horizontalAlignment = Alignment.Start
             ) {
-                CardSurvey(title = "Survey 1")
+//                CardSurvey(title = "Survey 1")
             }
         }
     }

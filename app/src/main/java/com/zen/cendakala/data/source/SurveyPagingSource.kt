@@ -45,3 +45,43 @@ class SurveyPagingSource(
         const val INITIAL_PAGE_INDEX = 1
     }
 }
+
+class SurveyRecomPagingSource(
+    private val pref: UserPreference,
+    private val apiService: ApiServices
+) : PagingSource<Int, Survey>() {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Survey> {
+        return try {
+            val page = params.key ?: INITIAL_PAGE_INDEX
+            val token = pref.getUser().token.toString()
+
+            if (token.isNotEmpty()) {
+                val responseData = token.let { apiService.recommedation(it) }
+                if (responseData.isSuccessful) {
+                    LoadResult.Page(
+                        data = responseData.body()?.surveys ?: emptyList(),
+                        prevKey = if (page == INITIAL_PAGE_INDEX) null else page - 1,
+                        nextKey = if (responseData.body()?.surveys.isNullOrEmpty()) null else page + 1
+                    )
+                } else {
+                    LoadResult.Error(Exception("Failed load survey"))
+                }
+            } else {
+                LoadResult.Error(Exception("Token empty"))
+            }
+        } catch (exception: Exception) {
+            return LoadResult.Error(exception)
+        }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, Survey>): Int? {
+        return state.anchorPosition?.let {
+            val anchorPage = state.closestPageToPosition(it)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+        }
+    }
+
+    private companion object {
+        const val INITIAL_PAGE_INDEX = 1
+    }
+}

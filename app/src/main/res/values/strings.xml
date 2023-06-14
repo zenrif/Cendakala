@@ -22,4 +22,9 @@
     <string name="recommended">Recommendation for you</string>
     <string name="available_data">Available data to buy</string>
     <string name="filter">Filter</string>
+    <string name="detail">Detail</string>
+    <string name="error">Something wrong</string>
+    <string name="description">Description</string>
+    <string name="fill">Fill</string>
+    <string name="buy">Buy</string>
 </resources>

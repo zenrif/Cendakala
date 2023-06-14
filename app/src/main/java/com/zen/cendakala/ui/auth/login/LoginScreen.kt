@@ -35,7 +35,6 @@ import com.zen.cendakala.utils.ViewModelFactory
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import com.zen.cendakala.data.Result
-import com.zen.cendakala.data.source.local.UserPreference
 import com.zen.cendakala.route.Routes
 import com.zen.cendakala.ui.components.ErrorDialog
 
@@ -86,7 +85,7 @@ fun LoginScreen(navController: NavController) {
                     errorStatus = loginViewModel.loginUIState.value.emailError,
                     imeActionParam = ImeAction.Next,
                     keyboardTypeParam = KeyboardType.Email,
-                    iconParam = R.drawable.email_icon,
+                    iconParam = R.drawable.ic_email,
                     iconContentDescription = "email_icon",
                 )
                 Spacer(modifier = Modifier.padding(3.dp))
@@ -134,17 +133,25 @@ fun LoginScreen(navController: NavController) {
                         }
 
                         is Result.Error -> {
-//                            val errorMessage = result.data
-//                            println(errorMessage)
-//                            loginResult?.let {
-//                                Text(text = it.toString())
-//                                Text(text = errorMessage)
-//                            }
+                            val errorMessage = result.data
+                            println(errorMessage)
+                            loginResult?.let {
+                                Text(text = it.toString())
+                            }
                             ErrorDialog(
-                                message = result.data ,
+                                message = result.data.message ,
                                 image = R.drawable.error_form,
                             )
                         }
+
+                        is Result.Failure -> {
+                            ErrorDialog(
+                                message = result.exception.message ?: "Error" ,
+                                image = R.drawable.error_form,
+                            )
+                        }
+
+                        else -> {}
                     }
                 }
                 Spacer(modifier = Modifier.padding(16.dp))

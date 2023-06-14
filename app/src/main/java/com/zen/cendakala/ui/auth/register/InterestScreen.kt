@@ -177,10 +177,12 @@ fun InterestScreen(navController: NavController) {
 
                         is Result.Error -> {
                             ErrorDialog(
-                                message = result.data ,
+                                message = result.data.message,
                                 image = R.drawable.error_form,
                             )
                         }
+
+                        else -> {}
                     }
                 }
             }

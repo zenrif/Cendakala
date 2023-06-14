@@ -5,7 +5,9 @@ import com.zen.cendakala.data.responses.CreateSurveyResponse
 import com.zen.cendakala.data.responses.GeneralResponse
 import com.zen.cendakala.data.responses.LoginResponse
 import com.zen.cendakala.data.responses.RegisterResponse
+import com.zen.cendakala.data.responses.SurveyByIdResponse
 import com.zen.cendakala.data.responses.SurveyResponse
+import com.zen.cendakala.data.responses.TokenResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -77,4 +79,19 @@ interface ApiServices {
         @Header("authtoken") authtoken: String,
     ): Response<SurveyResponse>
 
+    @POST("surveys/recommedation/home")
+    suspend fun recommedation(
+        @Header("authtoken") authtoken: String,
+    ): Response<SurveyResponse>
+
+    @GET("surveys/read/{surveyID}")
+    suspend fun surveyById(
+        @Header("authtoken") authtoken: String,
+        @Path("surveyID") surveyID: String
+    ): SurveyByIdResponse
+
+    @GET("surveys/purchaseAble")
+    suspend fun cekToken(
+        @Header("authtoken") authtoken: String,
+    ): TokenResponse
 }

@@ -8,10 +8,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.Transparent
-import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -56,7 +54,7 @@ fun SearchField(
                 modifier = Modifier
                     .width(24.dp)
                     .height(24.dp),
-                painter = painterResource(id = R.drawable.search_icon),
+                painter = painterResource(id = R.drawable.ic_search),
                 contentDescription = "Search Icon"
             )
         },
@@ -66,7 +64,7 @@ fun SearchField(
                     modifier = Modifier.clickable {
                         onClear()
                     },
-                    painter = painterResource(id = R.drawable.cancel_icon),
+                    painter = painterResource(id = R.drawable.ic_cancel),
                     contentDescription = "cancel",
                     tint = Gray
                 )
