@@ -7,6 +7,8 @@ The Cendakala application uses Google Cloud Platform Services to share and store
 - Google Cloud Account
 
 ## Cloud Architecture
+<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/0c1b1db1-0bf1-473a-aa48-658ce9ef3c5a"></p>
+<p align="center">Architecture Illustration</p>
 
 ## 1. Setup Google Cloud Platform
 - Create Project & Configure Identity and Access Management
@@ -37,3 +39,4 @@ The Cendakala application uses Google Cloud Platform Services to share and store
 
 ## 6. REST-API
 - For API Documentation, see the following link : [API Documentation](https://docs.google.com/document/d/1y4ClCsz6hy0ygxJ8HvCwDNeSdZL8LUDqe-rE3bVlZBY/edit?usp=sharing)
+<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/734b51fd-211f-49ef-b934-ea3c9caf24ad"></p>
