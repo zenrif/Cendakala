@@ -61,7 +61,7 @@ fun CardSurveyRow(
                 style = MaterialTheme.typography.headlineSmall,
             )
         }
-        Column() {
+        Column {
             Divider(
                 color = Black2,
                 thickness = 2.dp,

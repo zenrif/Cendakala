@@ -10,6 +10,7 @@ import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.zen.cendakala.data.Result
 import com.zen.cendakala.data.model.Question
+import com.zen.cendakala.data.model.RegisterModel
 import com.zen.cendakala.data.model.SurveyModel
 import com.zen.cendakala.data.responses.CreateSurveyResponse
 import com.zen.cendakala.data.responses.GeneralResponse
@@ -27,6 +28,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Response
 
 class AuthRepository (
     private val pref: UserPreference, private val apiService: ApiServices
@@ -34,16 +36,17 @@ class AuthRepository (
     fun login(
         email: String,
         password: String
-    ): LiveData<Result<LoginResponse>> = liveData {
+    ): LiveData<Result<Response<LoginResponse>>> = liveData {
+        emit(Result.Loading)
         try {
             val response = apiService.login(
                 email,
                 password
             )
-            if (response.status == "401") {
-                emit(Result.Error(response))
-            } else {
+            if (response.isSuccessful) {
                 emit(Result.Success(response))
+            } else {
+                emit(Result.Error(response))
             }
         } catch (e: Exception) {
             emit(Result.Failure(e))
@@ -57,20 +60,24 @@ class AuthRepository (
         job: String,
         gender: String,
         interest: Map<String, String>
-    ): LiveData<Result<RegisterResponse>> = liveData {
+    ): LiveData<Result<Response<RegisterResponse>>> = liveData {
+        emit(Result.Loading)
         try {
-            val response = apiService.register(
-                name,
-                email,
-                password,
-                job,
-                gender,
-                interest
+            val registerModel = RegisterModel(
+                name = name,
+                email = email,
+                password = password,
+                job = job,
+                gender = gender,
+                interest = interest
             )
-            if (response.status == "Failed") {
-                emit(Result.Error(response))
-            } else {
+            val response = apiService.register(
+               registerModel = registerModel
+            )
+            if (response.isSuccessful) {
                 emit(Result.Success(response))
+            } else {
+                emit(Result.Error(response))
             }
         } catch (e: Exception) {
             emit(Result.Failure(e))

@@ -6,12 +6,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -48,6 +50,8 @@ import com.zen.cendakala.ui.components.PrimaryButton
 import com.zen.cendakala.ui.components.TextButtonCustom
 import com.zen.cendakala.ui.components.TextTitle
 import com.zen.cendakala.ui.theme.Black2
+import com.zen.cendakala.ui.theme.Color4
+import com.zen.cendakala.ui.theme.Color5
 import com.zen.cendakala.ui.theme.White2
 import com.zen.cendakala.utils.ViewModelFactory
 
@@ -175,7 +179,11 @@ fun RegisterScreen(navController: NavController) {
                 registerResult?.let { result ->
                     when (result) {
                         is Result.Success -> {
-                            RegisterViewModel.saveToken(context, result.data)
+                            result.data.body()?.token?.let {
+                                RegisterViewModel.saveToken(context,
+                                    it
+                                )
+                            }
                             navController.navigate(Routes.Home.routes) {
                                 popUpTo(navController.graph.startDestinationId)
                                 launchSingleTop = true
@@ -183,12 +191,23 @@ fun RegisterScreen(navController: NavController) {
                         }
 
                         is Result.Error -> {
-                            ErrorDialog(
-                                message = result.data.message ,
-                                image = R.drawable.error_form,
-                            )
+                            result.data.body()?.let {
+                                ErrorDialog(
+                                    message = it.message ,
+                                    image = R.drawable.error_form,
+                                )
+                            }
                         }
 
+                        is Result.Loading -> {
+//                            ProgressIndicatorDefaults.ProgressAnimationSpec.stiffness
+                            CircularProgressIndicator(
+                                modifier = Modifier
+                                    .size(50.dp)
+                                    .padding(10.dp),
+                                color = Color4,
+                            )
+                        }
                         else -> {}
                     }
                 }

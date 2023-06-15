@@ -33,7 +33,7 @@ data class User(
     val birthday: String,
     val uid: String,
     val gender: String,
-    val balance: Int,
+    val balance: String,
     val interest: Map<String, String>,
     val name: String,
     val history: Map<String, Int>,

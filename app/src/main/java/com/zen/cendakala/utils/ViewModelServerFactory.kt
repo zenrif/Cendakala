@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.zen.cendakala.data.repositories.SurveyRepository
 import com.zen.cendakala.di.Injection
+import com.zen.cendakala.ui.history.HistoryViewModel
 import com.zen.cendakala.ui.home.HomeViewModel
 import com.zen.cendakala.ui.profile.ProfileViewModel
 import com.zen.cendakala.ui.survey.create.CreateSurveyViewModel
@@ -29,6 +30,9 @@ class ViewModelServerFactory private constructor(private val repo: SurveyReposit
         }
         if (modelClass.isAssignableFrom(SurveyFillViewModel::class.java)) {
             return SurveyFillViewModel(repo) as T
+        }
+        if (modelClass.isAssignableFrom(HistoryViewModel::class.java)) {
+            return HistoryViewModel(repo) as T
         }
         if (modelClass.isAssignableFrom(ProfileViewModel::class.java)) {
             return ProfileViewModel(repo) as T

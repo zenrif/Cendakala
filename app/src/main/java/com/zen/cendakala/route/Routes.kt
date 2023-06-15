@@ -18,5 +18,7 @@ sealed class Routes(val routes: String) {
     object Success : Routes("success")
     object History : Routes("history")
     object Wallet : Routes("wallet")
+    object Topup : Routes("topup")
     object Profile : Routes("profile")
+    object PaymentSuccess : Routes("paymentSuccess")
 }

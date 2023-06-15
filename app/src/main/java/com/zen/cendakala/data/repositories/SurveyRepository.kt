@@ -10,6 +10,7 @@ import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.zen.cendakala.data.Result
 import com.zen.cendakala.data.model.Answer
+import com.zen.cendakala.data.model.AnswerModel
 import com.zen.cendakala.data.model.Question
 import com.zen.cendakala.data.model.SurveyModel
 import com.zen.cendakala.data.responses.CreateSurveyResponse
@@ -21,6 +22,8 @@ import com.zen.cendakala.data.responses.SurveyByIdResponse
 import com.zen.cendakala.data.responses.SurveyResponse
 import com.zen.cendakala.data.responses.TokenResponse
 import com.zen.cendakala.data.responses.UserResponse
+import com.zen.cendakala.data.source.HistoryPagingSource
+import com.zen.cendakala.data.source.HistoryRemoteMediator
 import com.zen.cendakala.data.source.SurveyAllPagingSource
 import com.zen.cendakala.data.source.SurveyAllRemoteMediator
 import com.zen.cendakala.data.source.SurveyPagingSource
@@ -70,6 +73,16 @@ class SurveyRepository (
         remoteMediator = SurveyAllRemoteMediator(pref, apiService),
         pagingSourceFactory = {
             SurveyAllPagingSource(pref, apiService)
+        }
+    ).flow
+    @OptIn(ExperimentalPagingApi::class)
+    fun getHistory() = Pager(
+        config = PagingConfig(
+            pageSize = 5,
+        ),
+        remoteMediator = HistoryRemoteMediator(pref, apiService),
+        pagingSourceFactory = {
+            HistoryPagingSource(pref, apiService)
         }
     ).flow
     fun cekToken(): LiveData<Result<Response<TokenResponse>>> = liveData {
@@ -155,11 +168,14 @@ class SurveyRepository (
         reward: Long
     ): LiveData<Result<GeneralResponse>> = liveData {
         try {
+            val answer = AnswerModel(
+                answers = answers,
+                reward = reward,
+                surveyID = surveyID
+            )
             val response = apiService.submitAnswer(
                 authtoken = "${pref.getUser().token}",
-                surveyID = surveyID,
-                answers = answers,
-                reward = reward
+                answer = answer
             )
             if (response.status == "Failed") {
                 emit(Result.Error(response))

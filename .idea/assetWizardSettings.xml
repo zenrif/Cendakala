@@ -33,8 +33,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_next" />
-                            <entry key="sourceFile" value="C:\Users\Zen\Downloads\image 1.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="cek_logo" />
+                            <entry key="sourceFile" value="C:\Users\Zen\Downloads\Group 529.svg" />
                           </map>
                         </option>
                       </PersistentState>

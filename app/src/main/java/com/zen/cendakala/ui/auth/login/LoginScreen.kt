@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -37,6 +38,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import com.zen.cendakala.data.Result
 import com.zen.cendakala.route.Routes
 import com.zen.cendakala.ui.components.ErrorDialog
+import com.zen.cendakala.ui.theme.Color4
 
 
 @Composable
@@ -125,7 +127,7 @@ fun LoginScreen(navController: NavController) {
                 loginResult?.let { result ->
                     when (result) {
                         is Result.Success -> {
-                            LoginViewModel.saveToken(context, result.data)
+                            result.data.body()?.let { LoginViewModel.saveToken(context, it.token) }
                             navController.navigate(Routes.Home.routes) {
                                 popUpTo(navController.graph.startDestinationId)
                                 launchSingleTop = true
@@ -133,13 +135,13 @@ fun LoginScreen(navController: NavController) {
                         }
 
                         is Result.Error -> {
-                            val errorMessage = result.data
-                            println(errorMessage)
-                            loginResult?.let {
-                                Text(text = it.toString())
-                            }
+//                            val errorMessage = result.data
+//                            println(errorMessage)
+//                            loginResult?.let {
+//                                Text(text = it.toString())
+//                            }
                             ErrorDialog(
-                                message = result.data.message ,
+                                message = result.data.body()?.message ?: "Error" ,
                                 image = R.drawable.error_form,
                             )
                         }
@@ -151,7 +153,14 @@ fun LoginScreen(navController: NavController) {
                             )
                         }
 
-                        else -> {}
+                        is Result.Loading -> {
+                            CircularProgressIndicator(
+                                modifier = Modifier
+                                    .size(50.dp)
+                                    .padding(10.dp),
+                                color = Color4,
+                            )
+                        }
                     }
                 }
                 Spacer(modifier = Modifier.padding(16.dp))

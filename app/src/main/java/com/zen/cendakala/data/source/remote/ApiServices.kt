@@ -1,7 +1,9 @@
 package com.zen.cendakala.data.source.remote
 
 import com.zen.cendakala.data.model.Answer
+import com.zen.cendakala.data.model.AnswerModel
 import com.zen.cendakala.data.model.Question
+import com.zen.cendakala.data.model.RegisterModel
 import com.zen.cendakala.data.responses.CreateSurveyResponse
 import com.zen.cendakala.data.responses.GeneralResponse
 import com.zen.cendakala.data.responses.LoginResponse
@@ -21,18 +23,12 @@ interface ApiServices {
     suspend fun login(
         @Field("email") email: String,
         @Field("password") password: String
-    ): LoginResponse
+    ): Response<LoginResponse>
 
-    @FormUrlEncoded
     @POST("authentication/signup")
     suspend fun register(
-        @Field("name") name: String,
-        @Field("email") email: String,
-        @Field("password") password: String,
-        @Field("job") job: String,
-        @Field("gender") gender: String,
-        @Field("interest") interest: Map<String, String>
-    ): RegisterResponse
+        @Body registerModel: RegisterModel
+    ): Response<RegisterResponse>
 
     @FormUrlEncoded
     @POST("surveys/create")
@@ -79,12 +75,14 @@ interface ApiServices {
         @Header("authtoken") authtoken: String,
     ): Response<UserResponse>
 
-    @FormUrlEncoded
+    @GET("surveys/read/all")
+    suspend fun history(
+        @Header("authtoken") authtoken: String,
+    ): Response<SurveyResponse>
+
     @POST("response/create")
     suspend fun submitAnswer(
         @Header("authtoken") authtoken: String,
-        @Field("answers") answers: Map<String, Answer>,
-        @Field("surveyID") surveyID: String,
-        @Field("reward") reward: Long
+        @Body answer: AnswerModel
     ): GeneralResponse
 }

@@ -168,7 +168,7 @@ fun InterestScreen(navController: NavController) {
                 registerResult?.let { result ->
                     when (result) {
                         is Result.Success -> {
-                            RegisterViewModel.saveToken(context, result.data)
+                            RegisterViewModel.saveToken(context, result.data.body()?.token.toString())
                             navController.navigate(Routes.Home.routes) {
                                 popUpTo(navController.graph.startDestinationId)
                                 launchSingleTop = true
@@ -176,10 +176,12 @@ fun InterestScreen(navController: NavController) {
                         }
 
                         is Result.Error -> {
-                            ErrorDialog(
-                                message = result.data.message,
-                                image = R.drawable.error_form,
-                            )
+                            result.data.body()?.let {
+                                ErrorDialog(
+                                    message = it.message,
+                                    image = R.drawable.error_form,
+                                )
+                            }
                         }
 
                         else -> {}

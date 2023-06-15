@@ -407,10 +407,11 @@ fun SurveyDetailScreen(
                                     }
                                 }
                                 if (result.data.survey.sell){
-                                    Row() {
+                                    Row {
                                         SecondaryButton(
                                             text = stringResource(id = R.string.buy),
                                             onClickButton = {
+                                                navController.navigate(Routes.PaymentSuccess.routes)
                                             },
                                             modifier = Modifier
                                                 .fillMaxWidth()

@@ -14,6 +14,7 @@ import com.zen.cendakala.data.responses.LoginResponse
 import com.zen.cendakala.data.rules.Validator
 import com.zen.cendakala.data.source.local.UserPreference
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class LoginViewModel (
     private val repo: AuthRepository
@@ -27,8 +28,8 @@ class LoginViewModel (
 
     var loginInProgress = mutableStateOf(false)
 
-    private val _loginResult = mutableStateOf<LiveData<Result<LoginResponse>>>(liveData { })
-    val loginResult: LiveData<Result<LoginResponse>>
+    private val _loginResult = mutableStateOf<LiveData<Result<Response<LoginResponse>>>>(liveData { })
+    val loginResult: LiveData<Result<Response<LoginResponse>>>
         get() = _loginResult.value
 
 
@@ -89,10 +90,10 @@ class LoginViewModel (
     }
 
     companion object {
-        fun saveToken(context: Context, loginResponse: LoginResponse) {
+        fun saveToken(context: Context, token: String) {
             val userPreference = UserPreference(context)
             val loginModel = LoginModel(
-                token = loginResponse.token
+                token = token
             )
 
             userPreference.setLogin(loginModel)

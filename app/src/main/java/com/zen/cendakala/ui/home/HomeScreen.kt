@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -25,7 +26,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -43,6 +46,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.zen.cendakala.R
 import com.zen.cendakala.route.Routes
@@ -148,8 +152,25 @@ fun HomeScreen(
                             .fillMaxWidth()
                             .background(color = White2)
                             .padding(bottom = 16.dp),
-                        horizontalArrangement = Arrangement.SpaceAround
+                        state = rowState,
+                        horizontalArrangement = Arrangement.SpaceAround,
                     ) {
+                        if (recomSurveys.loadState.refresh is LoadState.Loading) {
+                            item (key = "prepend_loading") {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(160.dp)
+                                        .padding(top = 24.dp, bottom = 24.dp)
+                                ) {
+                                    CircularProgressIndicator(
+                                        modifier = Modifier
+                                            .align(Alignment.Center),
+                                        color = Color4,
+                                    )
+                                }
+                            }
+                        }
                         items(
                             count = recomSurveys.itemCount,
                             key = { index -> recomSurveys[index]?.surveyID ?: index }
@@ -199,6 +220,22 @@ fun HomeScreen(
                     state = columnState,
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
+                    if (surveys.loadState.refresh is LoadState.Loading) {
+                        item (key = "prepend_loading") {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(160.dp)
+                                    .padding(top = 24.dp, bottom = 24.dp)
+                            ) {
+                                CircularProgressIndicator(
+                                    modifier = Modifier
+                                        .align(Alignment.Center),
+                                    color = Color4,
+                                )
+                            }
+                        }
+                    }
                     items(
                         count = surveys.itemCount,
                         key = { index -> surveys[index]?.surveyID ?: index }
@@ -227,58 +264,6 @@ fun HomeScreen(
                     }
                 }
             }
-//            Column(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(top = 40.dp)
-//            ) {
-//                Text(
-//                    text = stringResource(id = R.string.available_data),
-//                    style = MaterialTheme.typography.bodyLarge,
-//                    color = Black2,
-//                    modifier = Modifier
-//                        .padding(start = 38.dp)
-//                )
-//                LazyColumn(
-//                    modifier = Modifier
-//                        .fillMaxSize()
-//                        .background(color = White2)
-//                        .padding(
-//                            top = 16.dp,
-//                            bottom = paddingValuesBottom.calculateBottomPadding()
-//                        ),
-//                    state = columnState,
-//                    verticalArrangement = Arrangement.spacedBy(16.dp)
-//                ) {
-//                    items(
-//                        count = surveys.itemCount,
-//                        key = { index -> surveys[index]?.surveyID ?: index }
-//                    ) { index ->
-//                        Box(
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .fillMaxHeight()
-//                                .background(color = White2)
-//                        ) {
-//                            CardSurvey(
-//                                title = surveys[index]?.title ?: "",
-//                                category1 = surveys[index]?.category1 ?: "",
-//                                category2 = surveys[index]?.category2 ?: "",
-//                                quota = surveys[index]?.quota ?: 0,
-//                                reward = surveys[index]?.reward ?: 0,
-//                                modifier = Modifier
-//                                    .fillMaxWidth()
-//                                    .fillMaxHeight()
-//                                    .padding(top = 0.dp, bottom = 0.dp, start = 26.dp, end = 26.dp)
-//                                    .clickable {
-//                                        navController.navigate(Routes.Detail.createRoute(surveys[index]?.surveyID ?: ""))
-//
-//                                    },
-//                            )
-//                        }
-//                    }
-//                }
-//            }
         }
     }
 }

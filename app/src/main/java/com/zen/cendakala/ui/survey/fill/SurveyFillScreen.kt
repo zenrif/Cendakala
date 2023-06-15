@@ -103,27 +103,37 @@ fun SurveyFillScreen(navController: NavController, surveyID: String){
                                 text = stringResource(id = R.string.submit),
                                 onClickButton = {
                                     detailViewModel.submitAnswer(surveyID = surveyID, reward = result.data.survey.reward)
+                                    navController.navigate(Routes.Success.routes) {
+                                        popUpTo(navController.graph.startDestinationId)
+                                        launchSingleTop = true
+                                    }
                                 },
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(start = 32.dp, end = 32.dp, bottom = 26.dp),
+                                    .padding(top = 26.dp,start = 32.dp, end = 32.dp, bottom = 26.dp),
                             )
-                            answerResult?.let { result ->
-                                when (result) {
-                                    is Result.Success -> {
-                                        navController.navigate(Routes.Success.routes) {
-                                            popUpTo(navController.graph.startDestinationId)
-                                            launchSingleTop = true
-                                        }
-                                    }
-                                    else -> {
-                                        ErrorDialog(
-                                            message = "Something went wrong, please try again later." ,
-                                            image = R.drawable.error_form,
-                                        )
-                                    }
-                                }
-                            }
+//                            answerResult?.let { result ->
+//                                when (result) {
+//                                    is Result.Success -> {
+//                                        navController.navigate(Routes.Success.routes) {
+//                                            popUpTo(navController.graph.startDestinationId)
+//                                            launchSingleTop = true
+//                                        }
+//                                    }
+//                                    is Result.Error -> {
+//                                        ErrorDialog(
+//                                            message = result.data.message,
+//                                            image = R.drawable.error_form,
+//                                        )
+//                                    }
+//                                    else -> {
+//                                            ErrorDialog(
+//                                                message = "Error",
+//                                                image = R.drawable.error_form,
+//                                            )
+//                                    }
+//                                }
+//                            }
                         }
                     }
                     is Result.Error -> {

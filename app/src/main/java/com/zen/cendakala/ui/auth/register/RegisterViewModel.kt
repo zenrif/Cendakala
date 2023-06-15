@@ -15,6 +15,7 @@ import com.zen.cendakala.data.responses.RegisterResponse
 import com.zen.cendakala.data.rules.Validator
 import com.zen.cendakala.data.source.local.UserPreference
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 
 class RegisterViewModel (
@@ -27,8 +28,8 @@ class RegisterViewModel (
 
     var allValidationsPassed = mutableStateOf(false)
 
-    private val _registerResult = mutableStateOf<LiveData<Result<RegisterResponse>>>(liveData { })
-    val registerResult: LiveData<Result<RegisterResponse>>
+    private val _registerResult = mutableStateOf<LiveData<Result<Response<RegisterResponse>>>>(liveData { })
+    val registerResult: LiveData<Result<Response<RegisterResponse>>>
         get() = _registerResult.value
 
     fun onEvent(event: RegisterUIEvent) {
@@ -144,10 +145,10 @@ class RegisterViewModel (
     }
 
     companion object {
-        fun saveToken(context: Context, registerResponse: RegisterResponse) {
+        fun saveToken(context: Context, token: String) {
             val userPreference = UserPreference(context)
             val loginModel = LoginModel(
-                token = registerResponse.token
+                token = token
             )
 
             userPreference.setLogin(loginModel)

@@ -22,7 +22,7 @@ data class Question(
 data class AnswerModel(
     val answers: Map<String, Answer>,
     val surveyID: String,
-    val reward: Int
+    val reward: Long
 )
 
 data class Answer(

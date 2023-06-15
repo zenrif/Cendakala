@@ -94,8 +94,26 @@ fun SurveyFillChoiceScreen(number: String, question: Question){
                         text = it.value,
                         selected = currentAnswer.choice == it.key && currentAnswer.answer == it.value,
                         onOptionSelected = {
+                            val choice = ""
+                            when (it.key) {
+                                "1" -> {
+                                    choice.plus("A")
+                                }
+                                "2" -> {
+                                    choice.plus("B")
+                                }
+                                "3" -> {
+                                    choice.plus("C")
+                                }
+                                "4" -> {
+                                    choice.plus("D")
+                                }
+                                "5" -> {
+                                    choice.plus("E")
+                                }
+                            }
                             viewModel.updateAnswer(Answer(question.type, it.key, it.value))
-                            viewModel.saveAnswer(number, Answer(question.type, it.key, it.value))
+                            viewModel.saveAnswer(number, Answer(question.type, choice, it.value))
                                            },
                         modifier = Modifier
                             .padding(bottom = 8.dp),

@@ -29,10 +29,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.zen.cendakala.R
-import com.zen.cendakala.data.Result
 import com.zen.cendakala.data.source.local.UserPreference
 import com.zen.cendakala.route.Routes
-import com.zen.cendakala.ui.auth.login.LoginViewModel
 import com.zen.cendakala.ui.components.ErrorDialog
 import com.zen.cendakala.ui.theme.Color1
 import com.zen.cendakala.utils.ViewModelServerFactory
@@ -117,7 +115,7 @@ fun SplashScreen(navController: NavController) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.logo),
+                    painter = painterResource(id = R.drawable.logo_cendakala),
                     contentDescription = "logo",
                     modifier = Modifier
                         .padding(24.dp),

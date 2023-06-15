@@ -23,8 +23,10 @@ import com.zen.cendakala.ui.auth.login.LoginScreen
 import com.zen.cendakala.ui.auth.register.InterestScreen
 import com.zen.cendakala.ui.auth.register.RegisterScreen
 import com.zen.cendakala.ui.components.BottomNavigationBar
+import com.zen.cendakala.ui.history.HistorySurveyScreen
 import com.zen.cendakala.ui.home.HomeScreen
 import com.zen.cendakala.ui.home.SplashScreen
+import com.zen.cendakala.ui.payment.PaymentSuccessScreen
 import com.zen.cendakala.ui.profile.ProfileScreen
 import com.zen.cendakala.ui.survey.create.SurveyCreateOverviewScreen
 import com.zen.cendakala.ui.survey.SurveyScreen
@@ -35,6 +37,8 @@ import com.zen.cendakala.ui.survey.fill.SurveyFillEssayScreen
 import com.zen.cendakala.ui.survey.fill.SurveyFillScreen
 import com.zen.cendakala.ui.survey.fill.SurveyFillSuccessScreen
 import com.zen.cendakala.ui.theme.CendakalaTheme
+import com.zen.cendakala.ui.wallet.TopupScreen
+import com.zen.cendakala.ui.wallet.WalletScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +64,7 @@ fun Dashboard(navController: NavHostController = rememberNavController()) {
     val currentRoute = navBackStackEntry?.destination?.route
 
     Scaffold(bottomBar = {
-        if (currentRoute != Routes.Splash.routes && currentRoute != Routes.Login.routes && currentRoute != Routes.Register.routes && currentRoute != Routes.Interest.routes && currentRoute != Routes.Detail.routes && currentRoute != Routes.SurveyFill.routes && currentRoute != Routes.SurveyCreateOverview.routes && currentRoute != Routes.SurveyCreateQuestion.routes ) {
+        if (currentRoute != Routes.Splash.routes && currentRoute != Routes.Login.routes && currentRoute != Routes.Register.routes && currentRoute != Routes.Interest.routes && currentRoute != Routes.Detail.routes && currentRoute != Routes.SurveyFill.routes && currentRoute != Routes.SurveyCreateOverview.routes && currentRoute != Routes.SurveyCreateQuestion.routes && currentRoute != Routes.Success.routes && currentRoute != Routes.Topup.routes && currentRoute != Routes.PaymentSuccess.routes) {
             BottomNavigationBar(navController)
         }
     }) { paddingValues ->
@@ -108,6 +112,18 @@ fun Dashboard(navController: NavHostController = rememberNavController()) {
             }
             composable(Routes.Success.routes) {
                 SurveyFillSuccessScreen(navController = navController)
+            }
+            composable(Routes.History.routes) {
+                HistorySurveyScreen(navController = navController, paddingValuesBottom = paddingValues)
+            }
+            composable(Routes.Wallet.routes) {
+                WalletScreen(navController = navController, paddingValuesBottom = paddingValues)
+            }
+            composable(Routes.Topup.routes) {
+                TopupScreen(navController = navController)
+            }
+            composable(Routes.PaymentSuccess.routes) {
+                PaymentSuccessScreen(navController = navController)
             }
         }
     }

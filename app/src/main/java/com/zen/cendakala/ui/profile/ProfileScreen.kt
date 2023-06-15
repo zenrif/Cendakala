@@ -23,9 +23,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.zen.cendakala.R
 import com.zen.cendakala.data.Result
 import com.zen.cendakala.route.Routes
@@ -82,8 +84,7 @@ fun ProfileScreen(
                                 .fillMaxWidth()
                                 .verticalScroll(rememberScrollState()),
                             horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Bottom
-
+                            verticalArrangement = Arrangement.SpaceAround
                         ) {
                             Spacer(modifier = Modifier.padding(120.dp))
                             OutlinedTextFieldCustom(
@@ -123,42 +124,29 @@ fun ProfileScreen(
                                 iconParam = R.drawable.ic_job,
                                 iconContentDescription = "job_icon",
                             )
-
-//                loginResult?.let { result ->
-//                    when (result) {
-//                        is Result.Success -> {
-//                            LoginViewModel.saveToken(context, result.data)
-//                            navController.navigate(Routes.Home.routes) {
-//                                popUpTo(navController.graph.startDestinationId)
-//                                launchSingleTop = true
-//                            }
-//                        }
-//
-//                        is Result.Error -> {
-//                            val errorMessage = result.data
-//                            println(errorMessage)
-//                            loginResult?.let {
-//                                Text(text = it.toString())
-//                            }
-//                            ErrorDialog(
-//                                message = result.data.message ,
-//                                image = R.drawable.error_form,
-//                            )
-//                        }
-//
-//                        is Result.Failure -> {
-//                            ErrorDialog(
-//                                message = result.exception.message ?: "Error" ,
-//                                image = R.drawable.error_form,
-//                            )
-//                        }
-//
-//                        else -> {}
-//                    }
-//                }
-
+                            Spacer(modifier = Modifier.padding(20.dp))
+                            PrimaryButton(
+                                text = stringResource(id = R.string.edit_profile),
+                                onClickButton = {
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(start = 32.dp, end = 32.dp),
+                            )
+                            SecondaryButton(
+                                text = stringResource(id = R.string.logout),
+                                onClickButton = {
+                                    profileViewModel.logout(context)
+                                    navController.navigate(Routes.Login.routes) {
+                                        popUpTo(navController.graph.startDestinationId)
+                                        launchSingleTop = true
+                                    }
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(start = 32.dp, end = 32.dp),
+                            )
                         }
-
                     }
 
                     is Result.Error -> {
@@ -184,28 +172,12 @@ fun ProfileScreen(
                     }
                 }
             }
-            Spacer(modifier = Modifier.padding(40.dp))
-            PrimaryButton(
-                text = stringResource(id = R.string.edit_profile),
-                onClickButton = {
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 32.dp, end = 32.dp),
-            )
-            SecondaryButton(
-                text = stringResource(id = R.string.logout),
-                onClickButton = {
-                    profileViewModel.logout(context)
-                    navController.navigate(Routes.Login.routes) {
-                        popUpTo(navController.graph.startDestinationId)
-                        launchSingleTop = true
-                    }
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 32.dp, end = 32.dp),
-            )
         }
     }
+}
+
+@Preview
+@Composable
+fun PreviewProfileScreen() {
+    ProfileScreen(navController = rememberNavController(), paddingValuesBottom = PaddingValues())
 }
