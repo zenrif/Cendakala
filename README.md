@@ -48,11 +48,7 @@ Many researchers are confused about where they can get respondents to fulfill th
 
 This project aims to make it easier for researchers to find the right respondent data according to the interests of each respondent. We hope a platform can simplify the process of filling out and submitting questionnaires.
 </p>
-<h2>App Overview</h2>
-<h3>Project Architecture</h3>
-<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/b7df1e83-755a-45f9-ae49-e7b27ab6bf8b"></p>
-<h3>Cendakala App</h3>
-<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/503c538b-eca7-4bf6-9301-cdb3dc720eb7"></p>
+
 <h2>Documentation</h2>
 <h3>Machine Learning Development Documentation</h3>
 <a href="https://github.com/zenrif/Cendakala/tree/model">Here for Machine Learning Documentation</a>
@@ -63,7 +59,6 @@ This project aims to make it easier for researchers to find the right respondent
 <h3>REST API Documentation</h3>
 <a href="https://docs.google.com/document/d/1y4ClCsz6hy0ygxJ8HvCwDNeSdZL8LUDqe-rE3bVlZBY/edit#heading=h.fw2lbufe8uxb">Here for REST API Documentation</a>
 <p> </p>
-<p align="center"><img src="https://github.com/zenrif/Cendakala/assets/101646114/b3434c28-7c29-49d1-b8e1-96793455b9c7"></p>
 <h2>Contact</h2>
 
 | Name                         | Contact                                                                                                                                                                                                                                                                                      |
