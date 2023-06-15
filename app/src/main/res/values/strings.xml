@@ -27,4 +27,13 @@
     <string name="description">Description</string>
     <string name="fill">Fill</string>
     <string name="buy">Buy</string>
+    <string name="question">Question</string>
+    <string name="next">Next</string>
+    <string name="survey">Survey</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="submit">Submit</string>
+    <string name="survey_fill_success">You have filled out this survey!</string>
+    <string name="back_to_home">Back to Homepage</string>
 </resources>

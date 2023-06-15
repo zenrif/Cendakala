@@ -83,3 +83,42 @@ class SurveyRecomRemoteMediator(
         const val INITIAL_PAGE_INDEX = 1
     }
 }
+
+
+@OptIn(ExperimentalPagingApi::class)
+class SurveyAllRemoteMediator(
+    private val pref: UserPreference,
+    private val apiService: ApiServices
+) : RemoteMediator<Int, Survey>() {
+
+    override suspend fun initialize(): InitializeAction {
+        return InitializeAction.LAUNCH_INITIAL_REFRESH
+    }
+
+    override suspend fun load(
+        loadType: LoadType,
+        state: PagingState<Int, Survey>
+    ): MediatorResult {
+        val page = INITIAL_PAGE_INDEX
+        val token = pref.getUser().token.toString()
+
+        try {
+            val responseData = token.let { apiService.allSurvey(
+                it,
+            ) }
+
+            return if (responseData.isSuccessful) {
+                val endOfPaginationReached = responseData.body()!!.surveys.isEmpty()
+                MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
+            } else {
+                MediatorResult.Error(Exception("Failed load survey"))
+            }
+        } catch (exception: Exception) {
+            return MediatorResult.Error(exception)
+        }
+    }
+
+    private companion object {
+        const val INITIAL_PAGE_INDEX = 1
+    }
+}

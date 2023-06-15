@@ -49,7 +49,7 @@ fun OutlinedTextFieldSurvey (
         onValueChange = {
             text.value = it
             onTextChanged(it) },
-        shape = RoundedCornerShape(topEnd =12.dp, bottomStart =12.dp),
+        shape = RoundedCornerShape(20.dp),
         label = {
             Text(text = labelText,
                 color = Black2,

@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialiconsoutlined/filter_alt/outline_filter_alt_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialiconsoutlined/navigate_next/outline_navigate_next_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,7 +33,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_filter" />
+                            <entry key="outputName" value="ic_next" />
                             <entry key="sourceFile" value="C:\Users\Zen\Downloads\image 1.svg" />
                           </map>
                         </option>

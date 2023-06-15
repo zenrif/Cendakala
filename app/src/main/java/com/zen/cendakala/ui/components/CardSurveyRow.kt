@@ -48,7 +48,12 @@ fun CardSurveyRow(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(6.dp),
+                .padding(
+                    top = 8.dp,
+                    bottom = 8.dp,
+                    start = 16.dp,
+                    end = 16.dp
+                ),
         ) {
             Text(
                 text = title,

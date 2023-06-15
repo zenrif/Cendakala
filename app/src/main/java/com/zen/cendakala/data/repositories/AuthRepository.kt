@@ -40,7 +40,7 @@ class AuthRepository (
                 email,
                 password
             )
-            if (response.status == "Failed") {
+            if (response.status == "401") {
                 emit(Result.Error(response))
             } else {
                 emit(Result.Success(response))

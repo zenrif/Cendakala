@@ -32,7 +32,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,7 +41,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.zen.cendakala.R
 import com.zen.cendakala.data.Result
-import com.zen.cendakala.ui.auth.login.LoginUIEvent
+import com.zen.cendakala.route.Routes
 import com.zen.cendakala.ui.components.ErrorDialog
 import com.zen.cendakala.ui.components.PrimaryButton
 import com.zen.cendakala.ui.components.SecondaryButton
@@ -65,6 +64,7 @@ fun SurveyDetailScreen(
     val detailViewModel: SurveyDetailViewModel= viewModel(factory = factory)
     val detailResult by detailViewModel.detailResult.observeAsState()
 
+    var click = {}
 
     LaunchedEffect(key1 = surveyID) {
         detailViewModel.getById(surveyID)
@@ -390,10 +390,7 @@ fun SurveyDetailScreen(
                                         style = MaterialTheme.typography.labelSmall,
                                     )
                                 }
-                                Text(
-                                    text = "Status : ${result.data.survey.finished} & ${result.data.survey.sell}",
-                                )
-                                if (result.data.survey.finished){
+                                if (!result.data.survey.finished){
                                     Row(
                                         modifier = Modifier
                                             .padding(top = 8.dp, bottom = 8.dp),
@@ -401,10 +398,11 @@ fun SurveyDetailScreen(
                                         PrimaryButton(
                                             text = stringResource(id = R.string.fill),
                                             onClickButton = {
+                                                navController.navigate(Routes.SurveyFill.createRoute(result.data.survey.surveyID))
                                             },
                                             modifier = Modifier
                                                 .fillMaxWidth()
-                                                .padding(start = 32.dp, end = 32.dp, bottom = 50.dp),
+                                                .padding(start = 32.dp, end = 32.dp, bottom = 26.dp),
                                         )
                                     }
                                 }

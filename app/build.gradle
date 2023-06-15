@@ -82,6 +82,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.11.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
     implementation "androidx.datastore:datastore-preferences:1.0.0"
     implementation "androidx.paging:paging-compose:1.0.0-alpha20"
     implementation "androidx.compose.runtime:runtime-livedata:1.4.3"
@@ -97,9 +98,4 @@ dependencies {
 
     implementation "androidx.paging:paging-runtime:3.2.0-beta01"
     implementation "androidx.paging:paging-compose:3.2.0-beta01"
-
-    // DI
-    implementation "com.google.dagger:hilt-android:2.46.1"
-    annotationProcessor "com.google.dagger:hilt-android-compiler:2.44.2"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
 }

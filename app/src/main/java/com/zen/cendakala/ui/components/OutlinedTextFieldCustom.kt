@@ -38,7 +38,8 @@ fun OutlinedTextFieldCustom (
     iconParam: Int,
     iconContentDescription: String,
     onTextChanged: (String) -> Unit,
-    errorStatus: Boolean = false
+    errorStatus: Boolean = false,
+    isEnable: Boolean = true,
     ){
     val keyboardController = LocalSoftwareKeyboardController.current
     val text = rememberSaveable { mutableStateOf("") }
@@ -51,7 +52,7 @@ fun OutlinedTextFieldCustom (
         shape = RoundedCornerShape(topEnd =12.dp, bottomStart =12.dp),
         label = {
             Text(text = labelText,
-                color = SoftGray,
+                color = Black2,
                 style = MaterialTheme.typography.labelMedium,
             ) },
         placeholder = { Text(placeholderText, letterSpacing = Constants.LETTER_SPACING.sp) },
@@ -71,7 +72,8 @@ fun OutlinedTextFieldCustom (
         },
         singleLine = true,
         modifier = Modifier.fillMaxWidth(0.8f),
-        isError = !errorStatus
+        isError = !errorStatus,
+        enabled = isEnable
 //        isError = errorStatus
     )
 }

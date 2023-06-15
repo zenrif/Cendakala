@@ -7,13 +7,16 @@ sealed class Routes(val routes: String) {
     object Register : Routes("register")
     object Interest : Routes("interest")
     object Survey : Routes("survey")
-    object SurveyDetail : Routes("surveyDetail")
-    object SurveyCreateOverview : Routes("surveyCreateOverview")
-    object SurveyCreateQuestion : Routes("surveyCreateQuestion")
-    object History : Routes("history")
-    object Wallet : Routes("wallet")
-    object Profile : Routes("profile")
     object Detail : Routes("detail/{surveyID}") {
         fun createRoute(surveyID: String) = "detail/$surveyID"
     }
+    object SurveyFill : Routes("surveyFill/{surveyID}") {
+        fun createRoute(surveyID: String) = "surveyFill/$surveyID"
+    }
+    object SurveyCreateOverview : Routes("surveyCreateOverview")
+    object SurveyCreateQuestion : Routes("surveyCreateQuestion")
+    object Success : Routes("success")
+    object History : Routes("history")
+    object Wallet : Routes("wallet")
+    object Profile : Routes("profile")
 }

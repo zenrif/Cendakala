@@ -25,7 +25,15 @@ import com.zen.cendakala.ui.auth.register.RegisterScreen
 import com.zen.cendakala.ui.components.BottomNavigationBar
 import com.zen.cendakala.ui.home.HomeScreen
 import com.zen.cendakala.ui.home.SplashScreen
+import com.zen.cendakala.ui.profile.ProfileScreen
+import com.zen.cendakala.ui.survey.create.SurveyCreateOverviewScreen
+import com.zen.cendakala.ui.survey.SurveyScreen
+import com.zen.cendakala.ui.survey.create.SurveyCreateQuestionScreen
 import com.zen.cendakala.ui.survey.detail.SurveyDetailScreen
+import com.zen.cendakala.ui.survey.fill.SurveyFillChoiceScreen
+import com.zen.cendakala.ui.survey.fill.SurveyFillEssayScreen
+import com.zen.cendakala.ui.survey.fill.SurveyFillScreen
+import com.zen.cendakala.ui.survey.fill.SurveyFillSuccessScreen
 import com.zen.cendakala.ui.theme.CendakalaTheme
 
 class MainActivity : ComponentActivity() {
@@ -52,7 +60,7 @@ fun Dashboard(navController: NavHostController = rememberNavController()) {
     val currentRoute = navBackStackEntry?.destination?.route
 
     Scaffold(bottomBar = {
-        if (currentRoute != Routes.Splash.routes && currentRoute != Routes.Login.routes && currentRoute != Routes.Register.routes && currentRoute != Routes.Interest.routes && currentRoute != Routes.Detail.routes) {
+        if (currentRoute != Routes.Splash.routes && currentRoute != Routes.Login.routes && currentRoute != Routes.Register.routes && currentRoute != Routes.Interest.routes && currentRoute != Routes.Detail.routes && currentRoute != Routes.SurveyFill.routes && currentRoute != Routes.SurveyCreateOverview.routes && currentRoute != Routes.SurveyCreateQuestion.routes ) {
             BottomNavigationBar(navController)
         }
     }) { paddingValues ->
@@ -78,6 +86,28 @@ fun Dashboard(navController: NavHostController = rememberNavController()) {
             ) {
                 val surveyID = it.arguments?.getString("surveyID") ?: ""
                 SurveyDetailScreen(navController = navController, surveyID = surveyID)
+            }
+            composable(
+                Routes.SurveyFill.routes,
+                arguments = listOf(navArgument("surveyID") { type = NavType.StringType })
+            ) {
+                val surveyID = it.arguments?.getString("surveyID") ?: ""
+                SurveyFillScreen(navController = navController, surveyID = surveyID)
+            }
+            composable(Routes.Survey.routes) {
+                SurveyScreen(navController = navController, paddingValuesBottom = paddingValues)
+            }
+            composable(Routes.SurveyCreateOverview.routes) {
+                SurveyCreateOverviewScreen(navController = navController)
+            }
+            composable(Routes.SurveyCreateQuestion.routes) {
+                SurveyCreateQuestionScreen()
+            }
+            composable(Routes.Profile.routes) {
+                ProfileScreen(navController = navController, paddingValuesBottom = paddingValues)
+            }
+            composable(Routes.Success.routes) {
+                SurveyFillSuccessScreen(navController = navController)
             }
         }
     }

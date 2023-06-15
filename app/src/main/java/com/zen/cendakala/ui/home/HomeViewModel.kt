@@ -11,20 +11,18 @@ import androidx.paging.cachedIn
 import com.zen.cendakala.data.Result
 import com.zen.cendakala.data.model.LoginModel
 import com.zen.cendakala.data.repositories.SurveyRepository
-import com.zen.cendakala.data.responses.LoginResponse
 import com.zen.cendakala.data.responses.Survey
 import com.zen.cendakala.data.responses.TokenResponse
 import com.zen.cendakala.data.source.local.UserPreference
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import retrofit2.Response
 
 class HomeViewModel(
     private val repo: SurveyRepository
 ) : ViewModel() {
-    private val _tokenResult = mutableStateOf<LiveData<Result<TokenResponse>>>(liveData { })
-    val tokenResult: LiveData<Result<TokenResponse>>
+    private val _tokenResult = mutableStateOf<LiveData<Result<Response<TokenResponse>>>>(liveData { })
+    val tokenResult: LiveData<Result<Response<TokenResponse>>>
         get() = _tokenResult.value
     fun getSurveys(): Flow<PagingData<Survey>> = repo.getSurveys().cachedIn(viewModelScope)
 
@@ -37,10 +35,10 @@ class HomeViewModel(
     }
 
     companion object {
-        fun saveToken(context: Context, tokenResponse: TokenResponse) {
+        fun saveToken(context: Context, token: String) {
             val userPreference = UserPreference(context)
             val tokenModel = LoginModel(
-                token = tokenResponse.newToken.token
+                token = token
             )
 
             userPreference.setLogin(tokenModel)

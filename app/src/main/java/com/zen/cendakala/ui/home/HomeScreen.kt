@@ -16,6 +16,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.items
@@ -170,9 +172,10 @@ fun HomeScreen(
                                             end = 8.dp
                                         )
                                         .clickable {
-                                            navController.navigate(Routes.Detail.createRoute(surveys[index]?.surveyID ?: ""))
+                                            navController.navigate(Routes.Detail.createRoute(recomSurveys[index]?.surveyID ?: ""))
                                         }
-                                        .heightIn(100.dp,500.dp) ,
+                                        .widthIn(100.dp, 500.dp)
+                                        .heightIn(min = 100.dp, max = 500.dp)
                                 )
                             }
                         }

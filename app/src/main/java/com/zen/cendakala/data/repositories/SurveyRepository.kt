@@ -9,6 +9,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.zen.cendakala.data.Result
+import com.zen.cendakala.data.model.Answer
 import com.zen.cendakala.data.model.Question
 import com.zen.cendakala.data.model.SurveyModel
 import com.zen.cendakala.data.responses.CreateSurveyResponse
@@ -19,6 +20,9 @@ import com.zen.cendakala.data.responses.Survey
 import com.zen.cendakala.data.responses.SurveyByIdResponse
 import com.zen.cendakala.data.responses.SurveyResponse
 import com.zen.cendakala.data.responses.TokenResponse
+import com.zen.cendakala.data.responses.UserResponse
+import com.zen.cendakala.data.source.SurveyAllPagingSource
+import com.zen.cendakala.data.source.SurveyAllRemoteMediator
 import com.zen.cendakala.data.source.SurveyPagingSource
 import com.zen.cendakala.data.source.SurveyRecomPagingSource
 import com.zen.cendakala.data.source.SurveyRecomRemoteMediator
@@ -31,6 +35,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Response
 
 class SurveyRepository (
     private val pref: UserPreference, private val apiService: ApiServices
@@ -45,6 +50,7 @@ class SurveyRepository (
                 SurveyPagingSource(pref, apiService)
             }
         ).flow
+
     @OptIn(ExperimentalPagingApi::class)
     fun recomSurveys() = Pager(
             config = PagingConfig(
@@ -56,15 +62,25 @@ class SurveyRepository (
             }
         ).flow
 
-    fun cekToken(): LiveData<Result<TokenResponse>> = liveData {
+    @OptIn(ExperimentalPagingApi::class)
+    fun getAllSurveys() = Pager(
+        config = PagingConfig(
+            pageSize = 5,
+        ),
+        remoteMediator = SurveyAllRemoteMediator(pref, apiService),
+        pagingSourceFactory = {
+            SurveyAllPagingSource(pref, apiService)
+        }
+    ).flow
+    fun cekToken(): LiveData<Result<Response<TokenResponse>>> = liveData {
         try {
             val response = apiService.cekToken(
                 authtoken = "${pref.getUser().token}"
             )
-            if (response.status == "Failed") {
-                emit(Result.Error(response))
-            } else {
+            if (response.isSuccessful) {
                 emit(Result.Success(response))
+            } else {
+                emit(Result.Error(response))
             }
         } catch (e: Exception) {
             emit(Result.Failure(e))
@@ -117,21 +133,58 @@ class SurveyRepository (
             emit(Result.Failure(e))
         }
     }
+    fun getQuestionsById(surveyID: String): LiveData<Result<SurveyByIdResponse>> = liveData {
+        try {
+            val response = apiService.surveyById(
+                authtoken = "${pref.getUser().token}",
+                surveyID = surveyID
+            )
+            if (response.status == "Failed") {
+                emit(Result.Error(response))
+            } else {
+                emit(Result.Success(response))
+            }
+        } catch (e: Exception) {
+            emit(Result.Failure(e))
+        }
+    }
 
-//    fun stories(): LiveData<Result<SurveyResponse>> = liveData {
-//        try {
-//            val response = apiService.purchaseable(
-//                authtoken = "${pref.getUser().token}",
-//            )
-//            if (response.status == "Failed") {
-//                emit(Result.Error(response.message))
-//            } else {
-//                emit(Result.Success(response))
-//            }
-//        } catch (e: Exception) {
-//            emit(Result.Error(e.message.toString()))
-//        }
-//    }
+    fun submitAnswer(
+        answers: Map<String, Answer>,
+        surveyID: String,
+        reward: Long
+    ): LiveData<Result<GeneralResponse>> = liveData {
+        try {
+            val response = apiService.submitAnswer(
+                authtoken = "${pref.getUser().token}",
+                surveyID = surveyID,
+                answers = answers,
+                reward = reward
+            )
+            if (response.status == "Failed") {
+                emit(Result.Error(response))
+            } else {
+                emit(Result.Success(response))
+            }
+        } catch (e: Exception) {
+            emit(Result.Failure(e))
+        }
+    }
+
+    fun getUserProfile(): LiveData<Result<Response<UserResponse>>> = liveData {
+        try {
+            val response = apiService.getUserProfile(
+                authtoken = "${pref.getUser().token}"
+            )
+            if (response.isSuccessful) {
+                emit(Result.Success(response))
+            } else {
+                emit(Result.Error(response))
+            }
+        } catch (e: Exception) {
+            emit(Result.Failure(e))
+        }
+    }
 
     fun saveSurvey(it: SurveyModel) {
         CoroutineScope(Dispatchers.IO).launch {

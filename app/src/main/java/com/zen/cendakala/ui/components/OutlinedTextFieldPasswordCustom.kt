@@ -58,7 +58,7 @@ fun OutlinedTextFieldPasswordCustom (
         label = {
             Text(
                 text = placeholderText,
-                color = SoftGray,
+                color = Black2,
                 style = MaterialTheme.typography.labelMedium,
             )
         },

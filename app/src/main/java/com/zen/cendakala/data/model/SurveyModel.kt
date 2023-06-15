@@ -18,3 +18,19 @@ data class Question(
     val question: String,
     val choices: Map<String, String>? = null
 )
+
+data class AnswerModel(
+    val answers: Map<String, Answer>,
+    val surveyID: String,
+    val reward: Int
+)
+
+data class Answer(
+    var type: String,
+    val choice: String?,
+    var answer: String
+)
+
+
+
+
