@@ -117,4 +117,3 @@ The model architecture is deployed to the backend service. The model then gets t
 * Kaggle API Token.
 * Latest Tensorflow Version 2.8.2.
 * Python Version 3.6 or above.
-
