@@ -14,6 +14,7 @@ class SurveyDetailViewModel(private val repo: SurveyRepository) : ViewModel() {
     private val _detailResult = mutableStateOf<LiveData<Result<SurveyByIdResponse>>>(liveData { })
     val detailResult: LiveData<Result<SurveyByIdResponse>>
         get() = _detailResult.value
+
     fun getById(surveyID: String) {
         viewModelScope.launch {
             val result = repo.getById(surveyID = surveyID)

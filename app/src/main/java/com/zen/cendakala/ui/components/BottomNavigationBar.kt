@@ -1,6 +1,5 @@
 package com.zen.cendakala.ui.components
 
-import android.content.res.Resources.Theme
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
@@ -19,7 +18,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.zen.cendakala.route.NavigationItem
-import com.zen.cendakala.ui.theme.*
+import com.zen.cendakala.ui.theme.Color1
+import com.zen.cendakala.ui.theme.Color4
+import com.zen.cendakala.ui.theme.Green
+import com.zen.cendakala.ui.theme.White2
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {

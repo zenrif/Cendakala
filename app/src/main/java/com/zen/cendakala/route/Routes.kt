@@ -10,9 +10,11 @@ sealed class Routes(val routes: String) {
     object Detail : Routes("detail/{surveyID}") {
         fun createRoute(surveyID: String) = "detail/$surveyID"
     }
+
     object SurveyFill : Routes("surveyFill/{surveyID}") {
         fun createRoute(surveyID: String) = "surveyFill/$surveyID"
     }
+
     object SurveyCreateOverview : Routes("surveyCreateOverview")
     object SurveyCreateQuestion : Routes("surveyCreateQuestion")
     object Success : Routes("success")

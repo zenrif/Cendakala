@@ -12,7 +12,7 @@ data class GeneralResponse(
     val code: String,
 
     @field:SerializedName("message")
-    val message: String
+    val message: String,
 )
 
 @Parcelize
@@ -27,12 +27,12 @@ data class TokenResponse(
     val message: String,
 
     @field:SerializedName("newToken")
-        val newToken: newToken
+    val newToken: newToken,
 ) : Parcelable
 
 @Parcelize
 data class newToken(
     @field:SerializedName("token")
-    val token: String
+    val token: String,
 ) : Parcelable
 

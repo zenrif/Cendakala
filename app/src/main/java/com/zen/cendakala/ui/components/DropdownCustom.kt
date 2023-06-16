@@ -24,7 +24,23 @@ fun DropdownCustom(
     onSelectedChange: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val category = arrayOf("Kesehatan", "Pendidikan", "Hukum", "Keuangan", "Pariwisata", "Sosial dan Kemanusiaan", "Lingkungan dan Konversi", "Teknologi Informasi dan Komunikasi", "Olahraga dan Rekreasi", "Seni dan Budaya", "Agama dan Kepercayaan", "Bisnis dan Industri", "Politik dan Pemerintahan", "Transportasi dan Logistik", "Pertanian dan Logistik")
+    val category = arrayOf(
+        "Kesehatan",
+        "Pendidikan",
+        "Hukum",
+        "Keuangan",
+        "Pariwisata",
+        "Sosial dan Kemanusiaan",
+        "Lingkungan dan Konversi",
+        "Teknologi Informasi dan Komunikasi",
+        "Olahraga dan Rekreasi",
+        "Seni dan Budaya",
+        "Agama dan Kepercayaan",
+        "Bisnis dan Industri",
+        "Politik dan Pemerintahan",
+        "Transportasi dan Logistik",
+        "Pertanian dan Logistik"
+    )
     var expanded by remember { mutableStateOf(false) }
     var selectedText by remember { mutableStateOf(category[0]) }
 

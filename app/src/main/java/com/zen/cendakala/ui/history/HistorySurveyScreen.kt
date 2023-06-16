@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -71,8 +70,7 @@ fun HistorySurveyScreen(navController: NavController, paddingValuesBottom: Paddi
                     modifier = Modifier
                         .fillMaxSize()
                         .background(color = White2)
-                        .padding(
-                            top = 16.dp),
+                        .padding(top = 16.dp),
                     state = columnState,
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {

@@ -29,15 +29,19 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.zen.cendakala.R
-import com.zen.cendakala.ui.theme.*
+import com.zen.cendakala.ui.theme.Black2
+import com.zen.cendakala.ui.theme.Color1
+import com.zen.cendakala.ui.theme.Color4
+import com.zen.cendakala.ui.theme.Color5
+import com.zen.cendakala.ui.theme.Gray
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun OutlinedTextFieldPasswordCustom (
+fun OutlinedTextFieldPasswordCustom(
     placeholderText: String,
     onTextChanged: (String) -> Unit,
-    errorStatus: Boolean = false
-    ) {
+    errorStatus: Boolean = false,
+) {
     var text by remember {
         mutableStateOf(TextFieldValue(""))
     }

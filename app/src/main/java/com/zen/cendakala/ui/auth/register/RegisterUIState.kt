@@ -10,10 +10,10 @@ data class RegisterUIState(
     val job: String = "",
     val interest: List<Category> = listOf(),
 
-    var emailError:Boolean = false,
+    var emailError: Boolean = false,
     var passwordError: Boolean = false,
     var nameError: Boolean = false,
     var genderError: Boolean = false,
     var jobError: Boolean = false,
-    var interestError: Boolean = false
+    var interestError: Boolean = false,
 )

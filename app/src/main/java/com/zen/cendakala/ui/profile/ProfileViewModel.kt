@@ -8,7 +8,6 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.zen.cendakala.data.Result
 import com.zen.cendakala.data.model.LoginModel
-import com.zen.cendakala.data.repositories.AuthRepository
 import com.zen.cendakala.data.repositories.SurveyRepository
 import com.zen.cendakala.data.responses.LoginResponse
 import com.zen.cendakala.data.responses.UserResponse
@@ -19,7 +18,7 @@ import com.zen.cendakala.ui.auth.login.LoginUIState
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class ProfileViewModel (
+class ProfileViewModel(
     private val repo: SurveyRepository,
 ) : ViewModel() {
 
@@ -31,7 +30,8 @@ class ProfileViewModel (
 
     var loginInProgress = mutableStateOf(false)
 
-    private val _profileResult = mutableStateOf<LiveData<Result<Response<UserResponse>>>>(liveData { })
+    private val _profileResult =
+        mutableStateOf<LiveData<Result<Response<UserResponse>>>>(liveData { })
     val profileResult: LiveData<Result<Response<UserResponse>>>
         get() = _profileResult.value
 
@@ -41,6 +41,7 @@ class ProfileViewModel (
             _profileResult.value = result
         }
     }
+
     fun onEvent(event: LoginUIEvent) {
         when (event) {
             is LoginUIEvent.EmailChanged -> {

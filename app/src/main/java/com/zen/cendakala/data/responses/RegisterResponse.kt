@@ -16,5 +16,5 @@ data class RegisterResponse(
     val message: String,
 
     @field:SerializedName("token")
-    val token: String
-): Parcelable
+    val token: String,
+) : Parcelable

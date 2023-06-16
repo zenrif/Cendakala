@@ -26,6 +26,7 @@ object Validator {
             (gender.isNotEmpty())
         )
     }
+
     fun validateJob(job: String): ValidationResult {
         return ValidationResult(
             (job.isNotEmpty())
@@ -40,7 +41,7 @@ object Validator {
 }
 
 data class ValidationResult(
-    val status: Boolean = false
+    val status: Boolean = false,
 )
 
 

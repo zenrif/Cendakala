@@ -13,10 +13,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateMapOf
@@ -114,11 +111,26 @@ fun InterestScreen(navController: NavController) {
                 modifier = Modifier
                     .padding(top = 0.dp, bottom = 0.dp, start = 28.dp, end = 0.dp)
                     .fillMaxWidth()
-                    .verticalScroll(rememberScrollState())
-                ,
+                    .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.Start
             ) {
-                val category = arrayListOf("Kesehatan", "Pendidikan", "Hukum", "Keuangan", "Pariwisata", "Sosial dan Kemanusiaan", "Lingkungan dan Konversi", "Teknologi Informasi dan Komunikasi", "Olahraga dan Rekreasi", "Seni dan Budaya", "Agama dan Kepercayaan", "Bisnis dan Industri", "Politik dan Pemerintahan", "Transportasi dan Logistik", "Pertanian dan Logistik")
+                val category = arrayListOf(
+                    "Kesehatan",
+                    "Pendidikan",
+                    "Hukum",
+                    "Keuangan",
+                    "Pariwisata",
+                    "Sosial dan Kemanusiaan",
+                    "Lingkungan dan Konversi",
+                    "Teknologi Informasi dan Komunikasi",
+                    "Olahraga dan Rekreasi",
+                    "Seni dan Budaya",
+                    "Agama dan Kepercayaan",
+                    "Bisnis dan Industri",
+                    "Politik dan Pemerintahan",
+                    "Transportasi dan Logistik",
+                    "Pertanian dan Logistik"
+                )
                 val categoryMap = category.mapIndexed { index, value ->
                     value to (index + 1).toString()
                 }.toMap()
@@ -168,7 +180,10 @@ fun InterestScreen(navController: NavController) {
                 registerResult?.let { result ->
                     when (result) {
                         is Result.Success -> {
-                            RegisterViewModel.saveToken(context, result.data.body()?.token.toString())
+                            RegisterViewModel.saveToken(
+                                context,
+                                result.data.body()?.token.toString()
+                            )
                             navController.navigate(Routes.Home.routes) {
                                 popUpTo(navController.graph.startDestinationId)
                                 launchSingleTop = true

@@ -28,7 +28,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.zen.cendakala.R
 import com.zen.cendakala.route.Routes
-import com.zen.cendakala.ui.components.CardSurvey
 import com.zen.cendakala.ui.components.ImageBackground
 import com.zen.cendakala.ui.components.PrimaryButton
 import com.zen.cendakala.ui.components.SecondaryButton
@@ -98,8 +97,7 @@ fun WalletScreen(navController: NavController, paddingValuesBottom: PaddingValue
                 modifier = Modifier
                     .padding(top = 280.dp, bottom = 3.dp, start = 28.dp, end = 28.dp)
                     .fillMaxWidth()
-                    .verticalScroll(rememberScrollState())
-                ,
+                    .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.Start
             ) {
                 Text(
@@ -127,5 +125,8 @@ fun WalletScreen(navController: NavController, paddingValuesBottom: PaddingValue
 @Preview
 @Composable
 fun PreviewWalletScreen() {
-    WalletScreen(navController = NavController(LocalContext.current), paddingValuesBottom = PaddingValues())
+    WalletScreen(
+        navController = NavController(LocalContext.current),
+        paddingValuesBottom = PaddingValues()
+    )
 }

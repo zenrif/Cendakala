@@ -1,6 +1,5 @@
 package com.zen.cendakala.ui.survey.create
 
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -55,7 +54,6 @@ import com.zen.cendakala.ui.components.TextTitle
 import com.zen.cendakala.ui.theme.Black2
 import com.zen.cendakala.ui.theme.Color4
 import com.zen.cendakala.ui.theme.White2
-import com.zen.cendakala.utils.ViewModelFactory
 import com.zen.cendakala.utils.ViewModelServerFactory
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -96,7 +94,7 @@ fun SurveyCreateOverviewScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 44.dp),
-            horizontalArrangement = Arrangement.SpaceBetween ,
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Top
         ) {
             Button(
@@ -120,18 +118,18 @@ fun SurveyCreateOverviewScreen(
                 modifier = Modifier
                     .padding(top = 12.dp)
             )
-                TextButtonCustom(
-                    text = stringResource(id = R.string.done),
-                    onClickButton = {
+            TextButtonCustom(
+                text = stringResource(id = R.string.done),
+                onClickButton = {
 //                        createSurveyViewModel.quota.value  = valueQuota.toInt()
 //                        createSurveyViewModel.reward.value  = valueReward.toLong()
 //                        createSurveyViewModel.onEvent(CreateSurveyUIEvent.Done1ButtonClicked)
-                        navController.navigate(Routes.SurveyCreateQuestion.routes) {
-                            popUpTo(navController.graph.startDestinationId)
-                            launchSingleTop = true
-                        }
-                    },
-                )
+                    navController.navigate(Routes.SurveyCreateQuestion.routes) {
+                        popUpTo(navController.graph.startDestinationId)
+                        launchSingleTop = true
+                    }
+                },
+            )
         }
         Box(
             modifier = Modifier
@@ -161,7 +159,7 @@ fun SurveyCreateOverviewScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(top = 20.dp) ,
+                        .padding(top = 20.dp),
                     horizontalArrangement = Arrangement.Start,
                 ) {
                     OutlinedTextFieldSurvey(
@@ -178,7 +176,7 @@ fun SurveyCreateOverviewScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(top = 20.dp) ,
+                        .padding(top = 20.dp),
                     horizontalArrangement = Arrangement.Start,
                 ) {
                     Text(
@@ -194,27 +192,27 @@ fun SurveyCreateOverviewScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxSize(),
-                    horizontalArrangement = Arrangement.Start ,
+                    horizontalArrangement = Arrangement.Start,
                 ) {
 
                     DropdownCustom(
-                        onSelectedChange = { createSurveyViewModel.category1.value  = it },
+                        onSelectedChange = { createSurveyViewModel.category1.value = it },
                         modifier = Modifier
                             .fillMaxSize(0.5f)
                             .padding(end = 12.dp)
                     )
 
                     DropdownCustom(
-                        onSelectedChange = { createSurveyViewModel.category2.value  = it },
+                        onSelectedChange = { createSurveyViewModel.category2.value = it },
                         modifier = Modifier
                             .fillMaxHeight(0.5f)
-                        )
+                    )
                 }
                 Row(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(top = 20.dp) ,
-                    horizontalArrangement = Arrangement.SpaceBetween ,
+                        .padding(top = 20.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Column(
                         modifier = Modifier
@@ -234,8 +232,9 @@ fun SurveyCreateOverviewScreen(
                             value = valueQuota,
                             onValueChange = {
                                 if (it.isEmpty() || it.matches(pattern)) {
-                                valueQuota = it
-                            }},
+                                    valueQuota = it
+                                }
+                            },
                             label = { Text("input amount") },
                             maxLines = 1,
                             keyboardOptions = KeyboardOptions(
@@ -268,8 +267,9 @@ fun SurveyCreateOverviewScreen(
                             value = valueReward,
                             onValueChange = {
                                 if (it.isEmpty() || it.matches(pattern)) {
-                                valueReward = it
-                            } },
+                                    valueReward = it
+                                }
+                            },
                             label = { Text("input amount") },
                             maxLines = 1,
 //                            textStyle = TextStyle(color = Color.Blue, fontWeight = FontWeight.Bold),
@@ -291,8 +291,8 @@ fun SurveyCreateOverviewScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(top = 20.dp) ,
-                    horizontalArrangement = Arrangement.Start ,
+                        .padding(top = 20.dp),
+                    horizontalArrangement = Arrangement.Start,
                 ) {
                     OutlinedTextFieldSurvey(
                         labelText = "Description",

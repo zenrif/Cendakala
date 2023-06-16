@@ -13,8 +13,8 @@ data class LoginResponse(
     val message: String,
 
     @field:SerializedName("token")
-    val token: String
-): Parcelable
+    val token: String,
+) : Parcelable
 
 @Parcelize
 data class UserResponse(
@@ -25,8 +25,8 @@ data class UserResponse(
     val message: String,
 
     @field:SerializedName("user")
-    val user: User
-): Parcelable
+    val user: User,
+) : Parcelable
 
 @Parcelize
 data class User(
@@ -37,5 +37,5 @@ data class User(
     val interest: Map<String, String>,
     val name: String,
     val history: Map<String, Int>,
-    val job: String
+    val job: String,
 ) : Parcelable

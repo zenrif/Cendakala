@@ -29,7 +29,7 @@ import com.zen.cendakala.ui.theme.Gray
 @Composable
 fun DropdownCustom(
     labelText: String,
-    registerViewModel: RegisterViewModel
+    registerViewModel: RegisterViewModel,
 ) {
     val context = LocalContext.current
     val gender = arrayOf("Male", "Female")
@@ -56,7 +56,8 @@ fun DropdownCustom(
                 unfocusedBorderColor = Color5
             ),
             leadingIcon = {
-                Icon( painter = painterResource(id = R.drawable.ic_gender),
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_gender),
                     contentDescription = "gender",
                     tint = Gray,
                     modifier = Modifier.size(24.dp)

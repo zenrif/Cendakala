@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class CreateSurveyViewModel(
-    private val  surveyRepository: SurveyRepository
+    private val surveyRepository: SurveyRepository,
 ) : ViewModel() {
     private val TAG = CreateSurveyViewModel::class.simpleName
     private val _createSurvey = mutableStateListOf<CreateSurvey>()
@@ -26,7 +26,8 @@ class CreateSurveyViewModel(
 
     private var createSurveyUIState = mutableStateOf(CreateSurveyUIState())
 
-    private val _createSurveyResult = mutableStateOf<LiveData<Result<CreateSurveyResponse>>>(liveData { })
+    private val _createSurveyResult =
+        mutableStateOf<LiveData<Result<CreateSurveyResponse>>>(liveData { })
     val createSurveyResult: LiveData<Result<CreateSurveyResponse>>
         get() = _createSurveyResult.value
 
@@ -77,6 +78,7 @@ class CreateSurveyViewModel(
             }
         }
     }
+
     private fun newSurvey() {
         val title = title.value
         val questionNum = questionNum.value

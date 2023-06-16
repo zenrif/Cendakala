@@ -37,8 +37,8 @@ import androidx.compose.ui.window.Dialog
 fun DialogCustom(
     value: String,
     setShowDialog: (Boolean) -> Unit,
-    setValue: (String) -> Unit
-){
+    setValue: (String) -> Unit,
+) {
     val isChecked = remember { mutableStateOf(true) }
 
     Dialog(onDismissRequest = { setShowDialog(false) }) {
@@ -76,13 +76,18 @@ fun DialogCustom(
 
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    val fruitsList = arrayListOf("Checkbox Example Panjang Banget Super Panjang Sekali", "Apple", "Mango", "Orange")
+                    val fruitsList = arrayListOf(
+                        "Checkbox Example Panjang Banget Super Panjang Sekali",
+                        "Apple",
+                        "Mango",
+                        "Orange"
+                    )
                     fruitsList.forEach { option: String ->
                         Row {
                             CheckBoxCustom(
                                 option = option,
                                 isCheckedValue = isChecked.value,
-                                onCheckedChange = { isChecked.value = it}
+                                onCheckedChange = { isChecked.value = it }
                             )
                         }
                     }

@@ -49,10 +49,10 @@ fun MultiComboBox(
     var expanded by remember { mutableStateOf(false) }
     // when no options available, I want ComboBox to be disabled
     val isEnabled by rememberUpdatedState { options.isNotEmpty() }
-    var selectedOptionsList  = remember { mutableStateListOf<Int>()}
+    var selectedOptionsList = remember { mutableStateListOf<Int>() }
 
     //Initial setup of selected ids
-    selectedIds.forEach{
+    selectedIds.forEach {
         selectedOptionsList.add(it)
     }
 
@@ -88,7 +88,8 @@ fun MultiComboBox(
                 unfocusedBorderColor = Color5
             ),
             leadingIcon = {
-                Icon( painter = painterResource(id = R.drawable.ic_interests),
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_interests),
                     contentDescription = "interest",
                     tint = Gray,
                     modifier = Modifier.size(24.dp)
@@ -106,7 +107,7 @@ fun MultiComboBox(
 
                 //use derivedStateOf to evaluate if it is checked
                 var checked = remember {
-                    derivedStateOf{option.id in selectedOptionsList}
+                    derivedStateOf { option.id in selectedOptionsList }
                 }.value
 
                 DropdownMenuItem(

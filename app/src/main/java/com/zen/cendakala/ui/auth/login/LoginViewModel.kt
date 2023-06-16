@@ -1,6 +1,7 @@
 package com.zen.cendakala.ui.auth.login
 
 import android.content.Context
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -9,15 +10,14 @@ import androidx.lifecycle.viewModelScope
 import com.zen.cendakala.data.Result
 import com.zen.cendakala.data.model.LoginModel
 import com.zen.cendakala.data.repositories.AuthRepository
-import com.zen.cendakala.data.repositories.SurveyRepository
 import com.zen.cendakala.data.responses.LoginResponse
 import com.zen.cendakala.data.rules.Validator
 import com.zen.cendakala.data.source.local.UserPreference
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class LoginViewModel (
-    private val repo: AuthRepository
+class LoginViewModel(
+    private val repo: AuthRepository,
 ) : ViewModel() {
 
     private val TAG = LoginViewModel::class.simpleName
@@ -28,7 +28,8 @@ class LoginViewModel (
 
     var loginInProgress = mutableStateOf(false)
 
-    private val _loginResult = mutableStateOf<LiveData<Result<Response<LoginResponse>>>>(liveData { })
+    private val _loginResult =
+        mutableStateOf<LiveData<Result<Response<LoginResponse>>>>(liveData { })
     val loginResult: LiveData<Result<Response<LoginResponse>>>
         get() = _loginResult.value
 
@@ -69,6 +70,9 @@ class LoginViewModel (
             emailError = emailResult.status,
             passwordError = passwordResult.status
         )
+
+        Log.d(TAG, "${loginUIState.value.email}")
+        Log.d(TAG, "${loginUIState.value.password}")
 
         allValidationsPassed.value = emailResult.status && passwordResult.status
 

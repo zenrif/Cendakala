@@ -28,12 +28,10 @@ import com.zen.cendakala.ui.home.HomeScreen
 import com.zen.cendakala.ui.home.SplashScreen
 import com.zen.cendakala.ui.payment.PaymentSuccessScreen
 import com.zen.cendakala.ui.profile.ProfileScreen
-import com.zen.cendakala.ui.survey.create.SurveyCreateOverviewScreen
 import com.zen.cendakala.ui.survey.SurveyScreen
+import com.zen.cendakala.ui.survey.create.SurveyCreateOverviewScreen
 import com.zen.cendakala.ui.survey.create.SurveyCreateQuestionScreen
 import com.zen.cendakala.ui.survey.detail.SurveyDetailScreen
-import com.zen.cendakala.ui.survey.fill.SurveyFillChoiceScreen
-import com.zen.cendakala.ui.survey.fill.SurveyFillEssayScreen
 import com.zen.cendakala.ui.survey.fill.SurveyFillScreen
 import com.zen.cendakala.ui.survey.fill.SurveyFillSuccessScreen
 import com.zen.cendakala.ui.theme.CendakalaTheme
@@ -69,16 +67,16 @@ fun Dashboard(navController: NavHostController = rememberNavController()) {
         }
     }) { paddingValues ->
         NavHost(navController = navController, startDestination = Routes.Splash.routes) {
-            composable(Routes.Splash.routes){
+            composable(Routes.Splash.routes) {
                 SplashScreen(navController = navController)
             }
-            composable(Routes.Login.routes){
+            composable(Routes.Login.routes) {
                 LoginScreen(navController = navController)
             }
-            composable(Routes.Register.routes){
+            composable(Routes.Register.routes) {
                 RegisterScreen(navController = navController)
             }
-            composable(Routes.Interest.routes){
+            composable(Routes.Interest.routes) {
                 InterestScreen(navController = navController)
             }
             composable(Routes.Home.routes) {
@@ -114,7 +112,10 @@ fun Dashboard(navController: NavHostController = rememberNavController()) {
                 SurveyFillSuccessScreen(navController = navController)
             }
             composable(Routes.History.routes) {
-                HistorySurveyScreen(navController = navController, paddingValuesBottom = paddingValues)
+                HistorySurveyScreen(
+                    navController = navController,
+                    paddingValuesBottom = paddingValues
+                )
             }
             composable(Routes.Wallet.routes) {
                 WalletScreen(navController = navController, paddingValuesBottom = paddingValues)

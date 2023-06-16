@@ -3,7 +3,7 @@ package com.zen.cendakala.data.repositories
 import com.zen.cendakala.data.source.local.CreateSurvey
 import com.zen.cendakala.data.source.local.CreateSurveyDao
 
-class CreateSurveyRepository(private val createSurveyDao: CreateSurveyDao){
+class CreateSurveyRepository(private val createSurveyDao: CreateSurveyDao) {
 
     suspend fun insert(createSurvey: CreateSurvey) {
         createSurveyDao.insert(createSurvey)

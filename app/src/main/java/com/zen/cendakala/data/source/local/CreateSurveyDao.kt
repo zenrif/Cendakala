@@ -20,6 +20,7 @@ interface CreateSurveyDao {
 
     @Query("DELETE FROM create_survey WHERE id = :id")
     suspend fun deleteById(id: Int)
+
     @Update()
     suspend fun update(createSurvey: CreateSurvey)
 

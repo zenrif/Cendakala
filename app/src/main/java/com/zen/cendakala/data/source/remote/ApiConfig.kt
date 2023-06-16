@@ -9,7 +9,7 @@ import com.zen.cendakala.BuildConfig as Config
 class ApiConfig {
     companion object {
         fun getApiService(): ApiServices {
-            val loggingInterceptor = if(Config.DEBUG) {
+            val loggingInterceptor = if (Config.DEBUG) {
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             } else {
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
@@ -24,8 +24,9 @@ class ApiConfig {
                 .build()
             return retrofit.create(ApiServices::class.java)
         }
+
         fun serverApiService(): ApiServices {
-            val loggingInterceptor = if(Config.DEBUG) {
+            val loggingInterceptor = if (Config.DEBUG) {
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             } else {
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)

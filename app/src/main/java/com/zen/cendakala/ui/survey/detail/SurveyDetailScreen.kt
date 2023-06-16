@@ -61,7 +61,7 @@ fun SurveyDetailScreen(
 ) {
     val context = LocalContext.current
     val factory = remember { ViewModelServerFactory.getInstance(context) }
-    val detailViewModel: SurveyDetailViewModel= viewModel(factory = factory)
+    val detailViewModel: SurveyDetailViewModel = viewModel(factory = factory)
     val detailResult by detailViewModel.detailResult.observeAsState()
 
     var click = {}
@@ -234,7 +234,7 @@ fun SurveyDetailScreen(
                                                 Text(
                                                     text = result.data.survey.category1,
                                                     style = MaterialTheme.typography.labelSmall,
-                                                    )
+                                                )
                                                 Spacer(modifier = Modifier.padding(2.5.dp))
                                                 if (result.data.survey.category2 == "null") {
                                                     Text(
@@ -369,7 +369,7 @@ fun SurveyDetailScreen(
                                         Spacer(modifier = Modifier.padding(2.5.dp))
                                         Box(
                                             contentAlignment = Alignment.Center,
-                                        ){
+                                        ) {
                                             Text(
                                                 text = result.data.survey.description,
                                                 textAlign = TextAlign.Justify,
@@ -390,7 +390,7 @@ fun SurveyDetailScreen(
                                         style = MaterialTheme.typography.labelSmall,
                                     )
                                 }
-                                if (!result.data.survey.finished){
+                                if (!result.data.survey.finished) {
                                     Row(
                                         modifier = Modifier
                                             .padding(top = 8.dp, bottom = 8.dp),
@@ -398,15 +398,23 @@ fun SurveyDetailScreen(
                                         PrimaryButton(
                                             text = stringResource(id = R.string.fill),
                                             onClickButton = {
-                                                navController.navigate(Routes.SurveyFill.createRoute(result.data.survey.surveyID))
+                                                navController.navigate(
+                                                    Routes.SurveyFill.createRoute(
+                                                        result.data.survey.surveyID
+                                                    )
+                                                )
                                             },
                                             modifier = Modifier
                                                 .fillMaxWidth()
-                                                .padding(start = 32.dp, end = 32.dp, bottom = 26.dp),
+                                                .padding(
+                                                    start = 32.dp,
+                                                    end = 32.dp,
+                                                    bottom = 26.dp
+                                                ),
                                         )
                                     }
                                 }
-                                if (result.data.survey.sell){
+                                if (result.data.survey.sell) {
                                     Row {
                                         SecondaryButton(
                                             text = stringResource(id = R.string.buy),
@@ -415,14 +423,19 @@ fun SurveyDetailScreen(
                                             },
                                             modifier = Modifier
                                                 .fillMaxWidth()
-                                                .padding(start = 32.dp, end = 32.dp, bottom = 50.dp),
+                                                .padding(
+                                                    start = 32.dp,
+                                                    end = 32.dp,
+                                                    bottom = 50.dp
+                                                ),
                                         )
                                     }
                                 }
                             }
+
                             is Result.Error -> {
                                 ErrorDialog(
-                                    message = result.data.message ,
+                                    message = result.data.message,
                                     image = R.drawable.error_form,
                                 )
                             }
@@ -440,5 +453,8 @@ fun SurveyDetailScreen(
 @Preview
 @Composable
 fun SurveyDetailScreenPreview() {
-    SurveyDetailScreen(navController = rememberNavController(), surveyID = "jihefikjasznfji212n1knJaSD1@")
+    SurveyDetailScreen(
+        navController = rememberNavController(),
+        surveyID = "jihefikjasznfji212n1knJaSD1@"
+    )
 }

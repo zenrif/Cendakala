@@ -51,7 +51,8 @@ class SurveyFillViewModel(private val repo: SurveyRepository) : ViewModel() {
 
     fun submitAnswer(surveyID: String, reward: Long) {
         viewModelScope.launch {
-            val result = repo.submitAnswer(answers = answersState, surveyID = surveyID, reward = reward)
+            val result =
+                repo.submitAnswer(answers = answersState, surveyID = surveyID, reward = reward)
             _answerResult.value = result
         }
     }

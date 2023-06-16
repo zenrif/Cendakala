@@ -1,4 +1,5 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.zen.cendakala.ui.auth.register
 
 import androidx.compose.foundation.background
@@ -7,16 +8,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -49,10 +43,7 @@ import com.zen.cendakala.ui.components.OutlinedTextFieldPasswordCustom
 import com.zen.cendakala.ui.components.PrimaryButton
 import com.zen.cendakala.ui.components.TextButtonCustom
 import com.zen.cendakala.ui.components.TextTitle
-import com.zen.cendakala.ui.theme.Black2
 import com.zen.cendakala.ui.theme.Color4
-import com.zen.cendakala.ui.theme.Color5
-import com.zen.cendakala.ui.theme.White2
 import com.zen.cendakala.utils.ViewModelFactory
 
 @Composable
@@ -96,7 +87,7 @@ fun RegisterScreen(navController: NavController) {
             modifier = Modifier
                 .padding(top = 144.dp, start = 38.dp, end = 38.dp)
                 .fillMaxSize(),
-            )
+        )
         Box(
             modifier = Modifier
                 .align(Alignment.BottomCenter),
@@ -105,8 +96,7 @@ fun RegisterScreen(navController: NavController) {
                 modifier = Modifier
                     .padding(16.dp)
                     .fillMaxWidth()
-                    .verticalScroll(rememberScrollState())
-                ,
+                    .verticalScroll(rememberScrollState()),
 
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -159,8 +149,9 @@ fun RegisterScreen(navController: NavController) {
                     errorStatus = registerViewModel.registerUIState.value.passwordError,
                 )
                 Spacer(modifier = Modifier.padding(3.dp))
-                MultiComboBox(labelText = "Interest",
-                    options = List(category.size) { Category(it, category[it].text)},
+                MultiComboBox(
+                    labelText = "Interest",
+                    options = List(category.size) { Category(it, category[it].text) },
                     onOptionsChosen = {
                         registerViewModel.onEvent(RegisterUIEvent.InterestChanged(it))
                     },
@@ -180,7 +171,8 @@ fun RegisterScreen(navController: NavController) {
                     when (result) {
                         is Result.Success -> {
                             result.data.body()?.token?.let {
-                                RegisterViewModel.saveToken(context,
+                                RegisterViewModel.saveToken(
+                                    context,
                                     it
                                 )
                             }
@@ -193,7 +185,7 @@ fun RegisterScreen(navController: NavController) {
                         is Result.Error -> {
                             result.data.body()?.let {
                                 ErrorDialog(
-                                    message = it.message ,
+                                    message = it.message,
                                     image = R.drawable.error_form,
                                 )
                             }
@@ -208,12 +200,13 @@ fun RegisterScreen(navController: NavController) {
                                 color = Color4,
                             )
                         }
+
                         else -> {}
                     }
                 }
                 Spacer(modifier = Modifier.padding(3.dp))
                 Text(
-                    text = stringResource(id = R.string.already_have_an_account) ,
+                    text = stringResource(id = R.string.already_have_an_account),
                     style = MaterialTheme.typography.bodyMedium,
                     letterSpacing = 1.sp,
                 )

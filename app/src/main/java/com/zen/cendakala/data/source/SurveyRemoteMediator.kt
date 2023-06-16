@@ -4,14 +4,16 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
+import com.zen.cendakala.data.responses.Response
 import com.zen.cendakala.data.responses.Survey
+import com.zen.cendakala.data.responses.SurveyUser
 import com.zen.cendakala.data.source.local.UserPreference
 import com.zen.cendakala.data.source.remote.ApiServices
 
 @OptIn(ExperimentalPagingApi::class)
 class SurveyRemoteMediator(
     private val pref: UserPreference,
-    private val apiService: ApiServices
+    private val apiService: ApiServices,
 ) : RemoteMediator<Int, Survey>() {
 
     override suspend fun initialize(): InitializeAction {
@@ -20,15 +22,17 @@ class SurveyRemoteMediator(
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, Survey>
+        state: PagingState<Int, Survey>,
     ): MediatorResult {
         val page = INITIAL_PAGE_INDEX
         val token = pref.getUser().token.toString()
 
         try {
-            val responseData = token.let { apiService.purchaseable(
-                it,
-            ) }
+            val responseData = token.let {
+                apiService.purchaseable(
+                    it,
+                )
+            }
 
             return if (responseData.isSuccessful) {
                 val endOfPaginationReached = responseData.body()!!.surveys.isEmpty()
@@ -49,7 +53,7 @@ class SurveyRemoteMediator(
 @OptIn(ExperimentalPagingApi::class)
 class SurveyRecomRemoteMediator(
     private val pref: UserPreference,
-    private val apiService: ApiServices
+    private val apiService: ApiServices,
 ) : RemoteMediator<Int, Survey>() {
 
     override suspend fun initialize(): InitializeAction {
@@ -58,15 +62,17 @@ class SurveyRecomRemoteMediator(
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, Survey>
+        state: PagingState<Int, Survey>,
     ): MediatorResult {
         val page = INITIAL_PAGE_INDEX
         val token = pref.getUser().token.toString()
 
         try {
-            val responseData = token.let { apiService.recommedation(
-                it,
-            ) }
+            val responseData = token.let {
+                apiService.recommedation(
+                    it,
+                )
+            }
 
             return if (responseData.isSuccessful) {
                 val endOfPaginationReached = responseData.body()!!.surveys.isEmpty()
@@ -85,10 +91,10 @@ class SurveyRecomRemoteMediator(
 }
 
 @OptIn(ExperimentalPagingApi::class)
-class SurveyAllRemoteMediator(
+class SurveyUserRemoteMediator(
     private val pref: UserPreference,
-    private val apiService: ApiServices
-) : RemoteMediator<Int, Survey>() {
+    private val apiService: ApiServices,
+) : RemoteMediator<Int, SurveyUser>() {
 
     override suspend fun initialize(): InitializeAction {
         return InitializeAction.LAUNCH_INITIAL_REFRESH
@@ -96,15 +102,17 @@ class SurveyAllRemoteMediator(
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, Survey>
+        state: PagingState<Int, SurveyUser>,
     ): MediatorResult {
         val page = INITIAL_PAGE_INDEX
         val token = pref.getUser().token.toString()
 
         try {
-            val responseData = token.let { apiService.allSurvey(
-                it,
-            ) }
+            val responseData = token.let {
+                apiService.allSurvey(
+                    it,
+                )
+            }
 
             return if (responseData.isSuccessful) {
                 val endOfPaginationReached = responseData.body()!!.surveys.isEmpty()
@@ -125,8 +133,8 @@ class SurveyAllRemoteMediator(
 @OptIn(ExperimentalPagingApi::class)
 class HistoryRemoteMediator(
     private val pref: UserPreference,
-    private val apiService: ApiServices
-) : RemoteMediator<Int, Survey>() {
+    private val apiService: ApiServices,
+) : RemoteMediator<Int, Response>() {
 
     override suspend fun initialize(): InitializeAction {
         return InitializeAction.LAUNCH_INITIAL_REFRESH
@@ -134,18 +142,20 @@ class HistoryRemoteMediator(
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, Survey>
+        state: PagingState<Int, Response>,
     ): MediatorResult {
         val page = INITIAL_PAGE_INDEX
         val token = pref.getUser().token.toString()
 
         try {
-            val responseData = token.let { apiService.history(
-                it,
-            ) }
+            val responseData = token.let {
+                apiService.history(
+                    it,
+                )
+            }
 
             return if (responseData.isSuccessful) {
-                val endOfPaginationReached = responseData.body()!!.surveys.isEmpty()
+                val endOfPaginationReached = responseData.body()!!.responses.isEmpty()
                 MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
             } else {
                 MediatorResult.Error(Exception("Failed load survey"))

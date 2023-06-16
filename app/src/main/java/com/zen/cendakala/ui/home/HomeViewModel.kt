@@ -19,11 +19,13 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class HomeViewModel(
-    private val repo: SurveyRepository
+    private val repo: SurveyRepository,
 ) : ViewModel() {
-    private val _tokenResult = mutableStateOf<LiveData<Result<Response<TokenResponse>>>>(liveData { })
+    private val _tokenResult =
+        mutableStateOf<LiveData<Result<Response<TokenResponse>>>>(liveData { })
     val tokenResult: LiveData<Result<Response<TokenResponse>>>
         get() = _tokenResult.value
+
     fun getSurveys(): Flow<PagingData<Survey>> = repo.getSurveys().cachedIn(viewModelScope)
 
     fun recomSurveys(): Flow<PagingData<Survey>> = repo.recomSurveys().cachedIn(viewModelScope)

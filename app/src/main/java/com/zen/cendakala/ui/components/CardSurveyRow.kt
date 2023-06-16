@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -33,7 +31,7 @@ fun CardSurveyRow(
     title: String,
     category1: String,
     category2: String,
-    quota : Int,
+    quota: Int,
     reward: Long,
 ) {
     Card(
@@ -66,7 +64,7 @@ fun CardSurveyRow(
                 color = Black2,
                 thickness = 2.dp,
                 modifier = Modifier
-                    .sizeIn(minWidth =  180.dp, maxWidth = 1200.dp)
+                    .sizeIn(minWidth = 180.dp, maxWidth = 1200.dp)
                     .padding(start = 16.dp, end = 16.dp)
             )
             Row(
@@ -83,7 +81,7 @@ fun CardSurveyRow(
             {
                 Column(
                     modifier = Modifier.width(180.dp)
-                ){
+                ) {
                     Text(
                         text = category1,
                         modifier = Modifier.padding(
@@ -121,7 +119,7 @@ fun CardSurveyRow(
                             style = MaterialTheme.typography.labelSmall,
                         )
                     }
-                    Row{
+                    Row {
                         Image(
                             painter = painterResource(id = R.drawable.ic_money),
                             contentDescription = "reward",

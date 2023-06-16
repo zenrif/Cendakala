@@ -4,7 +4,6 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.zen.cendakala.data.model.Question
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -36,7 +35,7 @@ data class CreateSurvey(
     val description: String,
 
     @ColumnInfo(name = "questions")
-    val questions: Map<String, QuestionPar>? = null
+    val questions: Map<String, QuestionPar>? = null,
 ) : Parcelable
 
 @Parcelize
@@ -44,5 +43,5 @@ data class QuestionPar(
     val type: String,
     val choiceNum: Int? = null,
     val question: String,
-    val choices: Map<String, String>? = null
+    val choices: Map<String, String>? = null,
 ) : Parcelable

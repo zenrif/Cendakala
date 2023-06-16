@@ -52,7 +52,8 @@ import com.zen.cendakala.ui.theme.White
 fun SurveyCreateQuestionScreen() {
     val context = LocalContext.current
 
-    val numberQuestion = arrayOf("Question 1", "Question 2", "Question 3", "Question 4", "Question 5")
+    val numberQuestion =
+        arrayOf("Question 1", "Question 2", "Question 3", "Question 4", "Question 5")
     val typeQuestion = arrayOf("Multiple Choice", "Short Answer", "Long Answer", "Dropdown")
     val amountQuestion = arrayOf("1", "2", "3", "4", "5")
     var expanded by remember { mutableStateOf(false) }
@@ -102,7 +103,7 @@ fun SurveyCreateQuestionScreen() {
                 Row(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(top = 20.dp) ,
+                        .padding(top = 20.dp),
                     horizontalArrangement = Arrangement.Start,
                 ) {
                     ExposedDropdownMenuBox(
@@ -143,7 +144,7 @@ fun SurveyCreateQuestionScreen() {
                 Row(
                     modifier = Modifier
                         .fillMaxSize(),
-                    horizontalArrangement = Arrangement.SpaceBetween ,
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Column(
                         modifier = Modifier
@@ -157,37 +158,37 @@ fun SurveyCreateQuestionScreen() {
                             fontWeight = FontWeight.Bold,
                             fontFamily = FontFamily.SansSerif,
                         )
-                    ExposedDropdownMenuBox(
-                        expanded = expanded2,
-                        onExpandedChange = {
-                            expanded2 = !expanded2
-                        },
-                    ) {
-                        TextField(
-                            value = selectedText2,
-                            onValueChange = {},
-                            readOnly = true,
-                            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded2) },
-                            modifier = Modifier
-                                .menuAnchor()
-                                .fillMaxSize()
-                        )
-                        ExposedDropdownMenu(
+                        ExposedDropdownMenuBox(
                             expanded = expanded2,
-                            onDismissRequest = { expanded2 = false }
+                            onExpandedChange = {
+                                expanded2 = !expanded2
+                            },
                         ) {
-                            typeQuestion.forEach { item ->
-                                DropdownMenuItem(
-                                    text = { Text(text = item) },
-                                    onClick = {
-                                        selectedText2 = item
-                                        expanded2 = false
-                                        Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
-                                    }
-                                )
+                            TextField(
+                                value = selectedText2,
+                                onValueChange = {},
+                                readOnly = true,
+                                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded2) },
+                                modifier = Modifier
+                                    .menuAnchor()
+                                    .fillMaxSize()
+                            )
+                            ExposedDropdownMenu(
+                                expanded = expanded2,
+                                onDismissRequest = { expanded2 = false }
+                            ) {
+                                typeQuestion.forEach { item ->
+                                    DropdownMenuItem(
+                                        text = { Text(text = item) },
+                                        onClick = {
+                                            selectedText2 = item
+                                            expanded2 = false
+                                            Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
+                                        }
+                                    )
+                                }
                             }
                         }
-                    }
                     }
                     Column(
                         modifier = Modifier
@@ -200,47 +201,47 @@ fun SurveyCreateQuestionScreen() {
                             fontWeight = FontWeight.Bold,
                             fontFamily = FontFamily.SansSerif,
                         )
-                    ExposedDropdownMenuBox(
-                        expanded = expanded3,
-                        onExpandedChange = {
-                            expanded3 = !expanded3
-                        },
-                        modifier = Modifier
-                            .background(Color1) ,
-                    ) {
-                        TextField(
-                            value = "",
-                            onValueChange = {},
-                            readOnly = true,
-                            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded3) },
-                            modifier = Modifier.menuAnchor(),
-                            colors = TextFieldDefaults.textFieldColors(
-                                containerColor = Color1,
-                                textColor = Color.White,
-                                cursorColor = Color.White,
-                                focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent,
-                                disabledIndicatorColor = Color.Transparent,
-                            )
-                        )
-                        ExposedDropdownMenu(
+                        ExposedDropdownMenuBox(
                             expanded = expanded3,
-                            onDismissRequest = { expanded3 = false },
+                            onExpandedChange = {
+                                expanded3 = !expanded3
+                            },
                             modifier = Modifier
-                                .background(Color1)
+                                .background(Color1),
                         ) {
-                            amountQuestion.forEach { item ->
-                                DropdownMenuItem(
-                                    text = { Text(text = item) },
-                                    onClick = {
-                                        selectedText3 = item
-                                        expanded3 = false
-                                        Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
-                                    }
+                            TextField(
+                                value = "",
+                                onValueChange = {},
+                                readOnly = true,
+                                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded3) },
+                                modifier = Modifier.menuAnchor(),
+                                colors = TextFieldDefaults.textFieldColors(
+                                    containerColor = Color1,
+                                    textColor = Color.White,
+                                    cursorColor = Color.White,
+                                    focusedIndicatorColor = Color.Transparent,
+                                    unfocusedIndicatorColor = Color.Transparent,
+                                    disabledIndicatorColor = Color.Transparent,
                                 )
+                            )
+                            ExposedDropdownMenu(
+                                expanded = expanded3,
+                                onDismissRequest = { expanded3 = false },
+                                modifier = Modifier
+                                    .background(Color1)
+                            ) {
+                                amountQuestion.forEach { item ->
+                                    DropdownMenuItem(
+                                        text = { Text(text = item) },
+                                        onClick = {
+                                            selectedText3 = item
+                                            expanded3 = false
+                                            Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
+                                        }
+                                    )
+                                }
                             }
                         }
-                    }
                     }
                     Column(
                         modifier = Modifier
@@ -260,8 +261,8 @@ fun SurveyCreateQuestionScreen() {
                 Row(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(top = 20.dp) ,
-                    horizontalArrangement = Arrangement.Start ,
+                        .padding(top = 20.dp),
+                    horizontalArrangement = Arrangement.Start,
                 ) {
                     OutlinedTextFieldSurvey(
                         labelText = "Question",
@@ -276,8 +277,8 @@ fun SurveyCreateQuestionScreen() {
                 Row(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(top = 16.dp) ,
-                    horizontalArrangement = Arrangement.Start ,
+                        .padding(top = 16.dp),
+                    horizontalArrangement = Arrangement.Start,
                 ) {
                     OutlinedTextFieldSurvey(
                         labelText = "Choice 1",
@@ -292,8 +293,8 @@ fun SurveyCreateQuestionScreen() {
                 Row(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(top = 16.dp) ,
-                    horizontalArrangement = Arrangement.Start ,
+                        .padding(top = 16.dp),
+                    horizontalArrangement = Arrangement.Start,
                 ) {
                     OutlinedTextFieldSurvey(
                         labelText = "Choice 2",

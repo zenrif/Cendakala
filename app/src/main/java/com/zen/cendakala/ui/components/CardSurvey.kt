@@ -18,15 +18,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.zen.cendakala.R
 import com.zen.cendakala.ui.theme.Black2
 import com.zen.cendakala.ui.theme.Color1
 import com.zen.cendakala.ui.theme.White
-import com.zen.cendakala.utils.Constants
 
 @Composable
 fun CardSurvey(
@@ -34,7 +31,7 @@ fun CardSurvey(
     title: String,
     category1: String,
     category2: String,
-    quota : Int,
+    quota: Int,
     reward: Long,
 //    image: Int,
 //    onClick: () -> Unit
@@ -88,7 +85,7 @@ fun CardSurvey(
                 {
                     Column(
                         modifier = Modifier.width(180.dp)
-                    ){
+                    ) {
                         Text(
                             text = category1,
                             modifier = Modifier.padding(
@@ -126,7 +123,7 @@ fun CardSurvey(
                                 style = MaterialTheme.typography.labelSmall,
                             )
                         }
-                        Row{
+                        Row {
                             Image(
                                 painter = painterResource(id = R.drawable.ic_money),
                                 contentDescription = "reward",

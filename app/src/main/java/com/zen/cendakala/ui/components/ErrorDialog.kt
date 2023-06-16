@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 fun ErrorDialog(
     message: String = "error",
     image: Int,
-    action: (() -> Unit)? = null
+    action: (() -> Unit)? = null,
 ) {
     val showDialog = remember { mutableStateOf(true) }
 
@@ -61,7 +61,7 @@ fun ErrorDialog(
 //                    Text("Dismiss")
 //                }
 //            },
-            )
+        )
     }
 }
 

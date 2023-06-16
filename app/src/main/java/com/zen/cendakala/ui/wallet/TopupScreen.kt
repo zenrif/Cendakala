@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -31,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -47,8 +49,10 @@ import com.zen.cendakala.ui.theme.Color4
 @Composable
 fun TopupScreen(
     navController: NavController,
-){
+) {
     var nominal = remember { mutableStateOf("") }
+    val pattern = remember { Regex("^\\d+\$") }
+
     Box(
         modifier = Modifier
             .background(
@@ -95,8 +99,15 @@ fun TopupScreen(
             OutlinedTextField(
                 value = nominal.value,
                 label = { Text(text = "Enter Nominal (Rp. 10.000)") },
-                onValueChange = { },
-                )
+                onValueChange = {
+                    if (it.isEmpty() || it.matches(pattern)) {
+                        nominal.value = it
+                    }
+                },
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Number
+                ),
+            )
         }
         Box(
             modifier = Modifier
@@ -138,7 +149,7 @@ fun TopupScreen(
                             containerColor = Color.Transparent,
                             contentColor = Black2,
                         ),
-                        border = CardDefaults.outlinedCardBorder(true) ,
+                        border = CardDefaults.outlinedCardBorder(true),
                     ) {
                         Row(
                             modifier = Modifier
@@ -147,10 +158,12 @@ fun TopupScreen(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceEvenly
                         ) {
-                            Image(painter = painterResource(id = item.image), contentDescription = "Logo",
+                            Image(
+                                painter = painterResource(id = item.image),
+                                contentDescription = "Logo",
                                 modifier = Modifier
                                     .width(70.dp)
-                                    .fillMaxSize() ,
+                                    .fillMaxSize(),
                                 alignment = Alignment.Center
                             )
                             Column(
@@ -176,7 +189,7 @@ fun TopupScreen(
                     .fillMaxSize(),
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.Center
-            ){
+            ) {
                 PrimaryButton(
                     text = "Top Up",
                     onClickButton = { /*TODO*/ },
@@ -198,6 +211,6 @@ data class MoneyModel(
 
 @Preview
 @Composable
-fun TopupScreenPreview(){
+fun TopupScreenPreview() {
     TopupScreen(navController = NavController(LocalContext.current))
 }

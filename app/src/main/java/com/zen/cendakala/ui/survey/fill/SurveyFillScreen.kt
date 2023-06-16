@@ -37,7 +37,7 @@ import com.zen.cendakala.ui.theme.White2
 import com.zen.cendakala.utils.ViewModelServerFactory
 
 @Composable
-fun SurveyFillScreen(navController: NavController, surveyID: String){
+fun SurveyFillScreen(navController: NavController, surveyID: String) {
 
     val context = LocalContext.current
     val factory = remember { ViewModelServerFactory.getInstance(context) }
@@ -102,40 +102,51 @@ fun SurveyFillScreen(navController: NavController, surveyID: String){
                             PrimaryButton(
                                 text = stringResource(id = R.string.submit),
                                 onClickButton = {
-                                    detailViewModel.submitAnswer(surveyID = surveyID, reward = result.data.survey.reward)
-                                    navController.navigate(Routes.Success.routes) {
-                                        popUpTo(navController.graph.startDestinationId)
-                                        launchSingleTop = true
-                                    }
+                                    detailViewModel.submitAnswer(
+                                        surveyID = surveyID,
+                                        reward = result.data.survey.reward
+                                    )
+//                                    navController.navigate(Routes.Success.routes) {
+//                                        popUpTo(navController.graph.startDestinationId)
+//                                        launchSingleTop = true
+//                                    }
                                 },
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(top = 26.dp,start = 32.dp, end = 32.dp, bottom = 26.dp),
+                                    .padding(
+                                        top = 26.dp,
+                                        start = 32.dp,
+                                        end = 32.dp,
+                                        bottom = 26.dp
+                                    ),
                             )
-//                            answerResult?.let { result ->
-//                                when (result) {
-//                                    is Result.Success -> {
-//                                        navController.navigate(Routes.Success.routes) {
-//                                            popUpTo(navController.graph.startDestinationId)
-//                                            launchSingleTop = true
-//                                        }
-//                                    }
-//                                    is Result.Error -> {
-//                                        ErrorDialog(
-//                                            message = result.data.message,
-//                                            image = R.drawable.error_form,
-//                                        )
-//                                    }
-//                                    else -> {
-//                                            ErrorDialog(
-//                                                message = "Error",
-//                                                image = R.drawable.error_form,
-//                                            )
-//                                    }
-//                                }
-//                            }
+                            answerResult?.let { result ->
+                                when (result) {
+                                    is Result.Success -> {
+                                        navController.navigate(Routes.Success.routes) {
+                                            popUpTo(navController.graph.startDestinationId)
+                                            launchSingleTop = true
+                                        }
+                                    }
+
+                                    is Result.Error -> {
+                                        ErrorDialog(
+                                            message = result.data.message,
+                                            image = R.drawable.error_form,
+                                        )
+                                    }
+
+                                    else -> {
+                                        ErrorDialog(
+                                            message = "Error",
+                                            image = R.drawable.error_form,
+                                        )
+                                    }
+                                }
+                            }
                         }
                     }
+
                     is Result.Error -> {
                         Text(
                             text = result.data.message,
@@ -154,6 +165,6 @@ fun SurveyFillScreen(navController: NavController, surveyID: String){
 
 @Preview
 @Composable
-fun SurveyFillScreenPreview(){
+fun SurveyFillScreenPreview() {
     SurveyFillScreen(navController = NavController(LocalContext.current), surveyID = "1")
 }

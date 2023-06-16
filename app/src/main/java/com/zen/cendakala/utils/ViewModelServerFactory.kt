@@ -8,12 +8,13 @@ import com.zen.cendakala.di.Injection
 import com.zen.cendakala.ui.history.HistoryViewModel
 import com.zen.cendakala.ui.home.HomeViewModel
 import com.zen.cendakala.ui.profile.ProfileViewModel
-import com.zen.cendakala.ui.survey.create.CreateSurveyViewModel
 import com.zen.cendakala.ui.survey.SurveyViewModel
+import com.zen.cendakala.ui.survey.create.CreateSurveyViewModel
 import com.zen.cendakala.ui.survey.detail.SurveyDetailViewModel
 import com.zen.cendakala.ui.survey.fill.SurveyFillViewModel
 
-class ViewModelServerFactory private constructor(private val repo: SurveyRepository) : ViewModelProvider.NewInstanceFactory() {
+class ViewModelServerFactory private constructor(private val repo: SurveyRepository) :
+    ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {

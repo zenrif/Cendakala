@@ -31,7 +31,6 @@ import androidx.navigation.NavController
 import com.zen.cendakala.R
 import com.zen.cendakala.data.source.local.UserPreference
 import com.zen.cendakala.route.Routes
-import com.zen.cendakala.ui.components.ErrorDialog
 import com.zen.cendakala.ui.theme.Color1
 import com.zen.cendakala.utils.ViewModelServerFactory
 import kotlinx.coroutines.delay
@@ -58,10 +57,12 @@ fun SplashScreen(navController: NavController) {
     )
 
     LaunchedEffect(key1 = true, block = {
-        scale.animateTo(targetValue = 1f,
+        scale.animateTo(
+            targetValue = 1f,
             animationSpec = tween(
                 durationMillis = 2000,
-            ))
+            )
+        )
         delay(2500L)
 
         if (loginModel.token != null) {
@@ -95,11 +96,11 @@ fun SplashScreen(navController: NavController) {
                 launchSingleTop = true
             }
         } else
-        navController.navigate(Routes.Login.routes) {
-            popUpTo(Routes.Splash.routes) {
-                inclusive = true
+            navController.navigate(Routes.Login.routes) {
+                popUpTo(Routes.Splash.routes) {
+                    inclusive = true
+                }
             }
-        }
     })
 
     Box(

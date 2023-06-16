@@ -10,7 +10,6 @@ import androidx.lifecycle.viewModelScope
 import com.zen.cendakala.data.Result
 import com.zen.cendakala.data.model.LoginModel
 import com.zen.cendakala.data.repositories.AuthRepository
-import com.zen.cendakala.data.repositories.SurveyRepository
 import com.zen.cendakala.data.responses.RegisterResponse
 import com.zen.cendakala.data.rules.Validator
 import com.zen.cendakala.data.source.local.UserPreference
@@ -18,8 +17,8 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 
-class RegisterViewModel (
-    private val repo: AuthRepository
+class RegisterViewModel(
+    private val repo: AuthRepository,
 ) : ViewModel() {
 
     private val TAG = RegisterViewModel::class.simpleName
@@ -28,7 +27,8 @@ class RegisterViewModel (
 
     var allValidationsPassed = mutableStateOf(false)
 
-    private val _registerResult = mutableStateOf<LiveData<Result<Response<RegisterResponse>>>>(liveData { })
+    private val _registerResult =
+        mutableStateOf<LiveData<Result<Response<RegisterResponse>>>>(liveData { })
     val registerResult: LiveData<Result<Response<RegisterResponse>>>
         get() = _registerResult.value
 
@@ -39,31 +39,37 @@ class RegisterViewModel (
                     email = event.email
                 )
             }
+
             is RegisterUIEvent.PasswordChanged -> {
                 registerUIState.value = registerUIState.value.copy(
                     password = event.password
                 )
             }
+
             is RegisterUIEvent.NameChanged -> {
                 registerUIState.value = registerUIState.value.copy(
                     name = event.name
                 )
             }
+
             is RegisterUIEvent.GenderChanged -> {
                 registerUIState.value = registerUIState.value.copy(
                     gender = event.gender
                 )
             }
+
             is RegisterUIEvent.JobChanged -> {
                 registerUIState.value = registerUIState.value.copy(
                     job = event.job
                 )
             }
+
             is RegisterUIEvent.InterestChanged -> {
                 registerUIState.value = registerUIState.value.copy(
                     interest = event.interest
                 )
             }
+
             is RegisterUIEvent.RegisterButtonClicked -> {
                 register()
             }
@@ -72,6 +78,7 @@ class RegisterViewModel (
         }
         validateDataWithRules()
     }
+
     private fun validateDataWithRules() {
         val emailResult = Validator.validateEmail(
             email = registerUIState.value.email
@@ -121,7 +128,7 @@ class RegisterViewModel (
                     && genderResult.status && jobResult.status
     }
 
-    private fun register(){
+    private fun register() {
         val email = registerUIState.value.email
         val password = registerUIState.value.password
         val name = registerUIState.value.name

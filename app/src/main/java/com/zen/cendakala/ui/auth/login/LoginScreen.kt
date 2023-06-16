@@ -12,6 +12,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,19 +28,17 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.zen.cendakala.R
+import com.zen.cendakala.data.Result
+import com.zen.cendakala.route.Routes
+import com.zen.cendakala.ui.components.ErrorDialog
 import com.zen.cendakala.ui.components.ImageBackground
 import com.zen.cendakala.ui.components.OutlinedTextFieldCustom
 import com.zen.cendakala.ui.components.OutlinedTextFieldPasswordCustom
 import com.zen.cendakala.ui.components.PrimaryButton
 import com.zen.cendakala.ui.components.TextButtonCustom
 import com.zen.cendakala.ui.components.TextTitle
-import com.zen.cendakala.utils.ViewModelFactory
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
-import com.zen.cendakala.data.Result
-import com.zen.cendakala.route.Routes
-import com.zen.cendakala.ui.components.ErrorDialog
 import com.zen.cendakala.ui.theme.Color4
+import com.zen.cendakala.utils.ViewModelFactory
 
 
 @Composable
@@ -61,7 +61,7 @@ fun LoginScreen(navController: NavController) {
             modifier = Modifier
                 .padding(top = 144.dp)
                 .fillMaxSize(),
-            )
+        )
         Box(
             modifier = Modifier
                 .align(Alignment.Center),
@@ -70,8 +70,7 @@ fun LoginScreen(navController: NavController) {
                 modifier = Modifier
                     .padding(16.dp)
                     .fillMaxWidth()
-                    .verticalScroll(rememberScrollState())
-                ,
+                    .verticalScroll(rememberScrollState()),
 
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom
@@ -110,7 +109,7 @@ fun LoginScreen(navController: NavController) {
                     modifier = Modifier
                         .align(Alignment.End)
                         .padding(end = 16.dp),
-                    )
+                )
 
                 Spacer(modifier = Modifier.padding(40.dp))
                 PrimaryButton(
@@ -141,14 +140,14 @@ fun LoginScreen(navController: NavController) {
 //                                Text(text = it.toString())
 //                            }
                             ErrorDialog(
-                                message = result.data.body()?.message ?: "Error" ,
+                                message = result.data.body()?.message ?: "Error",
                                 image = R.drawable.error_form,
                             )
                         }
 
                         is Result.Failure -> {
                             ErrorDialog(
-                                message = result.exception.message ?: "Error" ,
+                                message = result.exception.message ?: "Error Exception",
                                 image = R.drawable.error_form,
                             )
                         }
@@ -164,20 +163,20 @@ fun LoginScreen(navController: NavController) {
                     }
                 }
                 Spacer(modifier = Modifier.padding(16.dp))
-                    Text(
-                        text = stringResource(id = R.string.dont_have_account) ,
-                        style = MaterialTheme.typography.bodyMedium,
-                        letterSpacing = 1.sp,
-                    )
-                    TextButtonCustom(
-                        text = stringResource(id = R.string.signup),
-                        onClickButton = {
-                            navController.navigate(Routes.Register.routes) {
-                                popUpTo(navController.graph.startDestinationId)
-                                launchSingleTop = true
-                            }
-                        },
-                    )
+                Text(
+                    text = stringResource(id = R.string.dont_have_account),
+                    style = MaterialTheme.typography.bodyMedium,
+                    letterSpacing = 1.sp,
+                )
+                TextButtonCustom(
+                    text = stringResource(id = R.string.signup),
+                    onClickButton = {
+                        navController.navigate(Routes.Register.routes) {
+                            popUpTo(navController.graph.startDestinationId)
+                            launchSingleTop = true
+                        }
+                    },
+                )
             }
 
         }
@@ -189,5 +188,5 @@ fun LoginScreen(navController: NavController) {
 @Preview
 @Composable
 fun Preview() {
-    LoginScreen(navController =  NavController(LocalContext.current))
+    LoginScreen(navController = NavController(LocalContext.current))
 }

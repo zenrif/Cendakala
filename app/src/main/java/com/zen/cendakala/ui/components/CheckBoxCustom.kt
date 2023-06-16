@@ -20,7 +20,7 @@ fun CheckBoxCustom(
     option: String,
     isCheckedValue: Boolean,
     onCheckedChange: (Boolean) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Checkbox(
         checked = isCheckedValue,
@@ -33,15 +33,18 @@ fun CheckBoxCustom(
 
         )
     if (isCheckedValue) {
-        Text(text = option,
+        Text(
+            text = option,
             modifier = Modifier.padding(top = 16.dp, bottom = 16.dp, start = 5.dp, end = 4.dp),
             letterSpacing = Constants.LETTER_SPACING.sp,
             color = Color1
         )
     } else {
-        Text(text = option,
+        Text(
+            text = option,
             modifier = Modifier.padding(top = 16.dp, bottom = 16.dp, start = 5.dp, end = 4.dp),
             letterSpacing = Constants.LETTER_SPACING.sp,
-            color = Color.Black)
+            color = Color.Black
+        )
     }
 }

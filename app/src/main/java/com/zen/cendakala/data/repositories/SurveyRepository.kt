@@ -1,13 +1,10 @@
 package com.zen.cendakala.data.repositories
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.liveData
 import com.zen.cendakala.data.Result
 import com.zen.cendakala.data.model.Answer
 import com.zen.cendakala.data.model.AnswerModel
@@ -15,76 +12,73 @@ import com.zen.cendakala.data.model.Question
 import com.zen.cendakala.data.model.SurveyModel
 import com.zen.cendakala.data.responses.CreateSurveyResponse
 import com.zen.cendakala.data.responses.GeneralResponse
-import com.zen.cendakala.data.responses.LoginResponse
-import com.zen.cendakala.data.responses.RegisterResponse
-import com.zen.cendakala.data.responses.Survey
 import com.zen.cendakala.data.responses.SurveyByIdResponse
-import com.zen.cendakala.data.responses.SurveyResponse
 import com.zen.cendakala.data.responses.TokenResponse
 import com.zen.cendakala.data.responses.UserResponse
 import com.zen.cendakala.data.source.HistoryPagingSource
 import com.zen.cendakala.data.source.HistoryRemoteMediator
-import com.zen.cendakala.data.source.SurveyAllPagingSource
-import com.zen.cendakala.data.source.SurveyAllRemoteMediator
 import com.zen.cendakala.data.source.SurveyPagingSource
 import com.zen.cendakala.data.source.SurveyRecomPagingSource
 import com.zen.cendakala.data.source.SurveyRecomRemoteMediator
 import com.zen.cendakala.data.source.SurveyRemoteMediator
-import com.zen.cendakala.data.source.local.CreateSurvey
+import com.zen.cendakala.data.source.SurveyUserPagingSource
+import com.zen.cendakala.data.source.SurveyUserRemoteMediator
 import com.zen.cendakala.data.source.local.UserPreference
 import com.zen.cendakala.data.source.remote.ApiServices
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Response
 
-class SurveyRepository (
-    private val pref: UserPreference, private val apiService: ApiServices
+class SurveyRepository(
+    private val pref: UserPreference, private val apiService: ApiServices,
 ) {
     @OptIn(ExperimentalPagingApi::class)
     fun getSurveys() = Pager(
-            config = PagingConfig(
-                pageSize = 5,
-            ),
-            remoteMediator = SurveyRemoteMediator(pref, apiService),
-            pagingSourceFactory = {
-                SurveyPagingSource(pref, apiService)
-            }
-        ).flow
-
-    @OptIn(ExperimentalPagingApi::class)
-    fun recomSurveys() = Pager(
-            config = PagingConfig(
-                pageSize = 2,
-            ),
-            remoteMediator = SurveyRecomRemoteMediator(pref, apiService),
-            pagingSourceFactory = {
-                SurveyRecomPagingSource(pref, apiService)
-            }
-        ).flow
-
-    @OptIn(ExperimentalPagingApi::class)
-    fun getAllSurveys() = Pager(
         config = PagingConfig(
             pageSize = 5,
         ),
-        remoteMediator = SurveyAllRemoteMediator(pref, apiService),
+        remoteMediator = SurveyRemoteMediator(pref, apiService),
         pagingSourceFactory = {
-            SurveyAllPagingSource(pref, apiService)
+            SurveyPagingSource(pref, apiService)
         }
     ).flow
+
+    @OptIn(ExperimentalPagingApi::class)
+    fun recomSurveys() = Pager(
+        config = PagingConfig(
+            pageSize = 2,
+        ),
+        remoteMediator = SurveyRecomRemoteMediator(pref, apiService),
+        pagingSourceFactory = {
+            SurveyRecomPagingSource(pref, apiService)
+        }
+    ).flow
+
+    @OptIn(ExperimentalPagingApi::class)
+    fun getSurveyUser() = Pager(
+        config = PagingConfig(
+            pageSize = 2,
+            initialLoadSize = 1,
+        ),
+        remoteMediator = SurveyUserRemoteMediator(pref, apiService),
+        pagingSourceFactory = {
+            SurveyUserPagingSource(pref, apiService)
+        }
+    ).flow
+
     @OptIn(ExperimentalPagingApi::class)
     fun getHistory() = Pager(
         config = PagingConfig(
             pageSize = 5,
+            initialLoadSize = 1,
         ),
         remoteMediator = HistoryRemoteMediator(pref, apiService),
         pagingSourceFactory = {
             HistoryPagingSource(pref, apiService)
         }
     ).flow
+
     fun cekToken(): LiveData<Result<Response<TokenResponse>>> = liveData {
         try {
             val response = apiService.cekToken(
@@ -99,15 +93,16 @@ class SurveyRepository (
             emit(Result.Failure(e))
         }
     }
+
     fun createSurvey(
-         title: String,
-         questionNum: Int,
-         quota: Int,
-         reward: Long,
-         category1: String,
-         category2: String,
-         description: String,
-         questions: Map<String, Question>
+        title: String,
+        questionNum: Int,
+        quota: Int,
+        reward: Long,
+        category1: String,
+        category2: String,
+        description: String,
+        questions: Map<String, Question>,
     ): LiveData<Result<CreateSurveyResponse>> = liveData {
         try {
             val response = apiService.createSurvey(
@@ -146,6 +141,7 @@ class SurveyRepository (
             emit(Result.Failure(e))
         }
     }
+
     fun getQuestionsById(surveyID: String): LiveData<Result<SurveyByIdResponse>> = liveData {
         try {
             val response = apiService.surveyById(
@@ -165,7 +161,7 @@ class SurveyRepository (
     fun submitAnswer(
         answers: Map<String, Answer>,
         surveyID: String,
-        reward: Long
+        reward: Long,
     ): LiveData<Result<GeneralResponse>> = liveData {
         try {
             val answer = AnswerModel(
@@ -213,7 +209,7 @@ class SurveyRepository (
         private var instance: SurveyRepository? = null
         fun getInstance(
             preferences: UserPreference,
-            apiService: ApiServices
+            apiService: ApiServices,
         ): SurveyRepository =
             instance ?: synchronized(this) {
                 instance ?: SurveyRepository(preferences, apiService)

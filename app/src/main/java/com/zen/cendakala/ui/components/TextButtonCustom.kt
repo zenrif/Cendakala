@@ -1,8 +1,6 @@
 package com.zen.cendakala.ui.components
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -11,7 +9,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.zen.cendakala.ui.theme.Black2
 import com.zen.cendakala.utils.Constants
@@ -20,7 +17,7 @@ import com.zen.cendakala.utils.Constants
 fun TextButtonCustom(
     text: String,
     onClickButton: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     TextButton(
         onClick = onClickButton,
@@ -32,10 +29,11 @@ fun TextButtonCustom(
         Text(
             text = text,
             letterSpacing = Constants.LETTER_SPACING.sp,
-            overflow = TextOverflow.Ellipsis ,
+            overflow = TextOverflow.Ellipsis,
             style = TextStyle(
                 textDecoration = TextDecoration.Underline,
-                fontWeight = FontWeight.Bold)
+                fontWeight = FontWeight.Bold
+            )
         )
     }
 }

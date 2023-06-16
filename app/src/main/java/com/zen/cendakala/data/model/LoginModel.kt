@@ -4,8 +4,8 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class LoginModel (
-    var token: String? = null
+data class LoginModel(
+    var token: String? = null,
 ) : Parcelable
 
 data class RegisterModel(
@@ -14,5 +14,10 @@ data class RegisterModel(
     var password: String,
     val job: String,
     val gender: String,
-    val interest: Map<String, String>
+    val interest: Map<String, String>,
+)
+
+data class LoginData(
+    var email: String,
+    var password: String,
 )

@@ -15,11 +15,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.zen.cendakala.ui.theme.Color1
 import com.zen.cendakala.ui.theme.Color3
-import com.zen.cendakala.ui.theme.White
 import com.zen.cendakala.ui.theme.White2
 
 @Composable

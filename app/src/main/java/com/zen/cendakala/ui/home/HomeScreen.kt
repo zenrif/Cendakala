@@ -3,8 +3,6 @@ package com.zen.cendakala.ui.home
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.FlingBehavior
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,18 +15,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,7 +29,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -56,13 +48,12 @@ import com.zen.cendakala.ui.components.ImageBackground
 import com.zen.cendakala.ui.components.SearchField
 import com.zen.cendakala.ui.components.TextButtonCustom
 import com.zen.cendakala.ui.theme.*
-import com.zen.cendakala.utils.ViewModelFactory
 import com.zen.cendakala.utils.ViewModelServerFactory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    navController : NavController,
+    navController: NavController,
     paddingValuesBottom: PaddingValues,
 ) {
     val searchText = remember {
@@ -93,7 +84,7 @@ fun HomeScreen(
             SearchField(
                 placeholder = "Cari...",
                 value = "",
-                onValueChange = {  },
+                onValueChange = { },
                 onClear = { }
             )
             Row(
@@ -140,66 +131,70 @@ fun HomeScreen(
                     .fillMaxWidth()
                     .padding(start = 18.dp)
             ) {
-                    Text(
-                        text = stringResource(id = R.string.recommended),
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = Black2,
-                        modifier = Modifier
-                            .padding(start = 12.dp, bottom = 16.dp)
-                    )
-                    LazyRow(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(color = White2)
-                            .padding(bottom = 16.dp),
-                        state = rowState,
-                        horizontalArrangement = Arrangement.SpaceAround,
-                    ) {
-                        if (recomSurveys.loadState.refresh is LoadState.Loading) {
-                            item (key = "prepend_loading") {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .height(160.dp)
-                                        .padding(top = 24.dp, bottom = 24.dp)
-                                ) {
-                                    CircularProgressIndicator(
-                                        modifier = Modifier
-                                            .align(Alignment.Center),
-                                        color = Color4,
-                                    )
-                                }
-                            }
-                        }
-                        items(
-                            count = recomSurveys.itemCount,
-                            key = { index -> recomSurveys[index]?.surveyID ?: index }
-                        ) { index ->
+                Text(
+                    text = stringResource(id = R.string.recommended),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = Black2,
+                    modifier = Modifier
+                        .padding(start = 12.dp, bottom = 16.dp)
+                )
+                LazyRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(color = White2)
+                        .padding(bottom = 16.dp),
+                    state = rowState,
+                    horizontalArrangement = Arrangement.SpaceAround,
+                ) {
+                    if (recomSurveys.loadState.refresh is LoadState.Loading) {
+                        item(key = "prepend_loading") {
                             Box(
                                 modifier = Modifier
-                                    .background(color = White2)
+                                    .fillMaxWidth()
+                                    .height(160.dp)
+                                    .padding(top = 24.dp, bottom = 24.dp)
                             ) {
-                                CardSurveyRow(
-                                    title = recomSurveys[index]?.title ?: "",
-                                    category1 = recomSurveys[index]?.category1 ?: "",
-                                    category2 = recomSurveys[index]?.category2 ?: "",
-                                    quota = recomSurveys[index]?.quota ?: 0,
-                                    reward = recomSurveys[index]?.reward ?: 0,
+                                CircularProgressIndicator(
                                     modifier = Modifier
-                                        .padding(
-                                            top = 0.dp,
-                                            bottom = 0.dp,
-                                            start = 8.dp,
-                                            end = 8.dp
-                                        )
-                                        .clickable {
-                                            navController.navigate(Routes.Detail.createRoute(recomSurveys[index]?.surveyID ?: ""))
-                                        }
-                                        .widthIn(100.dp, 500.dp)
-                                        .heightIn(min = 100.dp, max = 500.dp)
+                                        .align(Alignment.Center),
+                                    color = Color4,
                                 )
                             }
                         }
+                    }
+                    items(
+                        count = recomSurveys.itemCount,
+                        key = { index -> recomSurveys[index]?.surveyID ?: index }
+                    ) { index ->
+                        Box(
+                            modifier = Modifier
+                                .background(color = White2)
+                        ) {
+                            CardSurveyRow(
+                                title = recomSurveys[index]?.title ?: "",
+                                category1 = recomSurveys[index]?.category1 ?: "",
+                                category2 = recomSurveys[index]?.category2 ?: "",
+                                quota = recomSurveys[index]?.quota ?: 0,
+                                reward = recomSurveys[index]?.reward ?: 0,
+                                modifier = Modifier
+                                    .padding(
+                                        top = 0.dp,
+                                        bottom = 0.dp,
+                                        start = 8.dp,
+                                        end = 8.dp
+                                    )
+                                    .clickable {
+                                        navController.navigate(
+                                            Routes.Detail.createRoute(
+                                                recomSurveys[index]?.surveyID ?: ""
+                                            )
+                                        )
+                                    }
+                                    .widthIn(100.dp, 500.dp)
+                                    .heightIn(min = 100.dp, max = 500.dp)
+                            )
+                        }
+                    }
 //                    }
                 }
                 Text(
@@ -221,7 +216,7 @@ fun HomeScreen(
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     if (surveys.loadState.refresh is LoadState.Loading) {
-                        item (key = "prepend_loading") {
+                        item(key = "prepend_loading") {
                             Box(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -257,7 +252,11 @@ fun HomeScreen(
                                     .fillMaxHeight()
                                     .padding(top = 0.dp, bottom = 0.dp, start = 8.dp, end = 26.dp)
                                     .clickable {
-                                        navController.navigate(Routes.Detail.createRoute(surveys[index]?.surveyID ?: ""))
+                                        navController.navigate(
+                                            Routes.Detail.createRoute(
+                                                surveys[index]?.surveyID ?: ""
+                                            )
+                                        )
                                     },
                             )
                         }
@@ -271,6 +270,9 @@ fun HomeScreen(
 @Preview
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen(navController = NavController(LocalContext.current), paddingValuesBottom = PaddingValues())
+    HomeScreen(
+        navController = NavController(LocalContext.current),
+        paddingValuesBottom = PaddingValues()
+    )
 }
 

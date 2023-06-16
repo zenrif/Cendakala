@@ -50,11 +50,13 @@ fun RadioButtonCustom(
                 onClick = onOptionSelected,
                 role = Role.RadioButton
             )
-            .background(color = if (selected) {
-                Color1
-            } else {
-                White
-            })
+            .background(
+                color = if (selected) {
+                    Color1
+                } else {
+                    White
+                }
+            )
     ) {
         Row(
             modifier = Modifier

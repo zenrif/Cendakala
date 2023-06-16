@@ -26,7 +26,7 @@ fun SearchField(
     enable: Boolean = true,
     onClick: () -> Unit = {},
     onValueChange: (String) -> Unit = {},
-    onClear: () -> Unit = {}
+    onClear: () -> Unit = {},
 ) {
     OutlinedTextField(
         modifier = Modifier

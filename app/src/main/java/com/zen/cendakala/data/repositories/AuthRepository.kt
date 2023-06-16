@@ -1,47 +1,31 @@
 package com.zen.cendakala.data.repositories
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
-import androidx.paging.ExperimentalPagingApi
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.liveData
 import com.zen.cendakala.data.Result
-import com.zen.cendakala.data.model.Question
+import com.zen.cendakala.data.model.LoginData
 import com.zen.cendakala.data.model.RegisterModel
-import com.zen.cendakala.data.model.SurveyModel
-import com.zen.cendakala.data.responses.CreateSurveyResponse
-import com.zen.cendakala.data.responses.GeneralResponse
 import com.zen.cendakala.data.responses.LoginResponse
 import com.zen.cendakala.data.responses.RegisterResponse
-import com.zen.cendakala.data.responses.Survey
-import com.zen.cendakala.data.responses.SurveyResponse
-import com.zen.cendakala.data.source.SurveyPagingSource
-import com.zen.cendakala.data.source.SurveyRemoteMediator
-import com.zen.cendakala.data.source.local.CreateSurvey
 import com.zen.cendakala.data.source.local.UserPreference
 import com.zen.cendakala.data.source.remote.ApiServices
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Response
 
-class AuthRepository (
-    private val pref: UserPreference, private val apiService: ApiServices
+class AuthRepository(
+    private val pref: UserPreference, private val apiService: ApiServices,
 ) {
     fun login(
         email: String,
-        password: String
+        password: String,
     ): LiveData<Result<Response<LoginResponse>>> = liveData {
         emit(Result.Loading)
         try {
+            val loginData = LoginData(
+                email = email,
+                password = password
+            )
             val response = apiService.login(
-                email,
-                password
+                loginData = loginData
             )
             if (response.isSuccessful) {
                 emit(Result.Success(response))
@@ -59,7 +43,7 @@ class AuthRepository (
         password: String,
         job: String,
         gender: String,
-        interest: Map<String, String>
+        interest: Map<String, String>,
     ): LiveData<Result<Response<RegisterResponse>>> = liveData {
         emit(Result.Loading)
         try {
@@ -72,7 +56,7 @@ class AuthRepository (
                 interest = interest
             )
             val response = apiService.register(
-               registerModel = registerModel
+                registerModel = registerModel
             )
             if (response.isSuccessful) {
                 emit(Result.Success(response))
@@ -89,7 +73,7 @@ class AuthRepository (
         private var instance: AuthRepository? = null
         fun getInstance(
             preferences: UserPreference,
-            apiService: ApiServices
+            apiService: ApiServices,
         ): AuthRepository =
             instance ?: synchronized(this) {
                 instance ?: AuthRepository(preferences, apiService)
