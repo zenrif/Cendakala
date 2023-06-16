@@ -125,7 +125,26 @@ try {
 
     resSnap.forEach( (response) => {
         responseArr.push(response.data())
-    } )
+    })
+
+    let surveys = []
+
+    const responseTitle = await DB.collection('surveys').get()
+
+    let count = 0
+
+
+    responseTitle.forEach((resp) => {
+        surveys.push(resp.data())
+    })
+
+    responseArr.forEach((respo)=>{
+        const survey = surveys.find( survey => {
+            return survey.surveyID == respo.surveyID
+        })
+        const surveyTitle = survey.title 
+        respo["title"] = surveyTitle
+    })
 
     res.status(200).json({
         status : "Success",
